@@ -113,16 +113,16 @@
             <script>
 
 
-                var App = angular.module('App', []).config(function ($interpolateProvider, $httpProvider) {
-                //$interpolateProvider.startSymbol('{$');
-                //$interpolateProvider.endSymbol('$}');
-                $httpProvider.defaults.headers.common = {};
-                $httpProvider.defaults.headers.post = {};
-                });
-                var baseurl = "<?php echo site_url(); ?>";
-                var imageurlg = "<?php echo PRODUCTIMAGELINK; ?>";
-                var globlecurrency = "<?php echo globle_currency; ?>";
-                var avaiblecredits = 0;</script>
+                        var App = angular.module('App', []).config(function ($interpolateProvider, $httpProvider) {
+                            //$interpolateProvider.startSymbol('{$');
+                            //$interpolateProvider.endSymbol('$}');
+                            $httpProvider.defaults.headers.common = {};
+                            $httpProvider.defaults.headers.post = {};
+                        });
+                        var baseurl = "<?php echo site_url(); ?>";
+                        var imageurlg = "<?php echo PRODUCTIMAGELINK; ?>";
+                        var globlecurrency = "<?php echo globle_currency; ?>";
+                        var avaiblecredits = 0;</script>
 
             <style>
                 .ownmenu .dropdown.megamenu .dropdown-menu li:last-child{
@@ -139,268 +139,65 @@
 
 
             <!-- Header Area Start Here -->
-            <header>
-                <div class="header-area-style3" id="sticker">
-                    <div class="header-top">
-                        <div class="header-top-inner-top">
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
-                                        <div class="header-contact">
-                                            <ul>
-                                                <li><i class="fa fa-phone" aria-hidden="true"></i><a href="tel:+(852) 2756 5611">+(852) 2756 5611</a></li>
-                                                <li><i class="fa fa-envelope" aria-hidden="true"></i><a href="#"> mahamarthk@gmail.com</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                                        <div class="account-wishlist">
-                                            <ul>
-                                                <li><a href="#"><i class="fa fa-lock" aria-hidden="true"></i> Account</a></li>
-                                                <li><a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i> Wishlist</a></li>
-                                                <li><a href="#"><?php echo globle_currency; ?></a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
+
+            <div class="header-area-style2" id="sticker">
+                <div class="header-top">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4 col-sm-2 hidden-xs">
+                                <div class="logo-area">
+                                    <a href="<?php echo site_url("/"); ?>"><img class="img-responsive mainsitelogo" src="<?php echo base_url(); ?>assets/images/logo.png" alt="logo" ></a>
+                                </div>
+                            </div>
+                            <div class="col-lg-8 col-md-8 col-sm-10 col-xs-12">
+                                <div class="account-wishlist">
+                                    <ul>
+                                        <li><i class="fa fa-phone" aria-hidden="true"></i><a href="tel:+(852) 6142 8189">+(852) 6142 8189</a></li>
+                                        <li><i class="fa fa-envelope" aria-hidden="true"></i><a href="mailto:sales@maharajatickets.com">sales@maharajatickets.com</a></li>
+
+                                        <li><a href="login-registration.html"><i class="fa fa-lock" aria-hidden="true"></i> Account</a></li>
+                                    </ul>
                                 </div>
                             </div>
                         </div>
-                        <div class="header-top-inner-bottom">
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                                        <div class="logo-area">
-                                            <a href="<?php echo site_url("/");?>"><img class="img-responsive mainsitelogo" src="<?php echo base_url(); ?>assets/images/logo.png" alt="logo" ></a>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-7 col-md-7 col-sm-7 col-xs-12">
-                                        <div class="search-area">
-                                            <div class="input-group" id="adv-search">
-                                                <input type="text" class="form-control typeahead" placeholder="Search Product" />
-                                                <div class="input-group-btn">
-                                                    <div class="btn-group" role="group">
-
-                                                        <button type="button" class="btn btn-metro-search"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
-                                        <ul class="header-cart-area">
-                                            <li>
-                                                <div class="cart-area maincartarea">
-                                                    <a href="#" class="cartheadericon">
-                                                        <font>My Cart</font>
-                                                        <i class="fa fa-shopping-cart"></i><span>{{globleCartData.total_quantity}}</span>
-                                                    </a>
-                                                    <ul ng-if="globleCartData.total_quantity">
-                                                        <li  ng-repeat="product in globleCartData.products">
-
-                                                            <div class="cart-single-product">
-                                                                <div class="media">
-                                                                    <div class="pull-left cart-product-img">
-                                                                        <a href="#">
-
-                                                                            <img class="img-responsive" alt="product" src="{{product.file_name}}">
-                                                                        </a>
-                                                                    </div>
-                                                                    <div class="media-body cart-content">
-                                                                        <ul>
-                                                                            <li>
-                                                                                <h2 style="    white-space: nowrap;
-                                                                                    overflow: hidden;
-                                                                                    text-overflow: ellipsis;
-                                                                                    width: 250px;"><a href="#" style="">{{product.title}}</a></h2>
-                                                                                <h3>                                                                 
-                                                                                    <p>
-                                                                                        {{product.quantity}} X  {{product.price|currency}} 
-                                                                                    </p>
-                                                                                </h3>
-                                                                            </li>
-                                                                            <li>
-                                                                            </li>
-                                                                            <li>
-                                                                                <p></p>
-                                                                            </li>
-                                                                            <li>
-                                                                                <a class="trash" href="#." ng-click="removeCart(product.product_id)"><i class="fa fa-trash-o"></i></a>
-                                                                            </li>
-                                                                        </ul>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </li>
-
-                                                        <li>
-                                                            <span><span>Sub Total</span></span><span>{{globleCartData.total_price|currency}}</span>
-
-                                                        </li>
-                                                        <li>
-                                                            <ul class="checkout">
-                                                                <li><a href="<?php echo site_url("Cart/details"); ?>" class="btn-checkout"><i class="fa fa-shopping-cart" aria-hidden="true"></i>View Cart</a></li>
-                                                                <!--<li><a href="<?php echo site_url("Cart/checkoutInit"); ?>" class="btn-checkout"><i class="fa fa-share" aria-hidden="true"></i>Checkout</a></li>-->
-                                                            </ul>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </li>
-
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="header-bottom">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-lg-3 col-md-3 col-sm-4">
-                                    <div class="logo-area">
-                                        <a href="<?php echo site_url("/");?>"><img class="img-responsive stickheadersitelogo" src="<?php echo base_url(); ?>assets/images/logo.png" alt="logo"></a>
-                                    </div>
-                                    <div class="category-menu-area" id="category-menu-area">
-                                        <h2 class="category-menu-title"><a href="#"><i class="fa fa-bars" aria-hidden="true"></i></a>Categories</h2>
-                                        <ul class="category-menu-area-inner">
-                                            <?php
-                                            foreach ($menucontainer as $key => $value) {
-                                                $children = $value['children'];
-                                                ?>
-                                                <li><a href="<?php echo site_url('Product/productList/1/1'); ?>">
-                                                        <?php echo $value['category_name']; ?>
-                                                        <?php if ($children) { ?>
-                                                            <span><i class="flaticon-next"></i></span></a>
-                                                        <ul class="dropdown-menu">
-                                                            <?php
-                                                            foreach ($children as $ckey => $cvalue) {
-                                                                ?>
-                                                            <li><a href="<?php echo site_url('Product/productList/1/1');?>"><?php echo $cvalue['category_name']; ?></a></li>
-                                                                <?php
-                                                            }
-                                                            ?>
-                                                        </ul>
-                                                        <?php
-                                                    }
-                                                    ?>
-                                                </li>
-                                                <?php
-                                            }
-                                            ?>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="col-lg-9 col-md-9 col-sm-8">
-                                    <div class="main-menu-area hideonstickheader">
-                                        <nav>
-                                            <ul>
-                                                <li class="active"><a href="#">Offers</a></li>
-                                                <li><a href="<?php echo site_url("Movies/index");?>">Movie Tickets</a></li>
-                                                <li><a href="">Woodlands Indian Vegetarian Restaurant</a></li>
-
-                                            </ul>
-                                        </nav>
-                                    </div>
-                                    <div class="showonstickheader">
-                                        <div class="col-lg-10 col-md-7 col-sm-7 col-xs-12">
-                                            <div class="search-area" style="    margin-top: -6px;">
-                                                <div class="input-group" id="adv-search">
-                                                    <input type="text" class="form-control typeahead" placeholder="Search Product" />
-                                                    <div class="input-group-btn">
-                                                        <div class="btn-group" role="group">
-
-                                                            <button type="button" class="btn btn-metro-search"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
-                                            <ul class="header-cart-area">
-                                                <li>
-                                                    <div class="cart-area maincartarea">
-                                                        <a href="#" class="cartheadericon">
-
-                                                            <i class="fa fa-shopping-cart"></i><span>{{globleCartData.total_quantity}}</span>
-                                                        </a>
-                                                        <ul ng-if="globleCartData.total_quantity">
-                                                            <li  ng-repeat="product in globleCartData.products">
-
-                                                                <div class="cart-single-product">
-                                                                    <div class="media">
-                                                                        <div class="pull-left cart-product-img">
-                                                                            <a href="#">
-
-                                                                                <img class="img-responsive" alt="product" src="{{product.file_name}}">
-                                                                            </a>
-                                                                        </div>
-                                                                        <div class="media-body cart-content">
-                                                                            <ul>
-                                                                                <li>
-                                                                                    <h2 style="    white-space: nowrap;
-                                                                                        overflow: hidden;
-                                                                                        text-overflow: ellipsis;
-                                                                                        width: 250px;"><a href="#" style="">{{product.title}}</a></h2>
-                                                                                    <h3>                                                                 
-                                                                                        <p>
-                                                                                            {{product.quantity}} X  {{product.price|currency}} 
-                                                                                        </p>
-                                                                                    </h3>
-                                                                                </li>
-                                                                                <li>
-                                                                                </li>
-                                                                                <li>
-                                                                                    <p></p>
-                                                                                </li>
-                                                                                <li>
-                                                                                    <a class="trash" href="#." ng-click="removeCart(product.product_id)"><i class="fa fa-trash-o"></i></a>
-                                                                                </li>
-                                                                            </ul>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </li>
-
-                                                            <li>
-                                                                <span><span>Sub Total</span></span><span>{{globleCartData.total_price|currency}}</span>
-
-                                                            </li>
-                                                            <li>
-                                                                <ul class="checkout">
-                                                                    <li><a href="<?php echo site_url("Cart/details"); ?>" class="btn-checkout"><i class="fa fa-shopping-cart" aria-hidden="true"></i>View Cart</a></li>
-                                                                    <!--<li><a href="<?php echo site_url("Cart/checkoutInit"); ?>" class="btn-checkout"><i class="fa fa-share" aria-hidden="true"></i>Checkout</a></li>-->
-                                                                </ul>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </li>
-
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Mobile Menu Area Start Here -->
-                        <div class="mobile-menu-area">
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="mobile-menu">
-                            
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Mobile Menu Area End Here -->
                     </div>
                 </div>
-            </header>
+                <div class="header-bottom">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="logo-area">
+                                    <a href="<?php echo site_url("/"); ?>"><img class="img-responsive mainsitelogo" src="<?php echo base_url(); ?>assets/images/logo.png" alt="logo" ></a>
+                                </div>
+                                <div class="main-menu-area home2-sticky-area">
+                                    <nav>
+                                        <ul>
+                                            <li class="active"><a href="#">Home</a>
+
+                                            </li>
+                                            <li><a href="about.html">About</a></li>
+                                            <li><a href="shop7.html">Movies</a></li>
+                                            <li><a href="#">Blog</a></li>
+                                            <li><a href="#">About</a></li>
+                                            <li><a href="contact.html">Contact</a></li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+          
+        </header>
 
 
 
 
-            <!--mobile model-->
+        <!--mobile model-->
 
 
 

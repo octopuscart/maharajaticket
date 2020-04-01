@@ -1,56 +1,33 @@
 <!-- Footer Area Start Here -->
 <div style="clear: both"></div>
 <?php
-$querymenu = $this->db->get('category');
-$categorylists = $querymenu->result_array();
-$categorylisttemp = [];
-
-
 $this->db->select("seo_keywords");
 $queryconf = $this->db->get('configuration_site');
 $seokeywords = $queryconf->row();
 $keywordschat = $seokeywords->seo_keywords;
-
-$keywordslist = explode(", ", $keywordschat);
-
-$this->db->where("parent_id", "0");
-$querymenu = $this->db->get('category');
-$categorylistsparent = $querymenu->result_array();
 ?>
-<div class="container">
+<div class="container" style='text-align: center;'>
     <hr/>
 
-    <table class="footertable">
-        <tr>
-            <th style="width: 25%;text-align: right;">
-                POPULAR CATEGORIES:
-            </th>
-            <td>
-                <?php
-                foreach ($categorylists as $key => $value) {
-                    echo $value['category_name'] . ($key == (count($categorylists) - 1) ? '' : ', ');
-                }
-                ?>
-            </td>
-        </tr>
+    <table class="footertable" style='    display: inline'>
 
-        <tr>
-            <th style="width: 25%;text-align: right;">
-                POPULAR BRANDS:
-            </th>
-            <td>
 
-                POPULAR BRANDS:
-                Fresho, bb Royal, Surf Excel, Amul, Nestle , Saffola, Britannia, Harpic, Lizol, Colgate, Dettol, Dabur, Tata I Shakti, Dhara , Fresho Meats, Parle, Real, Tropicana, Kissan, danone,
-            </td>
-        </tr>
+
 
         <tr>
             <th style="width: 25%;text-align: right;">
                 PAYMENT OPTIONS:
             </th>
-            <td>
+            <td style='wi'>
                 <img src="<?php echo base_url(); ?>assets/paymentstatus/payment.jpg" style="height: 75px;">
+            </td>
+        </tr>
+        <tr>
+
+            <td style='wi' colspan="2">
+                <p>For other payment option connect us on WhatsApp: <span style='font-weight: 600;
+                                                                          color: #0fc105;'>+(852)  6142 8189</span></p>
+
             </td>
         </tr>
     </table>
@@ -64,45 +41,8 @@ $categorylistsparent = $querymenu->result_array();
         <div class="footer-area-top">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                        <div class="footer-box">
-                            <h3>Information</h3>
-                            <ul class="info-list">
-                                <li><a href="#">FAQ's</a></li>
-                                <li><a href="#">About Us</a></li>
-                                <li><a href="#">Contact Us</a></li>
-                                <li><a href="#">Privacy Policy</a></li>
-                                <li><a href="#">Terms & Condition</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                        <div class="footer-box">
-                            <h3>My Account</h3>
-                            <ul class="info-list">
-                                 <li><a href="">Login</a></li>
-                                <li><a href="">My Account</a></li>
-                                <li><a href="">Order History</a></li>
-                                <li><a href="">View Cart</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                        <div class="footer-box">
-                            <h3>Order Now</h3>
-                            <ul class="info-list">
-                                <?php
-                                foreach ($categorylistsparent as $key => $value) {
-                                    ?>
-                                 <li><a href=""><?php echo $value['category_name'];?></a></li>
-                                <?php
-                                  
-                                }
-                                ?>    
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                  
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                         <div class="footer-box">
                             <h3>Stay With Us!</h3>
                             <p>Connect with us via social media.</p>
@@ -112,7 +52,13 @@ $categorylistsparent = $querymenu->result_array();
                                 <li><a href=""><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
                                 <li><a href=""><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
                                 <li><a href=""><i class="fa fa-youtube" aria-hidden="true"></i></a></li>
-                            </ul><div class="newsletter-area">
+                            </ul>
+                          
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <div class="footer-box">
+                          <div class="newsletter-area">
                                 <h3>NewsLetter Sign Up!</h3>
                                 <div class="input-group stylish-input-group">
                                     <input type="text" class="form-control" placeholder="E-mail . . .">
@@ -122,9 +68,7 @@ $categorylistsparent = $querymenu->result_array();
                                         </button>  
                                     </span>
                                 </div>
-                            </div
-
-
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -136,7 +80,7 @@ $categorylistsparent = $querymenu->result_array();
             <div class="col-md-12 row " style="text-align: center;">
                 <hr/>
 
-                <span class="keywordfooter"><?php echo$keywordschat; ?> </span>
+                <span class="keywordfooter"><?php echo $keywordschat; ?> </span>
 
                 <hr/>
             </div>
@@ -147,7 +91,7 @@ $categorylistsparent = $querymenu->result_array();
             <div class="container">
                 <div class="row">
                     <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
-                        <p>Copyright <?php echo date('Y') ?> by  Maharaja Mart Ltd. All rights reserved.  </p>
+                        <p>Copyright <?php echo date('Y') ?> by  Maharaja Tickets Ltd. All rights reserved.  </p>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                     </div>

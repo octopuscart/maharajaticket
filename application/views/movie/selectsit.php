@@ -79,7 +79,7 @@ $this->load->view('layout/header');
                                 <td class="theaterblockseat {{sit?'sitable':''}}" ng-repeat="(sit, chkatr) in rows">
                                     <div  ng-if="sit" ng-switch="chkatr">
                                         <div ng-switch-when="A">
-                                            <button id="{{sit}}" class="btn btn-link btn-sm seaticon {{sit == seatSelection.selected[sit].seat?'active':''}}" ng-click="selectSeat(sit, sclass.price)" ng-mouseenter="selectSeatSuggest(sit, kclass)" ng-mouseleave="selectRemoveClass(sit, kclass)"  title='{{sit}} ({{sclass.price|currency}})'>
+                                            <button id="{{sit}}" class="btn btn-link btn-sm seaticon {{sit == seatSelection.selected[sit].seat?'active':''}}" ng-click="selectSeat(sit, sclass.price)" ng-mouseenter="selectSeatSuggest(sit, kclass)" ng-mouseleave="selectRemoveClass(sit, kclass)"  title='{{sit}} ({{sclass.price|currency}}) {{chkatr}}'>
                                                 <h5 class="theaterblocktext">{{sit}}</h5>
                                             </button>
                                         </div>
@@ -139,7 +139,7 @@ $this->load->view('layout/header');
                         </tr>
                     </table>
                     <div class='checkoutbutton' style='text-align: center;'>
-                        
+
                         <button class='btn btn-default' style='background: #d92229;    border-radius: 15px;
                                 color: white;' type='submit' name='proceed'>Proceed Checkout/Reserve  <span aria-hidden="true">&rarr;</span></button>
                     </div>
@@ -162,9 +162,12 @@ $this->load->view('layout/header');
 </div>
 
 <script>
-var layoutgbl = '<?php echo $theater['layout']; ?>';
-var seatsgbl = '<?php echo $total_seats;?>' 
-</script>
+    var layoutgbl = '<?php echo $theater['layout']; ?>';
+    var seatsgbl = '<?php echo $total_seats; ?>';
+    var select_date_gbl = "<?php echo $sdate; ?>";
+    var select_time_gbl = "<?php echo $stime; ?>";
+    var movie_id_gbl = "<?php echo $movie['id']; ?>";
+    var theater_id_gbl = "<?php echo $theater_id; ?>";</script>
 <script src="<?php echo base_url(); ?>assets/theme2/angular/ng-movies.js"></script>
 
 <?php

@@ -8,6 +8,7 @@ class Api extends REST_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->model('Product_model');
+        $this->load->model('Movie');
         $this->load->library('session');
         $this->checklogin = $this->session->userdata('logged_in');
         $this->user_id = $this->session->userdata('logged_in')['login_id'];
@@ -412,8 +413,8 @@ class Api extends REST_Controller {
             if (isset($reserve[$trow])) {
                 $temprow[$trow] = "R";
             }
-            if(isset($gap[$i])){
-                $trow = $row . "-" . $i."_".$gap[$i];
+            if (isset($gap[$i])) {
+                $trow = $row . "-" . $i . "_" . $gap[$i];
                 $temprow[$trow] = "";
             }
         }
@@ -425,6 +426,19 @@ class Api extends REST_Controller {
         return $temprow;
     }
 
+    function getBookedSheats($inputarray) {
+        $sdate = $inputarray['sdate'];
+        $stime = $inputarray['stime'];
+        $th_id = $inputarray['th_id'];
+        $mv_id = $inputarray['mv_id'];
+        $seats = $this->Movie->getSelectedSeats($th_id, $mv_id, $sdate, $stime);
+        $resurve = array();
+        foreach ($seats as $key => $value) {
+            $resurve[$value['seat']] = "";
+        }
+        return $resurve;
+    }
+
     function getLayout_GH_V_WALK_get() {
         $booked = array(
             "A-6" => "", "A-7" => "",
@@ -432,7 +446,7 @@ class Api extends REST_Controller {
         );
         $reserved = array(
         );
-        $gaps=array();
+        $gaps = array();
         $layout = array(
             "totalinrow" => 20,
             "sitclass" => array(
@@ -463,20 +477,16 @@ class Api extends REST_Controller {
     }
 
     function getLayoutGrandOcean_get() {
-        $booked = array(
-            "A-15" => "", "A-14" => "",
-            "A-13" => "", "B-1" => "",
-            "A-3" => "", "B-4" => "",
-            "Q-27" => "", "Q-28" => "",
-            "Q-29" => "",
-        );
+        $reserveseats = $this->getBookedSheats($this->get());
+        $booked = $reserveseats;
+//        print_r($booked);
         $reserved = array(
             "J-5" => "", "J-6" => "", "J-7" => "", "J-8" => "", "J-9" => "", "J-10" => "",
             "J-11" => "", "J-12" => "", "J-13" => "", "J-14" => "", "J-15" => "", "J-16" => "",
             "J-17" => "", "J-18" => "", "J-19" => "", "J-20" => "", "J-21" => "", "J-22" => "",
             "J-23" => "", "J-24" => "", "J-25" => "", "J-26" => "", "J-27" => "", "J-28" => "",
         );
-        $gaps=array("7"=>"", "25"=>"");
+        $gaps = array("7" => "", "25" => "");
         $layout = array(
             "totalinrow" => 35,
             "sitclass" => array(
@@ -531,7 +541,7 @@ class Api extends REST_Controller {
         $reserved = array(
             "Q-5" => "", "Q-6" => "", "Q-1" => "", "Q-2" => ""
         );
-        $gaps=array("4"=>"", "19"=>"");
+        $gaps = array("4" => "", "19" => "");
         $layout = array(
             "totalinrow" => 25,
             "sitclass" => array(
@@ -577,6 +587,8 @@ class Api extends REST_Controller {
     }
 
     function getLayout_GH_HSE3_get() {
+        $seats = $this->getBookedSheats($this->get());
+
         $booked = array(
             "B-1" => "", "B-4" => "",
             "D-1" => "", "D-2" => "", "D-3" => "",
@@ -584,7 +596,7 @@ class Api extends REST_Controller {
         $reserved = array(
             "Q-5" => "", "Q-6" => "", "Q-1" => "", "Q-2" => ""
         );
-        $gaps=array("4"=>"", "19"=>"");
+        $gaps = array("4" => "", "19" => "");
         $layout = array(
             "totalinrow" => 24,
             "sitclass" => array(
@@ -638,7 +650,7 @@ class Api extends REST_Controller {
         $reserved = array(
             "O-8" => "", "O-9" => "", "O-10" => "", "O-11" => ""
         );
-        $gaps=array("4"=>"", "19"=>"");
+        $gaps = array("4" => "", "19" => "");
         $layout = array(
             "totalinrow" => 26,
             "sitclass" => array(
@@ -673,8 +685,7 @@ class Api extends REST_Controller {
                         "L" => $this->createRange(1, 24, 24, [19], "L", $booked, $reserved, $gaps),
                         "M" => $this->createRange(1, 24, 24, [], "M", $booked, $reserved, $gaps),
                         "N" => $this->createRange(1, 24, 24, [19], "N", $booked, $reserved, $gaps),
-                        "O" => $this->createRange(1, 24, 24, [5,6,7,12], "O", $booked, $reserved, $gaps),
-
+                        "O" => $this->createRange(1, 24, 24, [5, 6, 7, 12], "O", $booked, $reserved, $gaps),
                     )
                 ),
             )

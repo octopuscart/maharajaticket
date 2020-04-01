@@ -545,13 +545,14 @@ b.barcomb-list {
 }
 
 .header-area-style2 .header-top {
-    background: black;
+    background: #ffeb3b;
 }
 
 
 
 .header-area-style2 .header-top .account-wishlist li a {
-    color: white;
+       color: black;
+    font-size: 15px
 }
 
 .header-area-style2 .header-top .account-wishlist li:hover a {
@@ -1499,4 +1500,9 @@ h5.theaterblocktext {
     background: #ffeb3b;
     color: black;
     text-align: center;
+}
+
+.stick .mainsitelogo {
+    height: 37px;
+    margin-top: -11px;
 }

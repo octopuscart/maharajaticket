@@ -38,15 +38,7 @@ class Movie extends CI_Model {
 
 ",
             ),
-            "m4" =>
-            array("title" => "Sonic The Hedgehog",
-                "id" => "m4",
-                "attr" => "English-U-3D",
-                "image" => "sonic.jpg",
-                "about" => "The film revolves around Sonic, an extra-terrestrial blue hedgehog who tries to navigate the complexities of life on Earth with his newfound human best friend. The duo must join forces to prevent an evil Dr. Robotnik (Jim Carrey) from capturing Sonic and using his superpowers for world domination.
-
-",
-            ),
+           
             "m5" =>
             array("title" => "Tanhaji: The Unsung Warrior",
                 "id" => "m5",
@@ -94,6 +86,95 @@ class Movie extends CI_Model {
             )
         );
         return $listoftheaters;
+    }
+
+    function bookedSeatById($booking_id) {
+        $this->db->select("*");
+        $this->db->where('movie_ticket_booking_id', $booking_id);
+        $query = $this->db->get('movie_ticket');
+        $moviebooking = $query->result_array();
+        return $moviebooking;
+    }
+
+    function getSelectedSeats($theater_id, $movie_id, $select_date, $select_time) {
+        $this->db->select("*");
+        $this->db->where('theater_id', $theater_id);
+        $this->db->where('movie_id', $movie_id);
+        $this->db->where('select_date', $select_date);
+        $this->db->where('select_time', $select_time);
+        $query = $this->db->get('movie_ticket_booking');
+        $moviebooking = $query->result_array();
+        $seats = [];
+        foreach ($moviebooking as $mbkey => $mbvalue) {
+            $bookingid = $mbvalue['id'];
+            $booking_seat = $this->bookedSeatById($bookingid);
+            foreach ($booking_seat as $skey => $svalue) {
+                array_push($seats, $svalue);
+            }
+        }
+        return $seats;
+    }
+    
+      function booking_mail($order_id, $subject = "") {
+        setlocale(LC_MONETARY, 'en_US');
+        $checkcode = REPORT_MODE;
+        
+        
+        $this->db->where('booking_id', $bookingid);
+        $query = $this->db->get('movie_ticket_booking');
+        $bookingobj = $query->row_array();
+        $movies = $this->movieList();
+        $data['movieobj'] =  $movies[$bookingobj['movie_id']];
+        
+        $theaters = $this->Movie->theaters();
+       
+        $data['theater'] = $theaters[$bookingobj['theater_id']];
+        $data['booking'] = $bookingobj;
+        $data['seats'] = $this->Movie->bookedSeatById($bookingobj['id']);
+        $this->load->view('movie/ticketviewemail', $data);
+
+        $emailsender = email_sender;
+        $sendername = email_sender_name;
+        $email_bcc = email_bcc;
+
+        if ($order_details) {
+            $order_no = $order_details['order_data']->order_no;
+            $this->email->set_newline("\r\n");
+            $this->email->from(email_bcc, $sendername);
+            $this->email->to($order_details['order_data']->email);
+            $this->email->bcc(email_bcc);
+
+            $orderlog = array(
+                'log_type' => 'Email',
+                'log_datetime' => date('Y-m-d H:i:s'),
+                'order_id' => $order_id,
+            );
+            $this->db->insert('user_order_log', $orderlog);
+
+            $subject = "Your Movie Ticket(s) for";
+            $this->email->subject($subject);
+
+            $this->db->where('booking_id', $bookingid);
+            $query = $this->db->get('movie_ticket_booking');
+            $bookingobj = $query->row_array();
+            $data['booking'] = $bookingobj;
+            $data['seats'] = $this->bookedSeatById($bookingobj['id']);
+            $this->load->view('movie/ticketview');
+
+            if ($checkcode) {
+                $this->email->message($this->load->view('Email/order_mail', $order_details, true));
+                $this->email->print_debugger();
+                $send = $this->email->send();
+                if ($send) {
+                    echo json_encode("send");
+                } else {
+                    $error = $this->email->print_debugger(array('headers'));
+                    echo json_encode($error);
+                }
+            } else {
+                echo $this->load->view('Email/order_mail', $order_details, true);
+            }
+        }
     }
 
 }

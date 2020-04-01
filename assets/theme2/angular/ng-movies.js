@@ -15,7 +15,8 @@ App.controller('showTimeContoller', function ($scope, $http, $timeout, $interval
 
 App.controller('sitSelectContoller', function ($scope, $http, $timeout, $interval, $filter) {
     $scope.theaterLayout = {"layout": {}, "seatscount": seatsgbl, "suggetion": []};
-    var url = baseurl + "Api/" + layoutgbl;
+
+    var url = baseurl + "Api/" + layoutgbl + "?sdate=" + select_date_gbl + "&stime=" + select_time_gbl + "&th_id=" + theater_id_gbl  + "&mv_id=" + movie_id_gbl;
     $http.get(url).then(function (rdata) {
         $scope.theaterLayout.layout = rdata.data;
     }, function () {
@@ -70,25 +71,19 @@ App.controller('sitSelectContoller', function ($scope, $http, $timeout, $interva
         var seatlistselected = Object.keys($scope.seatSelection.selected);
         var selectedseatlength = seatlistselected.length;
         var seatcount_n = Number(seatsgbl);
-
-
         var avl_seatno = seatcount_n - selectedseatlength;
         if (selectedseatlength == seatcount_n) {
             avl_seatno = seatcount_n;
         }
-
-
         $scope.theaterLayout.suggetion = [];
         $(".seaticon").removeClass("suggestion");
         var prefix = seatobj.split("-")[0];
         var listofrow = $scope.theaterLayout.layout.sitclass[sclass].row[prefix];
         var count = 0;
-        var seatlist = Object.keys(listofrow)
+        var seatlist = Object.keys(listofrow);
         var seatindex = seatlist.indexOf(seatobj);
 
         var slimit = (seatindex + avl_seatno);
-
-
 
         var suggestion = [];
         for (i = seatindex; i < slimit; i++) {
@@ -98,13 +93,6 @@ App.controller('sitSelectContoller', function ($scope, $http, $timeout, $interva
                 $("#" + stobj).addClass("suggestion");
             }
         }
-//        for (ky in listofrow) {
-//            count++;
-//            if (count < seatsgbl) {
-//                console.log(ky, count)
-//            }
-//        }
-
     }
 
 })

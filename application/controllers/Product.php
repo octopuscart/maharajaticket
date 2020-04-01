@@ -20,22 +20,12 @@ class Product extends CI_Controller {
 
         $tempcatid = $cat_id;
 
-    
         $categories = $this->Product_model->productListCategories($cat_id);
         
-      
         $data["categorie_parent"] = $this->Product_model->getparent($cat_id);
         $data["categories"] = $categories;
         $data["category"] = $cat_id;
-
-
-
         $session_last_custom = $this->session->userdata('session_last_custom');
-
-
-
-
-
         $this->load->view('Product/productList', $data);
     }
 

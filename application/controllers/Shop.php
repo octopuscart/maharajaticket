@@ -8,6 +8,7 @@ class Shop extends CI_Controller {
         parent::__construct();
         $this->load->model('Product_model');
         $this->load->library('session');
+        $this->load->model('Movie');
         $this->user_id = $this->session->userdata('logged_in')['login_id'];
     }
 
@@ -26,6 +27,8 @@ class Shop extends CI_Controller {
 
         $query = $this->db->get('sliders');
         $data['sliders'] = $query->result();
+        
+        $data['moves'] = $this->Movie->movieList();
 
         $this->load->view('home', $data);
     }

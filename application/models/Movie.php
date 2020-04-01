@@ -142,12 +142,7 @@ class Movie extends CI_Model {
             $this->email->from(email_bcc, $sendername);
             $this->email->to($order_details['order_data']->email);
             $this->email->bcc(email_bcc);
-
-            $orderlog = array(
-                'log_type' => 'Email',
-                'log_datetime' => date('Y-m-d H:i:s'),
-                'order_id' => $order_id,
-            );
+  
             $this->db->insert('user_order_log', $orderlog);
 
             $subject = "Your Movie Ticket(s) for";

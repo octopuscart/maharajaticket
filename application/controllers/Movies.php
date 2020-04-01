@@ -91,7 +91,7 @@ class Movies extends CI_Controller {
         $ticketlist = $selectedseat['ticket'];
         $data['ticketlist'] = $ticketlist;
         $data['total'] = $selectedseat['total'];
-        
+
         $name = $moviebooking['name'];
         $email = $moviebooking['email'];
         $contact_no = $moviebooking['contact_no'];
@@ -196,6 +196,10 @@ class Movies extends CI_Controller {
                 $last_id = $this->db->insert_id();
                 $bookid = Date('Ymd') . "" . $last_id;
                 $bookid_md5 = md5($bookid);
+                $this->db->set('booking_no', $bookid);
+                $this->db->set('booking_id', $bookid_md5);
+                $this->db->where('id', $last_id); //set column_name and value in which row need to update
+                $this->db->update('movie_ticket_booking');
                 foreach ($ticketlist as $vtk => $vtp) {
                     $seatArray = array(
                         "movie_ticket_booking_id" => $last_id,
@@ -281,7 +285,38 @@ class Movies extends CI_Controller {
         $data['theater'] = $theaters[$bookingobj['theater_id']];
         $data['booking'] = $bookingobj;
         $data['seats'] = $this->Movie->bookedSeatById($bookingobj['id']);
-        $this->load->view('movie/ticketviewemail', $data);
+
+        $emailsender = email_sender;
+        $sendername = email_sender_name;
+        $email_bcc = email_bcc;
+
+        $this->email->set_newline("\r\n");
+        $this->email->from(email_bcc, $sendername);
+        $this->email->to($bookingobj['email']);
+        $this->email->bcc(email_bcc);
+
+
+        $subject = "Your Movie Ticket(s) for " . $movies[$bookingobj['movie_id']]['title'];
+        $this->email->subject($subject);
+
+
+        $message = $this->load->view('movie/ticketviewemail', $data, true);
+        setlocale(LC_MONETARY, 'en_US');
+        $checkcode = REPORT_MODE;
+        $checkcode = 0;
+        if ($checkcode) {
+            $this->email->message($message);
+            $this->email->print_debugger();
+            $send = $this->email->send();
+            if ($send) {
+                echo json_encode("send");
+            } else {
+                $error = $this->email->print_debugger(array('headers'));
+                echo json_encode($error);
+            }
+        } else {
+            echo $message;
+        }
     }
 
     function getMovieQR($bookingid) {

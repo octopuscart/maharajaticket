@@ -17,7 +17,7 @@
                 /*padding: 0 10px;*/
                 border-color: #9E9E9E;
                 font-size: 12px;
-                    text-align: left;
+                text-align: left;
             }
 
             .detailstable td{
@@ -150,7 +150,7 @@
                                 background: white;
                                 border-radius: 12px;' rowspan="3">
                                 <img src="<?php echo site_url('Movies/getMovieQR/' . $booking['booking_id']); ?>"><br/>
-                                  
+
                             </td>
 
                         </tr>
@@ -224,7 +224,7 @@
                         <th style='width: 60%;text-align: right;    border-bottom: 1px solid #000;'>Total:</th><th style='text-align: right;    border-bottom: 1px solid #000;'> $HK<?php echo $booking['total_price']; ?>.00</th>
                     </tr>
                     <tr style='font-size: 15px;height: 50px;'>
-                        <th style='width: 60%;text-align: right;    border-bottom: 1px solid #000;'>Status:</th><th style='text-align: right;    border-bottom: 1px solid #000;'> <?php echo $booking['booking_type'] == 'Reserve' ? 'Unpaid' : 'Paid'; ?></th>
+                        <th style='width: 60%;text-align: right;    border-bottom: 1px solid #000;'>Status:</th><th style='text-align: right;    border-bottom: 1px solid #000;'> <?php echo $booking['booking_type'] == 'Reserve' ? 'Unpaid' : 'Pending'; ?></th>
                     </tr>
 
                     <?php
@@ -239,7 +239,7 @@
                         <tr>
                             <td colspan="2">
                                 <p>Click here to make the payment. <a href='<?php echo site_url('Movies/payticket/' . $booking['booking_id']) ?>'>Proceed Payment</a></p>
-                        </td>
+                            </td>
                         </tr>
                         <tr style='height: 50px;'>
                             <td colspan="2">
@@ -250,7 +250,12 @@
                         </tr>
                         <?php
                     } else {
-                        
+                        ?>
+
+                        <tr style='font-size: 15px;height: 50px;'>
+                            <th style='width: 60%;text-align: right;    border-bottom: 1px solid #000;'>Payment Mode:</th><th style='text-align: right;    border-bottom: 1px solid #000;'> <?php echo $booking['payment_type']; ?></th>
+                        </tr>
+                        <?php
                     }
                     ?>
 

@@ -13,15 +13,15 @@ $this->load->view('layout/header');
         background-color: #f5f5f5;
     }
     .time-select .time-select__place {
-           font-size: 16px;
-    margin-top: 15px;
-    margin-left: 5px;
-    margin-bottom: 15px;
-    line-height: 30px;
+        font-size: 16px;
+        margin-top: 15px;
+        margin-left: 5px;
+        margin-bottom: 15px;
+        line-height: 30px;
     }
     .time-select .items-wrap {
-           padding-top: 5px;
-    margin-bottom: 5px;
+        padding-top: 5px;
+        margin-bottom: 5px;
     }
     .time-select .time-select__group:after {
         content: '';
@@ -124,19 +124,9 @@ $this->load->view('layout/header');
 
 
                 <div class="row">
-                   
+
                     <div class="col-md-6">
-                        <div class="choose-container choose-container--short">
-                            <h2 class="page-heading seatselectblock">
-                                Select no. of seat(s)
-                                <input type="number" class="pull-right" min="1" max="10" ng-model="selectShowtime.seats" style="    font-size: 25px;
-                                       margin-right: 10px;height:35px;">
-                            </h2>
-                            <p style="padding: 0px 0px;font-size: 11px;">
-                                More than 10 tickets must contact us for booking for making the payment to purchase the
-                                tickets
-                            </p>
-                        </div>
+
                         <div class="choose-container choose-container--short">
                             <h2 class="page-heading">Select Date</h2>
                             <div class="offer-area1 hidden-after-desk movieblockhome" style="padding:10px;">
@@ -153,25 +143,78 @@ $this->load->view('layout/header');
                                 </div>
                             </div>
                         </div>
+                        <div class="choose-container choose-container--short">
+                            <hr style="    margin: 5px 0px;"/>
+                            <h2 class="page-heading">Select time</h2>
+
+                            <div class="time-select time-select--wide">
+
+                                <?php
+                                foreach ($theaters as $key => $value) {
+                                    if ($value['active'] == 1) {
+                                        ?>    
+
+                                        <div class="time-select__group group--first">
+                                            <div class="col-sm-7">
+                                                <p class="time-select__place"><?php echo $value['title']; ?></p>
+                                            </div>
+                                            <ul class="col-sm-5 items-wrap">
+                                                <?php
+                                                foreach ($value['timing'] as $key2 => $value2) {
+                                                    ?>
+                                                    <li class="time-select__item {{selectShowtime.time=='<?php echo $value2; ?>'?'active':''}}" ng-click="selectTime('<?php echo $value2; ?>', '<?php echo $key; ?>')" data-time="<?php echo $value2; ?>"><?php echo $value2; ?></li>
+                                                    <?php
+                                                }
+                                                ?>
+                                            </ul>
+                                        </div>
+                                        <?php
+                                    }
+                                }
+                                ?>
+                            </div>
+                        </div>
+
+
+
+                        <div class="choose-container choose-container--short">
+                            <h2 class="page-heading seatselectblock">
+                                Select no. of seat(s)
+                                <input type="number" class="pull-right" min="1" max="10" ng-model="selectShowtime.seats" style="    font-size: 25px;
+                                       margin-right: 10px;height:35px;">
+                            </h2>
+                            <p style="padding: 0px 0px;font-size: 11px;">
+                                More than 10 tickets must contact us for booking for making the payment to purchase the
+                                tickets
+                            </p>
+                        </div>
                     </div>
-                     <div class="col-md-6">
+                    <div class="col-md-6">
                         <div class="product-box2" style="height: 250px;background: #f5f5f5;
-                             color: white;
+                             color: white;margin-top: 28px;
                              ">
                             <div class="media">
                                 <a class="pull-left" href="#">
                                     <img class="img-responsive" style="width: 180px;" src="<?php echo base_url(); ?>assets/movies/<?php echo $movie['image']; ?>" alt="product">
+
                                 </a>
                                 <div class="media-body">
                                     <div class="product-box2-content">
                                         <h3><a href="#"><?php echo $movie['title']; ?></a></h3>
                                         <span><?php echo $movie['attr']; ?></span>
-                                        <input type="button"  class="btn btn-default"  value="View Detais" /> 
-                                        <input type="button"  class="btn btn-default"  value="Watch Trailer" /> 
+                                        <input type="button"  class="btn btn-default" style=""  value="Watch Trailer" /> 
+
+
 
                                     </div>
 
                                 </div>
+                            </div>
+                            <div class="media" style="padding: 10px;
+    color: black;">
+                                <p>
+                                    <?php echo $movie['about']; ?>  
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -180,35 +223,7 @@ $this->load->view('layout/header');
 
 
 
-                <hr style="    margin: 5px 0px;"/>
-                <h2 class="page-heading">Select time</h2>
 
-                <div class="time-select time-select--wide">
-
-                    <?php
-                    foreach ($theaters as $key => $value) {
-                        if ($value['active'] == 1) {
-                            ?>    
-
-                            <div class="time-select__group group--first">
-                                <div class="col-sm-3">
-                                    <p class="time-select__place"><?php echo $value['title']; ?></p>
-                                </div>
-                                <ul class="col-sm-6 items-wrap">
-                                    <?php
-                                    foreach ($value['timing'] as $key2 => $value2) {
-                                        ?>
-                                        <li class="time-select__item {{selectShowtime.time=='<?php echo $value2; ?>'?'active':''}}" ng-click="selectTime('<?php echo $value2; ?>', '<?php echo $key; ?>')" data-time="<?php echo $value2; ?>"><?php echo $value2; ?></li>
-                                        <?php
-                                    }
-                                    ?>
-                                </ul>
-                            </div>
-                            <?php
-                        }
-                    }
-                    ?>
-                </div>
 
 
             </div>

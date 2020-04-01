@@ -33,6 +33,14 @@ $this->load->view('layout/header');
         transform: rotate(90deg);
     }
 
+    .paymentbutton.active{
+        background: #d92229;
+    }
+
+    .modal{
+        background: #0000003d;
+    }
+
 </style>
 
 <!-- Inner Page Banner Area Start Here -->
@@ -112,23 +120,31 @@ $this->load->view('layout/header');
                         <h4 style="margin-bottom: 2px;">Payment Option</h4>
 
                         <div class="row" >
-                            <button class="btn btn-default paymentbutton" type="button">
+                            <button class="btn btn-default paymentbutton" type="button" disabled="">
                                 <img src="<?php echo base_url(); ?>assets/paymentstatus/payme.jpg" style="height: 50px;border-radius: 10px;">
 
                             </button>
-                            <button class="btn btn-default paymentbutton" type="button">
+                            <button class="btn btn-default paymentbutton" type="button" disabled="">
                                 <img src="<?php echo base_url(); ?>assets/paymentstatus/wechat.jpg" style="height: 50px;border-radius: 10px;">
 
                             </button>
-                            <button class="btn btn-default paymentbutton" type="button">
+                            <button class="btn btn-default paymentbutton" type="button" disabled="">
                                 <img src="<?php echo base_url(); ?>assets/paymentstatus/alipay.jpg" style="height: 50px;border-radius: 10px;">
+
+                            </button>
+                            <button class="btn btn-default paymentbutton {{selectPaymenttype.ptype == 'Cash On Delivery'?'active':''}}"  type="button" ng-click="selectPayment('Cash On Delivery')">
+                                <img src="<?php echo base_url(); ?>assets/paymentstatus/cod.png" style="height: 50px;border-radius: 10px;">
+
+                            </button>
+                            <button class="btn btn-default paymentbutton {{selectPaymenttype.ptype == 'Bank Transfer'?'active':''}}" type="button" ng-click="selectPayment('Bank Transfer')">
+                                <img src="<?php echo base_url(); ?>assets/paymentstatus/bank.png" style="height: 50px;border-radius: 10px;">
 
                             </button>
 
                         </div>
                         <hr/>
                         <button class='btn btn-default' style='background: #d92229;border-radius: 15px;color: white;' type='submit' name='payment'>Proceed Payment  <span aria-hidden="true">&rarr;</span></button>
-
+                        <input type="hidden" name="paymenttype" value="{{selectPaymenttype.ptype}}">
                     </form>
                 </div>
                 <div role="tabpanel" class="tab-pane" id="reserve">
@@ -165,7 +181,47 @@ $this->load->view('layout/header');
 </div>
 
 
+
+<div class="modal fade" id="bookingModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">Do You Want Book Again?</h4>
+            </div>
+            <div class="modal-body">
+                You have already booked this movie at selected time and location with same email id.
+                Do you want book this again?
+            </div>
+            <div class="modal-footer">
+                <form action="<?php echo site_url('Movies/bookAgain') ?>">
+                    <input type="hidden" name="booking_id" value="<?php echo $_GET['book_id']; ?>">
+                    <input type="hidden" name="payment_type" value="<?php echo $_GET['paymenttype']; ?>">
+                    <input type="hidden" name="booking_type" value="<?php echo $_GET['booking_type']; ?>">
+                    <button type="submit" class="btn btn-danger">Yes Book Now</button>
+                    <a href="<?php echo site_url('Movies/checkOut');?>" class="btn btn-default">Close</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script src="<?php echo base_url(); ?>assets/theme2/angular/ng-movies.js"></script>
+
+<?php
+if ($checkpre == 'exist') {
+    ?>
+    <script>
+                            $(function(){
+                            $("#bookingModal").modal({
+                            "backdrop":false,
+                                    "show":true
+                            })
+                            })
+
+    </script>
+    <?php
+}
+?>
 
 <?php
 $this->load->view('layout/footer');

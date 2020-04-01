@@ -66,6 +66,73 @@ class Movies extends CI_Controller {
         $this->load->view('movie/selectsit', $data);
     }
 
+    function checkTicketExist($theater_id, $movie_id, $select_date, $select_time, $email, $contact_no) {
+        $this->db->where('theater_id', $theater_id);
+        $this->db->where('movie_id', $movie_id);
+        $this->db->where('select_date', $select_date);
+        $this->db->where('select_time', $select_time);
+        $query = $this->db->get('movie_ticket_booking');
+        $moviebooking = $query->row_array();
+        return $moviebooking;
+    }
+
+    function bookAgain() {
+        $selectedseat = $this->session->userdata('selectedseat');
+        if ($selectedseat) {
+            
+        } else {
+            redirect("Movies");
+        }
+        $bid = $this->input->get('booking_id');
+        $this->db->where('id', $bid);
+        $query = $this->db->get('movie_ticket_booking');
+        $moviebooking = $query->row_array();
+
+        $ticketlist = $selectedseat['ticket'];
+        $data['ticketlist'] = $ticketlist;
+        $data['total'] = $selectedseat['total'];
+        
+        $name = $moviebooking['name'];
+        $email = $moviebooking['email'];
+        $contact_no = $moviebooking['contact_no'];
+        $paymenttype = $this->input->get('payment_type');
+        $booktype = $this->input->get('booking_type');
+        $bookingArray = array(
+            "name" => $name,
+            "email" => $email,
+            "contact_no" => $contact_no,
+            "select_date" => $selectedseat['selected_date'],
+            "select_time" => $selectedseat['selected_time'],
+            "movie_id" => $selectedseat['movie_id'],
+            "theater_id" => $selectedseat['theater_id'],
+            "total_price" => $selectedseat['total'],
+            "payment_type" => $paymenttype,
+            "payment_attr" => "",
+            "payment_id" => "",
+            "booking_type" => $booktype,
+            "booking_time" => Date('Y-m-d'),
+            "booking_date" => date('H:i:s'),
+        );
+
+        $this->db->insert('movie_ticket_booking', $bookingArray);
+        $last_id = $this->db->insert_id();
+        $bookid = Date('Ymd') . "" . $last_id;
+        $bookid_md5 = md5($bookid);
+        $this->db->set('booking_no', $bookid);
+        $this->db->set('booking_id', $bookid_md5);
+        $this->db->where('id', $last_id); //set column_name and value in which row need to update
+        $this->db->update('movie_ticket_booking');
+        foreach ($ticketlist as $vtk => $vtp) {
+            $seatArray = array(
+                "movie_ticket_booking_id" => $last_id,
+                "seat_price" => $vtp,
+                "seat" => $vtk,
+            );
+            $this->db->insert('movie_ticket', $seatArray);
+        }
+        redirect("Movies/yourTicket/" . $bookid_md5);
+    }
+
     public function checkOut() {
         $selectedseat = $this->session->userdata('selectedseat');
         if ($selectedseat) {
@@ -85,11 +152,17 @@ class Movies extends CI_Controller {
         $ticketlist = $selectedseat['ticket'];
         $data['ticketlist'] = $ticketlist;
         $data['total'] = $selectedseat['total'];
+        $data['checkpre'] = "no";
+        if (isset($_GET['checkpre'])) {
+            $checkmess = $this->input->get('checkpre');
+            $data['checkpre'] = $checkmess;
+        }
 
         if (isset($_POST['payment'])) {
             $name = $this->input->post('name');
             $email = $this->input->post('email');
             $contact_no = $this->input->post('contact_no');
+            $paymenttype = $this->input->post('paymenttype');
             $bookingArray = array(
                 "name" => $name,
                 "email" => $email,
@@ -99,22 +172,39 @@ class Movies extends CI_Controller {
                 "movie_id" => $selectedseat['movie_id'],
                 "theater_id" => $selectedseat['theater_id'],
                 "total_price" => $selectedseat['total'],
-                "payment_type" => "",
+                "payment_type" => $paymenttype,
                 "payment_attr" => "",
                 "payment_id" => "",
                 "booking_type" => "Purchase",
                 "booking_time" => Date('Y-m-d'),
                 "booking_date" => date('H:i:s'),
             );
-            $this->db->insert('movie_ticket_booking', $bookingArray);
-            $last_id = $this->db->insert_id();
-            foreach ($ticketlist as $vtk => $vtp) {
-                $seatArray = array(
-                    "movie_ticket_booking_id" => $last_id,
-                    "seat_price" => $vtp,
-                    "seat" => $vtk,
-                );
-                $this->db->insert('movie_ticket', $seatArray);
+
+            $checkpreviouse = $this->checkTicketExist(
+                    $selectedseat['theater_id'],
+                    $selectedseat['movie_id'],
+                    $selectedseat['selected_date'],
+                    $selectedseat['selected_time'],
+                    $email,
+                    $contact_no
+            );
+            if ($checkpreviouse) {
+                $bookid = $checkpreviouse['id'];
+                redirect("Movies/checkOut?checkpre=exist&book_id=$bookid&booking_type=Purchase&paymenttype=" . $paymenttype);
+            } else {
+                $this->db->insert('movie_ticket_booking', $bookingArray);
+                $last_id = $this->db->insert_id();
+                $bookid = Date('Ymd') . "" . $last_id;
+                $bookid_md5 = md5($bookid);
+                foreach ($ticketlist as $vtk => $vtp) {
+                    $seatArray = array(
+                        "movie_ticket_booking_id" => $last_id,
+                        "seat_price" => $vtp,
+                        "seat" => $vtk,
+                    );
+                    $this->db->insert('movie_ticket', $seatArray);
+                }
+                redirect("Movies/yourTicket/" . $bookid_md5);
             }
         }
 
@@ -143,7 +233,7 @@ class Movies extends CI_Controller {
 
             $bookid = Date('Ymd') . "" . $last_id;
             $bookid_md5 = md5($bookid);
-            
+
             $this->db->set('booking_no', $bookid);
             $this->db->set('booking_id', $bookid_md5);
             $this->db->where('id', $last_id); //set column_name and value in which row need to update
@@ -169,38 +259,36 @@ class Movies extends CI_Controller {
         $query = $this->db->get('movie_ticket_booking');
         $bookingobj = $query->row_array();
         $movies = $this->Movie->movieList();
-        $data['movieobj'] =  $movies[$bookingobj['movie_id']];
-        
+        $data['movieobj'] = $movies[$bookingobj['movie_id']];
+
         $theaters = $this->Movie->theaters();
-       
+
         $data['theater'] = $theaters[$bookingobj['theater_id']];
         $data['booking'] = $bookingobj;
         $data['seats'] = $this->Movie->bookedSeatById($bookingobj['id']);
         $this->load->view('movie/ticketview', $data);
     }
-    
-     public function yourTicketView($bookingid) {
+
+    public function yourTicketView($bookingid) {
         $this->db->where('booking_id', $bookingid);
         $query = $this->db->get('movie_ticket_booking');
         $bookingobj = $query->row_array();
         $movies = $this->Movie->movieList();
-        $data['movieobj'] =  $movies[$bookingobj['movie_id']];
-        
+        $data['movieobj'] = $movies[$bookingobj['movie_id']];
+
         $theaters = $this->Movie->theaters();
-       
+
         $data['theater'] = $theaters[$bookingobj['theater_id']];
         $data['booking'] = $bookingobj;
         $data['seats'] = $this->Movie->bookedSeatById($bookingobj['id']);
         $this->load->view('movie/ticketviewemail', $data);
     }
-    
-    
-    function getMovieQR($bookingid){
+
+    function getMovieQR($bookingid) {
         $this->load->library('phpqr');
         $linkdata = site_url("Movies/yourTicket/" . $bookingid);
 //        header('Content-type: image/jpeg');
         $this->phpqr->showcode($linkdata);
-    
     }
 
 }

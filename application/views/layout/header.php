@@ -155,7 +155,7 @@
                                         <li><i class="fa fa-phone" aria-hidden="true"></i><a href="tel:+(852) 6142 8189">+(852) 6142 8189</a></li>
                                         <li><i class="fa fa-envelope" aria-hidden="true"></i><a href="mailto:sales@maharajatickets.com">sales@maharajatickets.com</a></li>
 
-                                        <li><a href="login-registration.html"><i class="fa fa-lock" aria-hidden="true"></i> Account</a></li>
+                                        <li><a href="#"><i class="fa fa-lock" aria-hidden="true"></i> Account</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -175,11 +175,11 @@
                                             <li class="active"><a href="#">Home</a>
 
                                             </li>
-                                            <li><a href="about.html">About</a></li>
-                                            <li><a href="shop7.html">Movies</a></li>
+                                            <li><a href="#">About</a></li>
+                                            <li><a href="<?php echo site_url("Movies/index");?>">Movies</a></li>
                                             <li><a href="#">Blog</a></li>
                                             <li><a href="#">About</a></li>
-                                            <li><a href="contact.html">Contact</a></li>
+                                            <li><a href="#">Contact</a></li>
                                         </ul>
                                     </nav>
                                 </div>

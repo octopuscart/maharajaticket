@@ -38,7 +38,6 @@ class Movie extends CI_Model {
 
 ",
             ),
-           
             "m5" =>
             array("title" => "Tanhaji: The Unsung Warrior",
                 "id" => "m5",
@@ -56,7 +55,7 @@ class Movie extends CI_Model {
         $listoftheaters = array(
             "GH-V-WALK" => array(
                 "title" => "GH V WALK - House 5",
-                "timing" => ["10:40", "13:40", "17:40"],
+                "timing" => ["16:40", "19:40"],
                 "layout" => "getLayout_GH_V_WALK",
                 "active" => 0,
             ),
@@ -68,7 +67,7 @@ class Movie extends CI_Model {
             ),
             "GH-HSE3" => array(
                 "title" => "GH Whampoa - House 3",
-                "timing" => ["10:45", "14:45", "16:45", "20:50", "23:15"],
+                "timing" => ["16:40", "19:40"],
                 "layout" => "getLayout_GH_HSE3",
                 "active" => 1,
             ),
@@ -80,7 +79,7 @@ class Movie extends CI_Model {
             ),
             "GRND-OCE" => array(
                 "title" => "Grand Ocean (Tsim Sha Tsui)",
-                "timing" => ["09:45", "13:45", "15:45", "21:50"],
+                "timing" => ["15:45", "21:50"],
                 "layout" => "getLayoutGrandOcean",
                 "active" => 1,
             )
@@ -114,20 +113,20 @@ class Movie extends CI_Model {
         }
         return $seats;
     }
-    
-      function booking_mail($order_id, $subject = "") {
+
+    function booking_mail($order_id, $subject = "") {
         setlocale(LC_MONETARY, 'en_US');
         $checkcode = REPORT_MODE;
-        
-        
+
+
         $this->db->where('booking_id', $bookingid);
         $query = $this->db->get('movie_ticket_booking');
         $bookingobj = $query->row_array();
         $movies = $this->movieList();
-        $data['movieobj'] =  $movies[$bookingobj['movie_id']];
-        
+        $data['movieobj'] = $movies[$bookingobj['movie_id']];
+
         $theaters = $this->Movie->theaters();
-       
+
         $data['theater'] = $theaters[$bookingobj['theater_id']];
         $data['booking'] = $bookingobj;
         $data['seats'] = $this->Movie->bookedSeatById($bookingobj['id']);

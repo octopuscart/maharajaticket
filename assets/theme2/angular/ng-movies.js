@@ -16,7 +16,7 @@ App.controller('showTimeContoller', function ($scope, $http, $timeout, $interval
 App.controller('sitSelectContoller', function ($scope, $http, $timeout, $interval, $filter) {
     $scope.theaterLayout = {"layout": {}, "seatscount": seatsgbl, "suggetion": []};
 
-    var url = baseurl + "Api/" + layoutgbl + "?sdate=" + select_date_gbl + "&stime=" + select_time_gbl + "&th_id=" + theater_id_gbl  + "&mv_id=" + movie_id_gbl;
+    var url = baseurl + "Api/" + layoutgbl + "?sdate=" + select_date_gbl + "&stime=" + select_time_gbl + "&th_id=" + theater_id_gbl + "&mv_id=" + movie_id_gbl;
     $http.get(url).then(function (rdata) {
         $scope.theaterLayout.layout = rdata.data;
     }, function () {
@@ -99,5 +99,8 @@ App.controller('sitSelectContoller', function ($scope, $http, $timeout, $interva
 
 
 App.controller('checkoutContoller', function ($scope, $http, $timeout, $interval, $filter) {
-
+    $scope.selectPaymenttype = {"ptype": "Cash On Delivery"};
+    $scope.selectPayment = function (ptype) {
+        $scope.selectPaymenttype.ptype = ptype;
+    }
 })

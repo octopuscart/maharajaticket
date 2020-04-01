@@ -208,7 +208,7 @@ class Movies extends CI_Controller {
                     );
                     $this->db->insert('movie_ticket', $seatArray);
                 }
-                redirect("Movies/yourTicket/" . $bookid_md5);
+                redirect("Movies/yourTicketView/" . $bookid_md5);
             }
         }
 
@@ -251,7 +251,7 @@ class Movies extends CI_Controller {
                 );
                 $this->db->insert('movie_ticket', $seatArray);
             }
-            redirect("Movies/yourTicket/" . $bookid_md5);
+            redirect("Movies/yourTicketView/" . $bookid_md5);
         }
 
 
@@ -303,19 +303,21 @@ class Movies extends CI_Controller {
         $message = $this->load->view('movie/ticketviewemail', $data, true);
         setlocale(LC_MONETARY, 'en_US');
         $checkcode = REPORT_MODE;
-        $checkcode = 0;
+        $checkcode = 1;
         if ($checkcode) {
             $this->email->message($message);
             $this->email->print_debugger();
             $send = $this->email->send();
             if ($send) {
-                echo json_encode("send");
+//                echo json_encode("send");
+                redirect("Movies/yourTicket/$bookingid");
             } else {
                 $error = $this->email->print_debugger(array('headers'));
                 echo json_encode($error);
             }
         } else {
-            echo $message;
+//            echo $message;
+            redirect("Movies/yourTicket/$bookingid");
         }
     }
 

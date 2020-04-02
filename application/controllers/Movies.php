@@ -22,10 +22,6 @@ class Movies extends CI_Controller {
         $this->load->view('movie/blog', $data);
     }
 
-    public function payment() {
-        
-    }
-
     public function showTime($mid) {
         $movies = $this->Movie->movieList();
         $data['movie'] = $movies[$mid];
@@ -285,7 +281,7 @@ class Movies extends CI_Controller {
     public function yourTicketView($bookingid) {
         $this->db->where('booking_id', $bookingid);
         $query = $this->db->get('movie_ticket_booking');
-        
+
         $bookingobj = $query->row_array();
         $movies = $this->Movie->movieList();
         $data['movieobj'] = $movies[$bookingobj['movie_id']];
@@ -367,7 +363,11 @@ class Movies extends CI_Controller {
         }
 
 
-        $this->load->view('movie/payment', $data);
+        $this->load->view('movie/ticketpayment', $data);
+    }
+
+    public function payment() {
+        
     }
 
 }

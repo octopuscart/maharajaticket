@@ -1506,3 +1506,7 @@ h5.theaterblocktext {
     height: 37px;
     margin-top: -11px;
 }
+
+#scrollUp{
+    z-index: 1000!important;
+}

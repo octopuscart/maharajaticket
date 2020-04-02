@@ -171,7 +171,15 @@ $this->load->view('layout/header');
                             </div>
                         </div>
                         <hr/>
-                        <button class='btn btn-default' style='background: #d92229;border-radius: 15px;color: white;' type='submit' name='reserve'>Reserve Now  <span aria-hidden="true">&rarr;</span></button>
+                        <div class="col-md-2">
+                            <button class='btn btn-default' style='background: #d92229;border-radius: 15px;color: white;margin-right: 30px;' type='submit' name='reserve'>Reserve Now  </button>
+                        </div>
+                        <div class="col-md-10   ">
+                            <h4>                       
+
+                                For Further Help: <a href="https://api.whatsapp.com/send?phone=85261428189&text=" target="_blank"> <img src="<?php echo base_url(); ?>assets/images/whatsapp.svg"/> +(852) 6142 8189</a> 
+                            </h4>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -198,7 +206,7 @@ $this->load->view('layout/header');
                     <input type="hidden" name="payment_type" value="<?php echo $_GET['paymenttype']; ?>">
                     <input type="hidden" name="booking_type" value="<?php echo $_GET['booking_type']; ?>">
                     <button type="submit" class="btn btn-danger">Yes Book Now</button>
-                    <a href="<?php echo site_url('Movies/checkOut');?>" class="btn btn-default">Close</a>
+                    <a href="<?php echo site_url('Movies/checkOut'); ?>" class="btn btn-default">Close</a>
                 </form>
             </div>
         </div>

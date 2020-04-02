@@ -143,7 +143,7 @@ $this->load->view('layout/header');
 
                         </div>
                         <hr/>
-                        <button class='btn btn-default' style='background: #d92229;border-radius: 15px;color: white;' type='submit' name='payment'>Proceed Payment  <span aria-hidden="true">&rarr;</span></button>
+                        <button class='btn btn-default' style='background: #d92229;border-radius: 15px;color: white;' type='submit' name='payment'>Proceed For Payment  <span aria-hidden="true">&rarr;</span></button>
                         <input type="hidden" name="paymenttype" value="{{selectPaymenttype.ptype}}">
                     </form>
                 </div>

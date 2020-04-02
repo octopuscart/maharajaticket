@@ -17,6 +17,11 @@ class Movies extends CI_Controller {
         $this->load->view('movie/list', $data);
     }
 
+    public function blog() {
+        $data = array();
+        $this->load->view('movie/blog', $data);
+    }
+
     public function showTime($mid) {
         $movies = $this->Movie->movieList();
         $data['movie'] = $movies[$mid];

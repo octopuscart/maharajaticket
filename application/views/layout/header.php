@@ -176,7 +176,7 @@
                                             <li><a href="<?php echo site_url("Movies/index"); ?>">Movies</a></li>
                                             <li><a href="<?php echo site_url("Movies/index"); ?>">Book Now</a></li>
                                             <li><a href="#">Pay For Ticket</a></li>
-                                            <li><a href="#">Blog</a></li>
+                                            <li><a href="<?php echo site_url("Movies/blog");?>">Blog</a></li>
 
                                             <li><a href="#">Contact</a></li>
                                         </ul>

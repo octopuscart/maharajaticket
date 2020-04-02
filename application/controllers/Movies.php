@@ -22,6 +22,10 @@ class Movies extends CI_Controller {
         $this->load->view('movie/blog', $data);
     }
 
+    public function payment() {
+        
+    }
+
     public function showTime($mid) {
         $movies = $this->Movie->movieList();
         $data['movie'] = $movies[$mid];
@@ -281,6 +285,7 @@ class Movies extends CI_Controller {
     public function yourTicketView($bookingid) {
         $this->db->where('booking_id', $bookingid);
         $query = $this->db->get('movie_ticket_booking');
+        
         $bookingobj = $query->row_array();
         $movies = $this->Movie->movieList();
         $data['movieobj'] = $movies[$bookingobj['movie_id']];
@@ -331,6 +336,38 @@ class Movies extends CI_Controller {
         $linkdata = site_url("Movies/yourTicket/" . $bookingid);
 //        header('Content-type: image/jpeg');
         $this->phpqr->showcode($linkdata);
+    }
+
+    public function ticketPayment($bookingid) {
+        $this->db->where('booking_id', $bookingid);
+        $query = $this->db->get('movie_ticket_booking');
+        $bookingobj = $query->row_array();
+        $movies = $this->Movie->movieList();
+        $data['movieobj'] = $movies[$bookingobj['movie_id']];
+
+        $theaters = $this->Movie->theaters();
+
+        $data['theater'] = $theaters[$bookingobj['theater_id']];
+        $data['booking'] = $bookingobj;
+        $data['seats'] = $this->Movie->bookedSeatById($bookingobj['id']);
+        if (isset($_POST['payment'])) {
+            $paymenttype = $this->input->post('paymenttype');
+            $bookingArray = array(
+                "payment_type" => $paymenttype,
+                "payment_attr" => "",
+                "payment_id" => "",
+                "booking_type" => "Purchase",
+                "booking_time" => Date('Y-m-d'),
+                "booking_date" => date('H:i:s'),
+            );
+            $this->db->set($bookingArray);
+            $this->db->where('booking_no', $bookingid); //set column_name and value in which row need to update
+            $this->db->update('movie_ticket_booking');
+            redirect("Movies/yourTicketView/" . $bookingid);
+        }
+
+
+        $this->load->view('movie/payment', $data);
     }
 
 }

@@ -238,7 +238,7 @@
                         </tr>
                         <tr>
                             <td colspan="2">
-                                <p>Click here to make the payment. <a href='<?php echo site_url('Movies/payticket/' . $booking['booking_id']) ?>'>Proceed For Payment</a></p>
+                                <p>Click here to make the payment. <a href='<?php echo site_url('Movies/ticketPayment/' . $booking['booking_id']) ?>'>Proceed For Payment</a></p>
                             </td>
                         </tr>
                         <tr style='height: 50px;'>

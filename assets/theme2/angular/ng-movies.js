@@ -104,3 +104,10 @@ App.controller('checkoutContoller', function ($scope, $http, $timeout, $interval
         $scope.selectPaymenttype.ptype = ptype;
     }
 })
+
+App.controller('ticketPaymentController', function ($scope, $http, $timeout, $interval, $filter) {
+    $scope.selectPaymenttype = {"ptype": "Cash On Delivery"};
+    $scope.selectPayment = function (ptype) {
+        $scope.selectPaymenttype.ptype = ptype;
+    }
+})

@@ -11,7 +11,7 @@ $this->load->view('layout/header');
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="breadcrumb-area">
-                    <h1>Movie Ticket </h1>
+                    <h1>Movies </h1>
                     <ul>
                         <li><a href="#">Home</a> /</li>
                         <li>Select Movie</li>
@@ -37,17 +37,19 @@ $this->load->view('layout/header');
                 <div class="col-lg-3 col-md-4 col-sm-4 col-xs-6">
                     <div class="portfolio2-box">
                         <div class="portfolio2-img-holder">
-                            <div class="portfolio2-content-holder">
-                                <h3><a href="#"><?php echo $catv['title']?></a></h3>
-                                <ul>
-                                    <li><?php echo $catv['attr']?></li>
-                                </ul>
-                                <a href="<?php echo site_url('Movies/showTime/'.$catv['id'])?>" style="margin-top: 10px;" class="button btn btn-default">Book Now</a>
-                            </div>
+                            
                             <a href="#">
                                 <img class="img-responsive" src="<?php echo base_url(); ?>assets/movies/<?php echo $catv['image'];?>" alt="portfolio">
                             </a>
                         </div>
+                        <div class="portfolio2-content-holder" style="border: 1px solid #000;
+    padding: 5px 5px 10px;">
+                                <h3 style="margin-bottom: 0;font-size: 15px;"><a href="#"><?php echo $catv['title']?></a></h3>
+                                <ul>
+                                    <li style="font-size: 12px;"><?php echo $catv['attr']?></li>
+                                </ul>
+                                <a href="<?php echo site_url('Movies/showTime/'.$catv['id'])?>" style="margin-top: 10px;    background: #d92229;" class="button btn btn-danger">Book Now</a>
+                            </div>
                     </div>
                 </div>
 
@@ -72,12 +74,7 @@ $this->load->view('layout/header');
                         <a href="#" class="btn-shop-now-fill">Book Now</a>
                     </div>
                 </div>
-                <div id="countdown2">
-                    <div class="countdown-section"><h3>7th</h3> <p>FAB</p> </div>
-                    <div class="countdown-section"><h3>8th</h3> <p>FAB</p> </div>
-                    <div class="countdown-section"><h3>9th</h3> <p>FAB</p> </div>
-
-                </div>
+               
                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                     <div class="brand-area-box-r">
                         <a href="#"><img src="<?php echo base_url(); ?>assets/movies/movieposter1.jpg" alt="offer"></a>

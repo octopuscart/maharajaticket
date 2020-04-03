@@ -272,7 +272,7 @@ $this->load->view('layout/header');
                        
                         <tr>
                             <td colspan="2">
-                                <p>Click here to make the payment. <a href='<?php echo site_url('Movies/payticket/' . $booking['booking_id']) ?>'>Proceed Payment</a></p>
+                                <p>Click here to make the payment. <a href='<?php echo site_url('Movies/ticketPayment/' . $booking['booking_id']) ?>'>Proceed Payment</a></p>
                          </td>
                         </tr>
                        

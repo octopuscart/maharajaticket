@@ -334,35 +334,52 @@ class Movies extends CI_Controller {
         $this->phpqr->showcode($linkdata);
     }
 
-    public function ticketPayment($bookingid) {
-        $this->db->where('booking_id', $bookingid);
-        $query = $this->db->get('movie_ticket_booking');
-        $bookingobj = $query->row_array();
-        $movies = $this->Movie->movieList();
-        $data['movieobj'] = $movies[$bookingobj['movie_id']];
+    public function ticketPayment($bookingid = 0) {
+        $data['has_bookid'] = "0";
+        $data['message'] = "";
+        if ($bookingid == 0) {
+            if (isset($_POST['findbooking'])) {
+                $bookingid = $this->input->post('booking_id');
+                $this->db->where('booking_no', $bookingid);
+                $query = $this->db->get('movie_ticket_booking');
+                $bookingobj = $query->row_array();
+                if ($bookingobj) {
+                    $bookingid = $bookingobj['booking_id'];
+                    redirect("Movies/ticketPayment/$bookingid");
+                } else {
+                    $data['message'] = "Booking no. not found.";
+                }
+            }
+        } else {
+            $data['has_bookid'] = "1";
 
-        $theaters = $this->Movie->theaters();
+            $this->db->where('booking_id', $bookingid);
+            $query = $this->db->get('movie_ticket_booking');
+            $bookingobj = $query->row_array();
+            $movies = $this->Movie->movieList();
+            $data['movieobj'] = $movies[$bookingobj['movie_id']];
 
-        $data['theater'] = $theaters[$bookingobj['theater_id']];
-        $data['booking'] = $bookingobj;
-        $data['seats'] = $this->Movie->bookedSeatById($bookingobj['id']);
-        if (isset($_POST['payment'])) {
-            $paymenttype = $this->input->post('paymenttype');
-            $bookingArray = array(
-                "payment_type" => $paymenttype,
-                "payment_attr" => "",
-                "payment_id" => "",
-                "booking_type" => "Purchase",
-                "booking_time" => Date('Y-m-d'),
-                "booking_date" => date('H:i:s'),
-            );
-            $this->db->set($bookingArray);
-            $this->db->where('booking_no', $bookingid); //set column_name and value in which row need to update
-            $this->db->update('movie_ticket_booking');
-            redirect("Movies/yourTicketView/" . $bookingid);
+            $theaters = $this->Movie->theaters();
+
+            $data['theater'] = $theaters[$bookingobj['theater_id']];
+            $data['booking'] = $bookingobj;
+            $data['seats'] = $this->Movie->bookedSeatById($bookingobj['id']);
+            if (isset($_POST['payment'])) {
+                $paymenttype = $this->input->post('paymenttype');
+                $bookingArray = array(
+                    "payment_type" => $paymenttype,
+                    "payment_attr" => "",
+                    "payment_id" => "",
+                    "booking_type" => "Purchase",
+                    "booking_time" => Date('Y-m-d'),
+                    "booking_date" => date('H:i:s'),
+                );
+                $this->db->set($bookingArray);
+                $this->db->where('booking_no', $bookingid); //set column_name and value in which row need to update
+                $this->db->update('movie_ticket_booking');
+                redirect("Movies/yourTicketView/" . $bookingid);
+            }
         }
-
-
         $this->load->view('movie/ticketpayment', $data);
     }
 

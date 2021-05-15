@@ -23,6 +23,7 @@ class Movie extends CI_Model {
             $this->db->where('id', $movieid);
             $query = $this->db->get('movie_show');
             $movieobj = $query->row_array();
+            $movieobj["image"] = MOVIEPOSTER.$movieobj["image"];
             $movies[$movieid] = $movieobj;
         }
         return $movies;

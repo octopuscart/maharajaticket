@@ -39,7 +39,7 @@ $this->load->view('layout/header');
                         <div class="portfolio2-img-holder">
                             
                             <a href="#">
-                                <img class="img-responsive" src="<?php echo base_url(); ?>assets/movies/<?php echo $catv['image'];?>" alt="portfolio">
+                                <img class="img-responsive" src="<?php echo $catv['image'];?>" alt="portfolio">
                             </a>
                         </div>
                         <div class="portfolio2-content-holder" style="border: 1px solid #000;

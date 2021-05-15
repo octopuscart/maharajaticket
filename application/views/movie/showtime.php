@@ -195,14 +195,14 @@ $this->load->view('layout/header');
                              ">
                             <div class="media">
                                 <a class="pull-left" href="#">
-                                    <img class="img-responsive" style="width: 180px;" src="<?php echo base_url(); ?>assets/movies/<?php echo $movie['image']; ?>" alt="product">
+                                    <img class="img-responsive" style="width: 180px;" src="<?php echo $movie['image']; ?>" alt="product">
 
                                 </a>
                                 <div class="media-body">
                                     <div class="product-box2-content">
                                         <h3><a href="#"><?php echo $movie['title']; ?></a></h3>
                                         <span><?php echo $movie['attr']; ?></span>
-                                        <input type="button"  class="btn btn-default" style=""  value="Watch Trailer" /> 
+                                        <a href="<?php echo $movie['trailer_link']; ?>" target="_blank" type="button"  class="btn btn-default" style=""  value="Watch Trailer" >Watch Trailer</a> 
 
 
 

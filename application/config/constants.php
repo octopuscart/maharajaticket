@@ -21,18 +21,18 @@ switch ($baselink) {
 
 switch ($baselink) {
     case "http://localhost":
-        $adminlinkmain = $baselink . "/shopadmin";
+        $adminlinkmain = $baselink . "/maharajaticketsmanage";
         break;
     case "http://192.168.1.2":
-          $adminlinkmain = $baselink . "/shopadmin";
+          $adminlinkmain = $baselink . "/maharajaticketsmanage";
         break;
     default:
-        $adminlinkmain = "https://shopadmin.costcokart.com/";
+        $adminlinkmain = "https://admin.maharajatickets.com/";
 }
 
 define('ADMINURL', $adminlinkmain);
 
-define('PRODUCTIMAGELINK', $adminlinkmain."/assets/product_images/");
+define('MOVIEPOSTER', $adminlinkmain."/assets/movies/");
 
 
 define('imageserver', $baselinkmain . "assets_main/productimages/");

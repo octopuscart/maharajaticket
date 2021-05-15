@@ -68,19 +68,9 @@
     </head>
 
     <?php
-    $this->load->view('layout/menu');
-    $this->db->where('parent_id', 0);
-    $querymenu = $this->db->get('category');
-    $parentmenu = $querymenu->result_array();
+   
     $menucontainer = array();
-    foreach ($parentmenu as $key => $value) {
-        $this->db->where('parent_id', $value['id']);
-        $querymenu2 = $this->db->get('category');
-        $parentmenu2 = $querymenu2->result_array();
-        $value['children'] = $parentmenu2;
-        array_push($menucontainer, $value);
-    }
-    ?>
+ ?>
     <style>
         .preloadimage{
             background: black;

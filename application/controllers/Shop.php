@@ -13,20 +13,7 @@ class Shop extends CI_Controller {
     }
 
     public function index() {
-        $product_home_slider_bottom = $this->Product_model->product_home_slider_bottom();
-        $categories = $this->Product_model->productListCategories(0);
-        $data["categories"] = $categories;
-        $data["product_home_slider_bottom"] = $product_home_slider_bottom;
-        $customarray = [1, 2];
-        $this->db->where_in('id', $customarray);
-        $query = $this->db->get('custome_items');
-        $customeitem = $query->result();
-
-        $data['shirtcustome'] = $customeitem[0];
-        $data['suitcustome'] = $customeitem[1];
-
-        $query = $this->db->get('sliders');
-        $data['sliders'] = $query->result();
+   
         
         $data['moves'] = $this->Movie->movieList();
 

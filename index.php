@@ -56,7 +56,11 @@
 //define('ENVIRONMENT', isset($_SERVER['CI_ENV']) ? $_SERVER['CI_ENV'] : 'development');
 $baselink = 'http://' . $_SERVER['SERVER_NAME'];
 $checkdebug = strpos($baselink, '192.168') ? TRUE : FALSE;
+<<<<<<< HEAD
 $checkdebug = 0;
+=======
+$checkdebug = 1;
+>>>>>>> ec5db594e9ac48c5d266853f60551b20d33d0e6a
 if ($checkdebug) {
     define('ENVIRONMENT', 'development');
 } else{

@@ -438,9 +438,8 @@ where pa.product_id in ($productatrvalue) group by attribute_value_id";
 
     //category list array
     function productListCategories($category_id) {
-        $this->db->where('parent_id', $category_id);
-        $query = $this->db->get('category');
-        $category = $query->result_array();
+     
+        $category =array();
         $container = [];
         foreach ($category as $ckey => $cvalue) {
             $cvalue['sub_category'] = $this->productListCategories($cvalue['id']);
@@ -511,12 +510,10 @@ where pa.product_id in ($productatrvalue) group by attribute_value_id";
     }
 
     function product_home_slider_bottom() {
-        $pquery = "SELECT pa.* FROM products as pa where home_slider = 'on' and variant_product_of<1";
-        $product_home_slider = $this->query_exe($pquery);
+        $product_home_slider = array();
 
 
-        $pquery = "SELECT pa.* FROM products as pa where home_bottom = 'on'  and variant_product_of<1";
-        $product_home_bottom = $this->query_exe($pquery);
+        $product_home_bottom = array();
 
         return array('home_bottom' => $product_home_bottom, 'home_slider' => $product_home_slider);
     }

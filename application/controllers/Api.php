@@ -440,10 +440,9 @@ class Api extends REST_Controller {
     }
 
     function getLayout_GH_V_WALK_get() {
-        $booked = array(
-            "A-6" => "", "A-7" => "",
-            "G-6" => "", "G-9" => "",
-        );
+                $seats = $this->getBookedSheats($this->get());
+         $reserveseats = $this->getBookedSheats($this->get());
+        $booked = $reserveseats;
         $reserved = array(
         );
         $gaps = array();
@@ -534,10 +533,10 @@ class Api extends REST_Controller {
     }
 
     function getLayout_GH_HSE4_get() {
-        $booked = array(
-            "B-1" => "", "B-4" => "",
-            "D-1" => "", "D-2" => "", "D-3" => "",
-        );
+        
+            $reserveseats = $this->getBookedSheats($this->get());
+        $booked = $reserveseats;
+     
         $reserved = array(
             "Q-5" => "", "Q-6" => "", "Q-1" => "", "Q-2" => ""
         );
@@ -588,11 +587,9 @@ class Api extends REST_Controller {
 
     function getLayout_GH_HSE3_get() {
         $seats = $this->getBookedSheats($this->get());
-
-        $booked = array(
-            "B-1" => "", "B-4" => "",
-            "D-1" => "", "D-2" => "", "D-3" => "",
-        );
+         $reserveseats = $this->getBookedSheats($this->get());
+        $booked = $reserveseats;
+      
         $reserved = array(
             "Q-5" => "", "Q-6" => "", "Q-1" => "", "Q-2" => ""
         );
@@ -643,10 +640,8 @@ class Api extends REST_Controller {
     }
 
     function getLayout_GH_HSE1_get() {
-        $booked = array(
-            "B-1" => "", "B-4" => "",
-            "D-1" => "", "D-2" => "", "D-3" => "",
-        );
+            $reserveseats = $this->getBookedSheats($this->get());
+        $booked = $reserveseats;
         $reserved = array(
             "O-8" => "", "O-9" => "", "O-10" => "", "O-11" => ""
         );

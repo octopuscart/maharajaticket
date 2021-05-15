@@ -263,7 +263,7 @@ $this->load->view('layout/header');
                         <th style='width: 60%;text-align: right;    border-bottom: 1px solid #000;'>Total:</th><th style='text-align: right;    border-bottom: 1px solid #000;'> $HK<?php echo $booking['total_price']; ?>.00</th>
                     </tr>
                     <tr style='font-size: 15px;height: 50px;'>
-                        <th style='width: 60%;text-align: right;    border-bottom: 1px solid #000;'>Status:</th><th style='text-align: right;    border-bottom: 1px solid #000;'> <?php echo $booking['booking_type'] == 'Reserve' ? 'Unpaid' : 'Paid'; ?></th>
+                        <th style='width: 60%;text-align: right;    border-bottom: 1px solid #000;'>Status:</th><th style='text-align: right;    border-bottom: 1px solid #000;'> <?php echo $booking['booking_type'] == 'Reserve' ? 'Unpaid' : 'Awaiting Payment'; ?></th>
                     </tr>
 
                     <?php

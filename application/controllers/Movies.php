@@ -26,13 +26,17 @@ class Movies extends CI_Controller {
         $movies = $this->Movie->movieList();
         $data['movie'] = $movies[$mid];
         $data['theaters'] = $this->Movie->theaters();
+        $eventdate = $this->Movie->movieevent();
         $datearray = array();
-        for ($i = 0; $i <= 3; $i++) {
-            $datef = Date('Y-m-d', strtotime("+$i days"));
-            $date_day = Date('dS', strtotime("+$i days"));
-            $date_month = Date('F', strtotime("+$i days"));
-            $datearray[$datef] = array("day" => $date_day, "month" => $date_month);
+
+        foreach ($eventdate as $key => $value) {
+            $date = strtotime($value["event_date"]);
+
+            $date_day = date('dS', $date);
+            $date_month = Date('F', $date);
+            $datearray[$value["event_date"]] = array("day" => $date_day, "month" => $date_month);
         }
+
         $data['datearray'] = $datearray;
 
         $this->load->view('movie/showtime', $data);

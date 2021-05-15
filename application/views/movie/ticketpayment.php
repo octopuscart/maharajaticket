@@ -94,22 +94,11 @@ $this->load->view('layout/header');
                 <form action="#" method="post" style="margin-top:10px;padding: 0px 50px;">
                     <h4 style="margin-bottom: 2px;">Payment Option</h4>
                     <div class="row" >
-                        <button class="btn btn-default paymentbutton" type="button" disabled="">
-                            <img src="<?php echo base_url(); ?>assets/paymentstatus/payme.jpg" style="height: 50px;border-radius: 10px;">
-                        </button>
-                        <button class="btn btn-default paymentbutton" type="button" disabled="">
-                            <img src="<?php echo base_url(); ?>assets/paymentstatus/wechat.jpg" style="height: 50px;border-radius: 10px;">
-                        </button>
-                        <button class="btn btn-default paymentbutton" type="button" disabled="">
-                            <img src="<?php echo base_url(); ?>assets/paymentstatus/alipay.jpg" style="height: 50px;border-radius: 10px;">
-
-                        </button>
+                    
                         <button class="btn btn-default paymentbutton {{selectPaymenttype.ptype == 'Cash On Delivery'?'active':''}}"  type="button" ng-click="selectPayment('Cash On Delivery')">
                             <img src="<?php echo base_url(); ?>assets/paymentstatus/cod.png" style="height: 50px;border-radius: 10px;">
                         </button>
-                        <button class="btn btn-default paymentbutton {{selectPaymenttype.ptype == 'Bank Transfer'?'active':''}}" type="button" ng-click="selectPayment('Bank Transfer')">
-                            <img src="<?php echo base_url(); ?>assets/paymentstatus/bank.png" style="height: 50px;border-radius: 10px;">
-                        </button>
+                  
 
                     </div>
                     <hr/>

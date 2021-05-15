@@ -100,19 +100,19 @@ $this->load->view('layout/header');
                             <div class=" col-md-3">
                                 <div class="input-group">
                                     <span class="input-group-addon " id="sizing-addon2">Name</span>
-                                    <input type="text" class="form-control" name='name' placeholder="Name" aria-describedby="sizing-addon2">
+                                    <input type="text" class="form-control" name='name' placeholder="Name" aria-describedby="sizing-addon2" required="">
                                 </div>
                             </div>
                             <div class=" col-md-3">
                                 <div class="input-group">
                                     <span class="input-group-addon " id="sizing-addon2">Email</span>
-                                    <input type="email" class="form-control" name='email' placeholder="Email" aria-describedby="sizing-addon2">
+                                    <input type="email" class="form-control" name='email' placeholder="Email" aria-describedby="sizing-addon2"  required="">
                                 </div>
                             </div>    
                             <div class=" col-md-3">    
                                 <div class="input-group">
                                     <span class="input-group-addon " id="sizing-addon2">Contact No.</span>
-                                    <input type="tel" class="form-control" name='contact_no' placeholder="Contact No." aria-describedby="sizing-addon2">
+                                    <input type="tel" class="form-control" name='contact_no' placeholder="Contact No." aria-describedby="sizing-addon2"  required="">
                                 </div>
                             </div>
                         </div>
@@ -120,7 +120,7 @@ $this->load->view('layout/header');
                         <h4 style="margin-bottom: 2px;">Payment Option</h4>
 
                         <div class="row" >
-                            <button class="btn btn-default paymentbutton" type="button" disabled="">
+<!--                            <button class="btn btn-default paymentbutton" type="button" disabled="">
                                 <img src="<?php echo base_url(); ?>assets/paymentstatus/payme.jpg" style="height: 50px;border-radius: 10px;">
 
                             </button>
@@ -131,15 +131,15 @@ $this->load->view('layout/header');
                             <button class="btn btn-default paymentbutton" type="button" disabled="">
                                 <img src="<?php echo base_url(); ?>assets/paymentstatus/alipay.jpg" style="height: 50px;border-radius: 10px;">
 
-                            </button>
+                            </button>-->
                             <button class="btn btn-default paymentbutton {{selectPaymenttype.ptype == 'Cash On Delivery'?'active':''}}"  type="button" ng-click="selectPayment('Cash On Delivery')">
                                 <img src="<?php echo base_url(); ?>assets/paymentstatus/cod.png" style="height: 50px;border-radius: 10px;">
 
                             </button>
-                            <button class="btn btn-default paymentbutton {{selectPaymenttype.ptype == 'Bank Transfer'?'active':''}}" type="button" ng-click="selectPayment('Bank Transfer')">
+<!--                            <button class="btn btn-default paymentbutton {{selectPaymenttype.ptype == 'Bank Transfer'?'active':''}}" type="button" ng-click="selectPayment('Bank Transfer')">
                                 <img src="<?php echo base_url(); ?>assets/paymentstatus/bank.png" style="height: 50px;border-radius: 10px;">
 
-                            </button>
+                            </button>-->
 
                         </div>
                         <hr/>
@@ -154,19 +154,19 @@ $this->load->view('layout/header');
                             <div class=" col-md-3">
                                 <div class="input-group">
                                     <span class="input-group-addon " id="sizing-addon2">Name</span>
-                                    <input type="text" class="form-control" name='name' placeholder="Name" aria-describedby="sizing-addon2">
+                                    <input type="text" class="form-control" name='name' placeholder="Name" aria-describedby="sizing-addon2" required="">
                                 </div>
                             </div>
                             <div class=" col-md-3">
                                 <div class="input-group">
                                     <span class="input-group-addon " id="sizing-addon2">Email</span>
-                                    <input type="email" class="form-control" name='email' placeholder="Email" aria-describedby="sizing-addon2">
+                                    <input type="email" class="form-control" name='email' placeholder="Email" aria-describedby="sizing-addon2" required="">
                                 </div>
                             </div>    
                             <div class=" col-md-3">    
                                 <div class="input-group">
                                     <span class="input-group-addon " id="sizing-addon2">Contact No.</span>
-                                    <input type="tel" class="form-control" name='contact_no' placeholder="Contact No." aria-describedby="sizing-addon2">
+                                    <input type="tel" class="form-control" name='contact_no' placeholder="Contact No." aria-describedby="sizing-addon2" required="">
                                 </div>
                             </div>
                         </div>

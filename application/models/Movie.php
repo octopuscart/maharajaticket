@@ -11,79 +11,54 @@ class Movie extends CI_Model {
     }
 
     function movieList() {
-        $movies = array(
-            "m1" =>
-            array(
-                "id" => "m1",
-                "title" => "Baaghi 3",
-                "attr" => "Hindi-U/A-2D",
-                "image" => "baaghi.jpg",
-                "about" => "This action-drama is the third installment in Sajid Nadiadwala’s martial arts movie series Baaghi. Loaded with power-packed stunts and high-octane thrills, the film promises a fast-paced narrative full of unexpected twists and turns."
-            ),
-            "m2" =>
-            array("title" => "Dolittle",
-                "id" => "m2",
-                "attr" => "English-U-3D",
-                "image" => "dolittle.jpg",
-                "about" => "This fantasy-adventure is centered on the titular character created by Hugh Lofting for the series of books- The Voyages of Doctor Dolittle. The plot revolves around a physician who is blessed with the ability to talk to animals. The narrative is balanced with endearing moments as well as witty humour throughout. The ensemble cast of the film includes six Oscar winners.
-
-",
-            ),
-            "m3" =>
-            array("title" => "Bhoot",
-                "id" => "m3",
-                "attr" => "Hindi-A-2D",
-                "image" => "bhoot.jpg",
-                "about" => "Produced by Karan Johar's Dharma Productions, Bhoot: Part One - The Haunted Ship marks the beginning of the horror franchise. Starring Vicky Kaushal and Bhumi Pednekar in pivotal roles, the film is reportedly based on a true incident which occurred in Mumbai. Packed with all the essential chills and thrills, the film will be helmed by debutant director Bhanu Pratap Singh.
-
-",
-            ),
-            "m5" =>
-            array("title" => "Tanhaji: The Unsung Warrior",
-                "id" => "m5",
-                "attr" => "Hindi-U/A-3D",
-                "image" => "tanhaji.jpg",
-                "about" => "This period action film brings alive the story of Tanaji Malusare, a brave military leader of the Maratha empire. He is most famously known for his role in the Battle of Sinhagad in 1670 A.D. Laced with rich historical elements and stunning battle scenes, the movie offers a detailed insight into the life and times of the celebrated Maratha hero.
-
-",
-            )
-        );
+        $this->db->select("*");
+        $this->db->where('event_date>=', date("Y-m-d"));
+        $this->db->group_by("movie_id");
+        $query = $this->db->get('movie_event');
+        $movies = array();
+        $movieevents = $query->result_array();
+        foreach ($movieevents as $mekey => $mevalue) {
+            $movieid = $mevalue['movie_id'];
+            $this->db->select("*, description as about");
+            $this->db->where('id', $movieid);
+            $query = $this->db->get('movie_show');
+            $movieobj = $query->row_array();
+            $movies[$movieid] = $movieobj;
+        }
         return $movies;
     }
 
+    function movieevent() {
+        $this->db->select("*");
+        $this->db->where('event_date>=', date("Y-m-d"));
+        $this->db->group_by("movie_id");
+        $query = $this->db->get('movie_event');
+        $movieevents = $query->result_array();
+        return $movieevents;
+    }
+
     function theaters() {
-        $listoftheaters = array(
-            "GH-V-WALK" => array(
-                "title" => "GH V WALK - House 5",
-                "timing" => ["16:40", "19:40"],
-                "layout" => "getLayout_GH_V_WALK",
-                "active" => 0,
-            ),
-            "GH-HS1" => array(
-                "title" => "GH Whampoa - House 1",
-                "timing" => ["09:40", "15:40", "18:40", "21:10"],
-                "layout" => "getLayout_GH_HSE1",
-                "active" => 0,
-            ),
-            "GH-HSE3" => array(
-                "title" => "GH Whampoa - House 3",
-                "timing" => ["16:40", "19:40"],
-                "layout" => "getLayout_GH_HSE3",
+        $this->db->select("*");
+        $this->db->where('event_date>=', date("Y-m-d"));
+        $this->db->group_by("movie_id");
+        $query = $this->db->get('movie_event');
+        $movieevents = $query->result_array();
+        $listoftheaters = array();
+        foreach ($movieevents as $mekey => $mevalue) {
+            $theaterid = $mevalue['theater_id'];
+            $this->db->select("*");
+            $this->db->where('id', $theaterid);
+            $query = $this->db->get('movie_theater');
+            $movietheater = $query->row_array();
+            $listoftheaters[$theaterid] = array(
+                "title" => $movietheater["title"],
+                "timing" => [$mevalue["event_time"]],
+                "layout" => $movietheater["layout"],
                 "active" => 1,
-            ),
-            "GH-HS4" => array(
-                "title" => "GH Whampoa - House 4",
-                "timing" => ["11:45", "14:30", "22:15"],
-                "layout" => "getLayout_GH_HSE4",
-                "active" => 0,
-            ),
-            "GRND-OCE" => array(
-                "title" => "Grand Ocean (Tsim Sha Tsui)",
-                "timing" => ["15:45", "21:50"],
-                "layout" => "getLayoutGrandOcean",
-                "active" => 1,
-            )
-        );
+            );
+        }
+
+
         return $listoftheaters;
     }
 
@@ -142,7 +117,7 @@ class Movie extends CI_Model {
             $this->email->from(email_bcc, $sendername);
             $this->email->to($order_details['order_data']->email);
             $this->email->bcc(email_bcc);
-  
+
             $this->db->insert('user_order_log', $orderlog);
 
             $subject = "Your Movie Ticket(s) for";

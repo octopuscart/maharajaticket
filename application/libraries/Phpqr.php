@@ -16,6 +16,13 @@ class Phpqr {
         QRcode::png($text, $file, "L", "10", "5");
     }
 
+    public function createcode2($text) {
+        $this->$text = $text;
+
+        QRcode::png($text);
+    }
+
+    
     public function showcode($text) {
         return QRcode::svg($text);
     }

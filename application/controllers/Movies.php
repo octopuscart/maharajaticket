@@ -353,7 +353,7 @@ class Movies extends CI_Controller {
         $this->load->library('phpqr');
         $linkdata = site_url("Movies/yourTicket/" . $bookingid);
         header('Content-type: image/jpeg');
-        $this->phpqr->showcode($linkdata);
+        $this->phpqr->createcode2($linkdata);
     }
 
     public function ticketPaymentCancel($bookingid = 0) {

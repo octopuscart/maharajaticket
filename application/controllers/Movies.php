@@ -412,9 +412,11 @@ class Movies extends CI_Controller {
     }
 
     public function ticketPayment($bookingid = 0) {
-        $data['has_bookid'] = "0";
+
         $data['message'] = "";
-        if ($bookingid == 0) {
+
+        if ($bookingid == "0") {
+            $data['has_bookid'] = "0";
             if (isset($_POST['findbooking'])) {
                 $bookingid = $this->input->post('booking_id');
                 $this->db->where('booking_no', $bookingid);
@@ -429,16 +431,17 @@ class Movies extends CI_Controller {
             }
         } else {
             $data['has_bookid'] = "1";
-
+         
             $this->db->where('booking_id', $bookingid);
             $query = $this->db->get('movie_ticket_booking');
             $bookingobj = $query->row_array();
+
+         
             $movies = $this->Movie->movieList();
             $data['movieobj'] = $movies[$bookingobj['movie_id']];
 
-            $theaters = $this->Movie->theaters();
-
-            $data['theater'] = $theaters[$bookingobj['theater_id']];
+              $theaters = $this->Movie->theaterInformation($bookingobj['theater_id']);
+            $data['theater'] = $theaters;
             $data['booking'] = $bookingobj;
             $data['seats'] = $this->Movie->bookedSeatById($bookingobj['id']);
             if (isset($_POST['payment'])) {

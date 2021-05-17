@@ -65,7 +65,8 @@ $this->load->view('layout/header');
     <div class="container">
 
         <?php
-        if ($has_bookid == 1) {
+ 
+        if ($has_bookid == "1") {
             ?>
             <div class="list-group" style="text-align: center">
                 <div href="#" class="list-group-item ">

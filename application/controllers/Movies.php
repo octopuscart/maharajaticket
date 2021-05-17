@@ -360,7 +360,7 @@ class Movies extends CI_Controller {
         $data['has_bookid'] = "0";
         $data["booking_id"] = $bookingid;
         $data['message'] = "";
-        if ($bookingid == 0) {
+        if ($bookingid == "0") {
             if (isset($_POST['findbooking'])) {
                 $bookingid = $this->input->post('booking_id');
                 $this->db->where('booking_no', $bookingid);

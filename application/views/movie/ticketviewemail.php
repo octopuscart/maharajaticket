@@ -111,9 +111,9 @@
     <?php
     $bktype = $booking['booking_type'];
     $statusarray = array(
-        "Purchase" => array("status" => "Confirmed", "payment" => "Awaiting Payment Confirmation"),
-        "Reserve" => array("status" => "Reserved", "payment" => "Unpaid"),
-        "Cancel" => array("status" => "Cancelled", "payment" => "Cancelled"),
+        "Purchased" => array("status" => "Confirmed(Payment Awaiting)", "payment" => "Awaiting Payment Confirmation"),
+        "Reserved" => array("status" => "Reserved", "payment" => "Unpaid"),
+        "Cancelled" => array("status" => "Cancelled", "payment" => "Cancelled"),
     );
     $bookingtype = $statusarray[$bktype]["status"];
     $paymenttype = $statusarray[$bktype]["payment"];

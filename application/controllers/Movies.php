@@ -154,7 +154,7 @@ class Movies extends CI_Controller {
             );
             $this->db->insert('movie_ticket', $seatArray);
         }
-        redirect("Movies/yourTicket/" . $bookid_md5);
+        redirect("Movies/yourTicketView/" . $bookid_md5);
     }
 
     public function checkOut() {
@@ -201,7 +201,7 @@ class Movies extends CI_Controller {
                 "payment_type" => $paymenttype,
                 "payment_attr" => "",
                 "payment_id" => "",
-                "booking_type" => "Purchase",
+                "booking_type" => "Purchased",
                 "booking_time" => Date('Y-m-d'),
                 "booking_date" => date('H:i:s'),
             );
@@ -216,7 +216,7 @@ class Movies extends CI_Controller {
             );
             if ($checkpreviouse) {
                 $bookid = $checkpreviouse['id'];
-                redirect("Movies/checkOut?checkpre=exist&book_id=$bookid&booking_type=Purchase&paymenttype=" . $paymenttype);
+                redirect("Movies/checkOut?checkpre=exist&book_id=$bookid&booking_type=Purchased&paymenttype=" . $paymenttype);
             } else {
                 $this->db->insert('movie_ticket_booking', $bookingArray);
                 $last_id = $this->db->insert_id();
@@ -253,7 +253,7 @@ class Movies extends CI_Controller {
                 "payment_type" => "",
                 "payment_attr" => "",
                 "payment_id" => "",
-                "booking_type" => "Reserve",
+                "booking_type" => "Reserved",
                 "booking_time" => Date('Y-m-d'),
                 "booking_date" => date('H:i:s'),
                 "total_price" => $selectedseat['total'],
@@ -337,15 +337,13 @@ class Movies extends CI_Controller {
             $this->email->print_debugger();
             $send = $this->email->send();
             if ($send) {
-//                echo json_encode("send");
-//                redirect("Movies/yourTicket/$bookingid");
+                redirect("Movies/yourTicket/$bookingid");
             } else {
                 $error = $this->email->print_debugger(array('headers'));
                 echo json_encode($error);
             }
         } else {
-            echo $message;
-//            redirect("Movies/yourTicket/$bookingid");
+            redirect("Movies/yourTicket/$bookingid");
         }
     }
 
@@ -393,7 +391,7 @@ class Movies extends CI_Controller {
                 $bid = $bookingobj["id"];
                 $bookingArray = array(
                     "payment_attr" => $paymenttype,
-                    "booking_type" => "Cancel",
+                    "booking_type" => "Cancelled",
                     "booking_time" => Date('Y-m-d'),
                     "booking_date" => date('H:i:s'),
                 );
@@ -431,16 +429,16 @@ class Movies extends CI_Controller {
             }
         } else {
             $data['has_bookid'] = "1";
-         
+
             $this->db->where('booking_id', $bookingid);
             $query = $this->db->get('movie_ticket_booking');
             $bookingobj = $query->row_array();
 
-         
+
             $movies = $this->Movie->movieList();
             $data['movieobj'] = $movies[$bookingobj['movie_id']];
 
-              $theaters = $this->Movie->theaterInformation($bookingobj['theater_id']);
+            $theaters = $this->Movie->theaterInformation($bookingobj['theater_id']);
             $data['theater'] = $theaters;
             $data['booking'] = $bookingobj;
             $data['seats'] = $this->Movie->bookedSeatById($bookingobj['id']);
@@ -450,7 +448,7 @@ class Movies extends CI_Controller {
                     "payment_type" => $paymenttype,
                     "payment_attr" => "",
                     "payment_id" => "",
-                    "booking_type" => "Purchase",
+                    "booking_type" => "Purchased",
                     "booking_time" => Date('Y-m-d'),
                     "booking_date" => date('H:i:s'),
                 );

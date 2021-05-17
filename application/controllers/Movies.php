@@ -352,7 +352,7 @@ class Movies extends CI_Controller {
     function getMovieQR($bookingid) {
         $this->load->library('phpqr');
         $linkdata = site_url("Movies/yourTicket/" . $bookingid);
-//        header('Content-type: image/jpeg');
+        header('Content-type: image/jpeg');
         $this->phpqr->showcode($linkdata);
     }
 

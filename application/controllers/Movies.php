@@ -461,8 +461,49 @@ class Movies extends CI_Controller {
         $this->load->view('movie/ticketpayment', $data);
     }
 
-    public function payment() {
-        
+    public function yourTicketMail($bookingid) {
+        $this->db->where('booking_id', $bookingid);
+        $query = $this->db->get('movie_ticket_booking');
+
+        $bookingobj = $query->row_array();
+        $movies = $this->Movie->movieInforamtion($bookingobj['movie_id']);
+        $data['movieobj'] = $movies;
+
+        $theaters = $this->Movie->theaterInformation($bookingobj['theater_id']);
+        $data['theater'] = $theaters;
+
+        $data['booking'] = $bookingobj;
+        $data['seats'] = $this->Movie->bookedSeatById($bookingobj['id']);
+
+        $emailsender = email_sender;
+        $sendername = email_sender_name;
+        $email_bcc = email_bcc;
+
+        $this->email->set_newline("\r\n");
+        $this->email->from(email_bcc, $sendername);
+        $this->email->to($bookingobj['email']);
+        $this->email->bcc(email_bcc);
+
+        $subject = "Your Movie Ticket(s) for " . $movies[$bookingobj['movie_id']]['title'];
+        $this->email->subject($subject);
+
+
+        $message = $this->load->view('movie/ticketviewemail', $data, true);
+        setlocale(LC_MONETARY, 'en_US');
+        $checkcode = REPORT_MODE;
+        $checkcode = 1;
+        if ($checkcode) {
+            $this->email->message($message);
+            $this->email->print_debugger();
+            $send = $this->email->send();
+            if ($send) {
+               
+            } else {
+                $error = $this->email->print_debugger(array('headers'));
+                echo json_encode($error);
+            }
+        } else {
+        }
     }
 
 }

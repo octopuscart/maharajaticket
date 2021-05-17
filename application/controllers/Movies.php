@@ -338,7 +338,7 @@ class Movies extends CI_Controller {
             $send = $this->email->send();
             if ($send) {
 //                echo json_encode("send");
-                redirect("Movies/yourTicket/$bookingid");
+//                redirect("Movies/yourTicket/$bookingid");
             } else {
                 $error = $this->email->print_debugger(array('headers'));
                 echo json_encode($error);

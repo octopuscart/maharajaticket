@@ -3,10 +3,12 @@ $this->load->view('layout/header');
 
 $bktype = $booking['booking_type'];
 $statusarray = array(
-    "Purchased" => array("status" => "Confirmed(Payment Awaiting)", "payment" => "Awaiting Payment Confirmation"),
-    "Reserved" => array("status" => "Reserved", "payment" => "Unpaid"),
-    "Cancelled" => array("status" => "Cancelled", "payment" => "Cancelled"),
-);
+        "Refund" => array("status" => "Cancelled", "payment" => "Payment Refund"),
+        "Paid" => array("status" => "Paid", "payment" => "Payment Confirmed"),
+        "Purchased" => array("status" => "Confirmed (Payment Awaiting)", "payment" => "Awaiting Payment Confirmation"),
+        "Reserved" => array("status" => "Reserved", "payment" => "Unpaid"),
+        "Cancelled" => array("status" => "Cancelled", "payment" => "Cancelled"),
+    );
 $bookingtype = $statusarray[$bktype]["status"];
 $paymenttype = $statusarray[$bktype]["payment"];
 ?>

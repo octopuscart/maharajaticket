@@ -269,7 +269,7 @@
                     ?>
 
                     <?php
-                    if ($booking['booking_type'] == 'Cancle') {
+                    if ($booking['booking_type'] != 'Cancle') {
                         ?>
                         <tr>
                             <td colspan="2" style="height: 50px;">

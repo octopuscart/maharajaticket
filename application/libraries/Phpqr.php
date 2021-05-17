@@ -18,8 +18,7 @@ class Phpqr {
 
     public function createcode2($text) {
         $this->$text = $text;
-
-        QRcode::png($text);
+        QRcode::png($text, "L", "10", "5");
     }
 
     

@@ -122,58 +122,89 @@ $this->load->view('layout/header');
         <div class="row">
             <div class="col-sm-12">
 
+                <div>
 
+                    <!-- Nav tabs -->
+
+                    <div class="product-details-tab-area">
+                        <div class="row">
+
+                        </div>
+                    </div>
+
+                </div>
                 <div class="row">
 
-                    <div class="col-md-6">
+                    <div class="col-md-6 ">
 
                         <div class="choose-container choose-container--short">
                             <h2 class="page-heading">Select Date</h2>
+
                             <div class="offer-area1 hidden-after-desk movieblockhome" style="padding:10px;">
-                                <div id="countdown2" style="position: inherit;    text-align: left;">
-
-                                    <?php
-                                    foreach ($datearray as $key => $value) {
-                                        ?>
-                                        <div class="countdown-section {{selectShowtime.date=='<?php echo $key; ?>'?'active':''}}" ng-click="selectDate('<?php echo $key; ?>')" ><h3><?php echo $value['day']; ?></h3> <p><?php echo $value['month']; ?></p> </div>
-                                        <?php
-                                    }
-                                    ?>
-
+                                <div class="" style="margin: 0;">
+                                    <div id="countdown2" style="position: inherit;    text-align: left;">
+                                        <div class="nav nav-tabs" role="tablist">
+                                            <ul>
+                                                <?php
+                                                $count = 0;
+                                                foreach ($datearray as $key => $value) {
+                                                    ?>
+                                                    <li role="presentation" class="<?php echo $count == 0 ? "active" : ""; ?>" style="    display: contents;"><a href="#dateselect<?php echo $value["date"]; ?>tab" aria-controls="dateselect<?php echo $value["date"]; ?>tab" role="tab" data-toggle="tab" >
+                                                            <div class="countdown-section {{selectShowtime.date=='<?php echo $key; ?>'?'active':''}}" ng-click="selectDate('<?php echo $key; ?>')" ><h3><?php echo $value['day']; ?></h3> <p><?php echo $value['month']; ?></p> </div>
+                                                        </a></li>
+                                                    <?php
+                                                    $count++;
+                                                }
+                                                ?>
+                                            </ul>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                         <div class="choose-container choose-container--short">
                             <hr style="    margin: 5px 0px;"/>
                             <h2 class="page-heading">Select time</h2>
-
-                            <div class="time-select time-select--wide">
-
+                            <div class="tab-content">
                                 <?php
-                                foreach ($theaters as $key => $value) {
-                                    if ($value['active'] == 1) {
-                                        ?>    
+                                $count1 = 0;
+                                foreach ($datearray as $key1 => $value1) {
+                                    ?>
+                                    <div role="tabpanel" class="tab-pane <?php echo $count1 == 0 ? 'active in' : ''; ?> "  id="dateselect<?php echo $value1["date"]; ?>tab">
+                                        <div class="time-select time-select--wide">
 
-                                        <div class="time-select__group group--first">
-                                            <div class="col-sm-7">
-                                                <p class="time-select__place"><?php echo $value['title']; ?></p>
-                                            </div>
-                                            <ul class="col-sm-5 items-wrap">
-                                                <?php
-                                                foreach ($value['timing'] as $key2 => $value2) {
-                                                    ?>
-                                                    <li class="time-select__item {{selectShowtime.time=='<?php echo $value2; ?>'?'active':''}}" ng-click="selectTime('<?php echo $value2; ?>', '<?php echo $key; ?>')" data-time="<?php echo $value2; ?>"><?php echo $value2; ?></li>
+                                            <?php
+                                            foreach ($theaters[$key1] as $key => $value) {
+                                                if ($value['active'] == 1) {
+                                                    ?>    
+
+                                                    <div class="time-select__group group--first">
+                                                        <div class="col-sm-7">
+                                                            <p class="time-select__place"><?php echo $value['title']; ?></p>
+                                                        </div>
+                                                        <ul class="col-sm-5 items-wrap">
+                                                            <?php
+                                                            foreach ($value['timing'] as $key2 => $value2) {
+                                                                ?>
+                                                                <li class="time-select__item {{selectShowtime.time=='<?php echo $value2["time"]; ?>'?'active':''}}" ng-click="selectTime('<?php echo $value2["time"]; ?>', '<?php echo $key; ?>', <?php echo $value2["event_id"]; ?>)" data-time="<?php echo $value2["time"]; ?>"><?php echo $value2["time"]; ?></li>
+                                                                <?php
+                                                            }
+                                                            ?>
+                                                        </ul>
+                                                    </div>
                                                     <?php
                                                 }
-                                                ?>
-                                            </ul>
+                                            }
+                                            ?>
                                         </div>
-                                        <?php
-                                    }
+                                    </div>
+                                    <?php
+                                    $count1++;
                                 }
                                 ?>
                             </div>
                         </div>
+
 
 
 
@@ -211,7 +242,7 @@ $this->load->view('layout/header');
                                 </div>
                             </div>
                             <div class="media" style="padding: 10px;
-    color: black;">
+                                 color: black;">
                                 <p>
                                     <?php echo $movie['about']; ?>  
                                 </p>
@@ -237,7 +268,7 @@ $this->load->view('layout/header');
                 <li class="previous"><a href="<?php echo site_url('Movies/index'); ?>" style="    background: #d92229;
                                         color: white;"><span aria-hidden="true">&larr;</span> Select Movie</a></li>
                 <li class="next">
-                    <a href="<?php echo site_url("Movies/selectSit") . "?movie=" . $movie['id'] . "&"; ?>theater={{selectShowtime.theater}}&selecttime={{selectShowtime.time}}&selectdate={{selectShowtime.date}}&seats={{selectShowtime.seats}}" ng-if="selectShowtime.date && selectShowtime.time" style="    background: #d92229;
+                    <a href="<?php echo site_url("Movies/selectSit") . "?movie=" . $movie['id'] . "&"; ?>theater={{selectShowtime.theater}}&selecttime={{selectShowtime.time}}&selectdate={{selectShowtime.date}}&seats={{selectShowtime.seats}}&event_id={{selectShowtime.event_id}}" ng-if="selectShowtime.date && selectShowtime.time" style="    background: #d92229;
                        color: white ;">Select Seat(s) <span aria-hidden="true">&rarr;</span></a>
                 </li>
             </ul>

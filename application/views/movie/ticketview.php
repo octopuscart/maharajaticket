@@ -1,5 +1,14 @@
 <?php
 $this->load->view('layout/header');
+
+$bktype = $booking['booking_type'];
+$statusarray = array(
+    "Purchase" => array("status" => "Confirmed", "payment" => "Awaiting Payment Confirmation"),
+    "Reserve" => array("status" => "Reserved", "payment" => "Unpaid"),
+    "Cancel" => array("status" => "Cancelled", "payment" => "Cancelled"),
+);
+$bookingtype = $statusarray[$bktype]["status"];
+$paymenttype = $statusarray[$bktype]["payment"];
 ?>
 <style>
 
@@ -43,7 +52,7 @@ $this->load->view('layout/header');
                 <div class="breadcrumb-area">
                     <h1>Your Booking</h1>
                     <ul>
-                        <li><a href="#">Booking No: #<?php echo $booking['booking_no'];?></a></li>
+                        <li><a href="#">Booking No: #<?php echo $booking['booking_no']; ?></a></li>
 
                     </ul>
                 </div>
@@ -66,12 +75,12 @@ $this->load->view('layout/header');
             .carttable td{
                 padding: 5px 10px;
                 border-color: #9E9E9E;
-                    text-align: left;
+                text-align: left;
             }
             .carttable tr{
                 /*padding: 0 10px;*/
                 border-color: #9E9E9E;
-                
+
             }
 
             .detailstable td{
@@ -111,17 +120,17 @@ $this->load->view('layout/header');
                 color: black;
             }
             .ticketview{
-                    text-align: center;
-    /* float: left; */
-    font-size: 12px;
-    border: 1px solid #685d5d;
-    border-radius: 5px;
-    background: #fff;
-    color: #000;
-    margin-right: 10px;
-    margin-top: 10px;
-    padding: 0px 5px;
-    display: inline-block;
+                text-align: center;
+                /* float: left; */
+                font-size: 12px;
+                border: 1px solid #685d5d;
+                border-radius: 5px;
+                background: #fff;
+                color: #000;
+                margin-right: 10px;
+                margin-top: 10px;
+                padding: 0px 5px;
+                display: inline-block;
             }
 
             .ticketview img{
@@ -153,7 +162,7 @@ $this->load->view('layout/header');
             .ticketmainblock p{
                 margin:0;
                 margin-bottom: 5px;
-               
+
             }
             .ticketmainblock h3{
                 margin:0;
@@ -168,17 +177,17 @@ $this->load->view('layout/header');
                 margin: 5px;
             }
         </style>
- 
+
 
 
         <div class="" style="padding:50px 0px;text-align: center">
-        
+
 
             <table class="carttable"  border-color= "#fff" align="center" border="0" cellpadding="0" cellspacing="0" width="700" style="background: #fff;padding:20px">
                 <tr>
                     <td style='width: 70%;'>
                         <p>Hi <?php echo $booking['name']; ?>,</p>
-                        <p>Your Ticket(s) Has Been <?php echo $booking['booking_type'] == 'Reserve' ? 'Reserved' : 'Confirmed'; ?></p>
+                        <p>Your Ticket(s) Has Been <?php echo $bookingtype; ?></p>
                     </td>
                     <td>
                         <b>Booking No.:</b><br/>
@@ -192,7 +201,7 @@ $this->load->view('layout/header');
                         <tr>
                             <td style='width: 40%'></td>
                             <td style='width: 60%'></td>
-                         
+
 
                         </tr>
                         <tr>
@@ -263,19 +272,19 @@ $this->load->view('layout/header');
                         <th style='width: 60%;text-align: right;    border-bottom: 1px solid #000;'>Total:</th><th style='text-align: right;    border-bottom: 1px solid #000;'> $HK<?php echo $booking['total_price']; ?>.00</th>
                     </tr>
                     <tr style='font-size: 15px;height: 50px;'>
-                        <th style='width: 60%;text-align: right;    border-bottom: 1px solid #000;'>Status:</th><th style='text-align: right;    border-bottom: 1px solid #000;'> <?php echo $booking['booking_type'] == 'Reserve' ? 'Unpaid' : 'Awaiting Payment'; ?></th>
+                        <th style='width: 60%;text-align: right;    border-bottom: 1px solid #000;'>Status:</th><th style='text-align: right;    border-bottom: 1px solid #000;'> <?php echo $paymenttype; ?></th>
                     </tr>
 
                     <?php
                     if ($booking['booking_type'] == 'Reserve') {
                         ?>
-                       
+
                         <tr>
                             <td colspan="2">
                                 <p>Click here to make the payment. <a href='<?php echo site_url('Movies/ticketPayment/' . $booking['booking_id']) ?>'>Proceed Payment</a></p>
-                         </td>
+                            </td>
                         </tr>
-                       
+
                         <?php
                     } else {
                         
@@ -290,7 +299,7 @@ $this->load->view('layout/header');
             </div>
 
 
-      
+
 
         </div>
     </div>

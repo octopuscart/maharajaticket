@@ -23,7 +23,7 @@ class Movie extends CI_Model {
             $this->db->where('id', $movieid);
             $query = $this->db->get('movie_show');
             $movieobj = $query->row_array();
-            $movieobj["image"] = MOVIEPOSTER.$movieobj["image"];
+            $movieobj["image"] = MOVIEPOSTER . $movieobj["image"];
             $movies[$movieid] = $movieobj;
         }
         return $movies;
@@ -32,35 +32,67 @@ class Movie extends CI_Model {
     function movieevent() {
         $this->db->select("*");
         $this->db->where('event_date>=', date("Y-m-d"));
-        $this->db->group_by("movie_id");
+        $this->db->group_by("event_date");
         $query = $this->db->get('movie_event');
         $movieevents = $query->result_array();
         return $movieevents;
     }
 
-    function theaters() {
+    function movieInforamtion($movie_id) {
+        $this->db->select("*, description as about");
+        $this->db->where('id', $movie_id);
+        $query = $this->db->get('movie_show');
+        $movieobj = $query->row_array();
+        $movieobj["image"] = MOVIEPOSTER . $movieobj["image"];
+        return $movieobj;
+    }
+
+    function theaterInformation($theater_id) {
+        $this->db->where('id', $theater_id);
+        $query = $this->db->get('movie_theater');
+        $theaterobj = $query->row_array();
+        return $theaterobj;
+    }
+
+    function theaters($movie_id) {
         $this->db->select("*");
+        $this->db->where('movie_id', $movie_id);
+        $this->db->group_by('event_date');
         $this->db->where('event_date>=', date("Y-m-d"));
-        $this->db->group_by("movie_id");
         $query = $this->db->get('movie_event');
         $movieevents = $query->result_array();
-        $listoftheaters = array();
+
+
+        $listdatearray = array();
         foreach ($movieevents as $mekey => $mevalue) {
-            $theaterid = $mevalue['theater_id'];
-            $this->db->select("*");
-            $this->db->where('id', $theaterid);
-            $query = $this->db->get('movie_theater');
-            $movietheater = $query->row_array();
-            $listoftheaters[$theaterid] = array(
-                "title" => $movietheater["title"],
-                "timing" => [$mevalue["event_time"]],
-                "layout" => $movietheater["layout"],
-                "active" => 1,
-            );
+            $event_date = $mevalue["event_date"];
+//            $listdatearray[$mevalue["event_date"]] = [];
+
+            $this->db->where('movie_id', $movie_id);
+            $this->db->where('event_date', $event_date);
+            $query = $this->db->get('movie_event');
+            $movietheaterlist = $query->result_array();
+
+            $listoftheaters = array();
+            foreach ($movietheaterlist as $key => $stvalue) {
+                $theaterid = $stvalue['theater_id'];
+                $movietheater = $this->theaterInformation($theaterid);
+                if (isset($listoftheaters[$theaterid])) {
+                    array_push($listoftheaters[$theaterid]["timing"], array("time" => $stvalue["event_time"], "event_id" => $stvalue["id"]));
+                } else {
+                    $listoftheaters[$theaterid] = array(
+                        "title" => $movietheater["title"],
+                        "timing" => [array("time" => $stvalue["event_time"], "event_id" => $stvalue["id"])],
+                        "layout" => $movietheater["layout"],
+                        "active" => 1,
+                    );
+                }
+            }
+            $listdatearray[$mevalue["event_date"]] = $listoftheaters;
         }
 
 
-        return $listoftheaters;
+        return $listdatearray;
     }
 
     function bookedSeatById($booking_id) {
@@ -88,6 +120,25 @@ class Movie extends CI_Model {
             }
         }
         return $seats;
+    }
+
+    function theaterTemplate($template_id) {
+        $this->db->where('id', $template_id);
+        $query = $this->db->get('movie_theater_template');
+        $theater_array = $query->row_array();
+        $theater_array_adata = array();
+        $this->db->where('template_id', $theater_array["id"]);
+        $query = $this->db->get('movie_theater_template_class');
+        $theater_array_class = $query->result_array();
+        $theater_array["class_price"] = $theater_array_class;
+        $reserveseat_temp = (explode(", ", $theater_array["reserve_seats"]));
+        $reserveseats = array();
+        foreach ($reserveseat_temp as $key => $value) {
+            $reserveseats[$value] = "";
+        }
+        $theater_array["reserve_seats"] = $reserveseats;
+        
+        return $theater_array;
     }
 
     function booking_mail($order_id, $subject = "") {

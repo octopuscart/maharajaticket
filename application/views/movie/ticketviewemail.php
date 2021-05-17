@@ -108,7 +108,16 @@
             }
         </style>
     </head>
-
+    <?php
+    $bktype = $booking['booking_type'];
+    $statusarray = array(
+        "Purchase" => array("status" => "Confirmed", "payment" => "Awaiting Payment Confirmation"),
+        "Reserve" => array("status" => "Reserved", "payment" => "Unpaid"),
+        "Cancel" => array("status" => "Cancelled", "payment" => "Cancelled"),
+    );
+    $bookingtype = $statusarray[$bktype]["status"];
+    $paymenttype = $statusarray[$bktype]["payment"];
+    ?>
     <body style="margin: 0;
           padding: 0;
           background: rgb(225, 225, 225);
@@ -132,7 +141,7 @@
                 <tr>
                     <td style='width: 70%;'>
                         <p>Hi <?php echo $booking['name']; ?>,</p>
-                        <p>Your Ticket(s) Has Been <?php echo $booking['booking_type'] == 'Reserve' ? 'Reserved' : 'Confirmed'; ?></p>
+                        <p>Your Ticket(s) Has Been <?php echo $bookingtype; ?></p>
                     </td>
                     <td>
                         <b>Booking No.:</b><br/>
@@ -224,7 +233,7 @@
                         <th style='width: 60%;text-align: right;    border-bottom: 1px solid #000;'>Total:</th><th style='text-align: right;    border-bottom: 1px solid #000;'> $HK<?php echo $booking['total_price']; ?>.00</th>
                     </tr>
                     <tr style='font-size: 15px;height: 50px;'>
-                        <th style='width: 60%;text-align: right;    border-bottom: 1px solid #000;'>Status:</th><th style='text-align: right;    border-bottom: 1px solid #000;'> <?php echo $booking['booking_type'] == 'Reserve' ? 'Unpaid' : 'Pending'; ?></th>
+                        <th style='width: 60%;text-align: right;    border-bottom: 1px solid #000;'>Status:</th><th style='text-align: right;    border-bottom: 1px solid #000;'> <?php echo $paymenttype; ?></th>
                     </tr>
 
                     <?php
@@ -258,6 +267,20 @@
                         <?php
                     }
                     ?>
+
+                    <?php
+                    if ($booking['booking_type'] == 'Cancle') {
+                        ?>
+                        <tr>
+                            <td colspan="2" style="height: 50px;">
+                                <p>For booking cancellation. <a href='<?php echo site_url('Movies/ticketPaymentCancel/' . $booking['booking_id']) ?>'>click here</a></p>
+                            </td>
+                        </tr>
+
+                        <?php
+                    }
+                    ?>
+
 
 
                 </table>

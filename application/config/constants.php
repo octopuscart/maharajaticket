@@ -35,6 +35,8 @@ define('ADMINURL', $adminlinkmain);
 define('MOVIEPOSTER', $adminlinkmain."/assets/movies/");
 
 
+define('PRODUCTIMAGELINK', $adminlinkmain."/assets/product_images/");
+
 define('imageserver', $baselinkmain . "assets_main/productimages/");
 define('imageserverslider', $baselinkmain . "assets_main/sliderimages/");
 define('imageservermain', $baselinkmain . "assets_main/");

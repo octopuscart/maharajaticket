@@ -57,7 +57,7 @@
 $baselink = 'http://' . $_SERVER['SERVER_NAME'];
 $checkdebug = strpos($baselink, '192.168') ? TRUE : FALSE;
 
-$checkdebug = 0;
+$checkdebug = 1;
 
 
 

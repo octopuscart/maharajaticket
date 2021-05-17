@@ -394,6 +394,7 @@ class Api extends REST_Controller {
     //function for product list
 
     function createRange($start, $end, $total, $gapes, $row, $booked, $reserve, $gap) {
+        //A Availble, B:Booked, R Reserved
         $temp = array();
         $temprow = array();
         for ($i = $start; $i <= $end; $i++) {
@@ -440,11 +441,12 @@ class Api extends REST_Controller {
     }
 
     function getLayout_GH_V_WALK_get() {
-                $seats = $this->getBookedSheats($this->get());
-         $reserveseats = $this->getBookedSheats($this->get());
+
+        $reserveseats = $this->getBookedSheats($this->get());
         $booked = $reserveseats;
-        $reserved = array(
-        );
+        $templateobj = $this->Movie->theaterTemplate($this->get("template_id"));
+        $classprice = $templateobj["class_price"];
+        $reserved = $templateobj["reserve_seats"];
         $gaps = array();
         $layout = array(
             "totalinrow" => 20,
@@ -476,21 +478,17 @@ class Api extends REST_Controller {
     }
 
     function getLayoutGrandOcean_get() {
-        $reserveseats = $this->getBookedSheats($this->get());
-        $booked = $reserveseats;
-//        print_r($booked);
-        $reserved = array(
-            "J-5" => "", "J-6" => "", "J-7" => "", "J-8" => "", "J-9" => "", "J-10" => "",
-            "J-11" => "", "J-12" => "", "J-13" => "", "J-14" => "", "J-15" => "", "J-16" => "",
-            "J-17" => "", "J-18" => "", "J-19" => "", "J-20" => "", "J-21" => "", "J-22" => "",
-            "J-23" => "", "J-24" => "", "J-25" => "", "J-26" => "", "J-27" => "", "J-28" => "",
-        );
+        $booked = $this->getBookedSheats($this->get());
+        $templateobj = $this->Movie->theaterTemplate($this->get("template_id"));
+        $classprice = $templateobj["class_price"];
+        $reserved = $templateobj["reserve_seats"];
+
         $gaps = array("7" => "", "25" => "");
         $layout = array(
             "totalinrow" => 35,
             "sitclass" => array(
                 "class1" => array(
-                    "price" => "180",
+                    "price" => $classprice[0]["class_price"],
                     "rowcount" => "2",
                     "color" => "#ffc0b266",
                     "row" => array(
@@ -503,7 +501,7 @@ class Api extends REST_Controller {
                     )
                 ),
                 "class2" => array(
-                    "price" => "200",
+                    "price" => $classprice[1]["class_price"],
                     "rowcount" => "5",
                     "color" => "#ffe0b266",
                     "row" => array(
@@ -514,7 +512,7 @@ class Api extends REST_Controller {
                     )
                 ),
                 "class3" => array(
-                    "price" => "220",
+                    "price" => $classprice[2]["class_price"],
                     "rowcount" => "5",
                     "color" => "#ff572247",
                     "row" => array(
@@ -533,19 +531,20 @@ class Api extends REST_Controller {
     }
 
     function getLayout_GH_HSE4_get() {
-        
-            $reserveseats = $this->getBookedSheats($this->get());
+
+        $reserveseats = $this->getBookedSheats($this->get());
         $booked = $reserveseats;
-     
-        $reserved = array(
-            "Q-5" => "", "Q-6" => "", "Q-1" => "", "Q-2" => ""
-        );
+
+        $templateobj = $this->Movie->theaterTemplate($this->get("template_id"));
+        $classprice = $templateobj["class_price"];
+        $reserved = $templateobj["reserve_seats"];
+
         $gaps = array("4" => "", "19" => "");
         $layout = array(
             "totalinrow" => 25,
             "sitclass" => array(
                 "class1" => array(
-                    "price" => "180",
+                    "price" => $classprice[0]["class_price"],
                     "rowcount" => "2",
                     "color" => "#ffc0b266",
                     "row" => array(
@@ -554,7 +553,7 @@ class Api extends REST_Controller {
                     )
                 ),
                 "class2" => array(
-                    "price" => "200",
+                    "price" => $classprice[1]["class_price"],
                     "rowcount" => "6",
                     "color" => "#ffe0b266",
                     "row" => array(
@@ -565,7 +564,7 @@ class Api extends REST_Controller {
                     )
                 ),
                 "class3" => array(
-                    "price" => "220",
+                   "price" => $classprice[2]["class_price"],
                     "rowcount" => "5",
                     "color" => "#ff572247",
                     "row" => array(
@@ -587,18 +586,19 @@ class Api extends REST_Controller {
 
     function getLayout_GH_HSE3_get() {
         $seats = $this->getBookedSheats($this->get());
-         $reserveseats = $this->getBookedSheats($this->get());
+        $reserveseats = $this->getBookedSheats($this->get());
         $booked = $reserveseats;
-      
-        $reserved = array(
-            "Q-5" => "", "Q-6" => "", "Q-1" => "", "Q-2" => ""
-        );
+        $templateobj = $this->Movie->theaterTemplate($this->get("template_id"));
+        $classprice = $templateobj["class_price"];
+        $reserved = $templateobj["reserve_seats"];
+
+
         $gaps = array("4" => "", "19" => "");
         $layout = array(
             "totalinrow" => 24,
             "sitclass" => array(
                 "class1" => array(
-                    "price" => "180",
+                    "price" => $classprice[0]["class_price"],
                     "rowcount" => "2",
                     "color" => "#ffc0b266",
                     "row" => array(
@@ -607,7 +607,7 @@ class Api extends REST_Controller {
                     )
                 ),
                 "class2" => array(
-                    "price" => "200",
+                    "price" => $classprice[1]["class_price"],
                     "rowcount" => "6",
                     "color" => "#ffe0b266",
                     "row" => array(
@@ -620,7 +620,7 @@ class Api extends REST_Controller {
                     )
                 ),
                 "class3" => array(
-                    "price" => "220",
+                    "price" => $classprice[2]["class_price"],
                     "rowcount" => "5",
                     "color" => "#ff572247",
                     "row" => array(
@@ -640,17 +640,17 @@ class Api extends REST_Controller {
     }
 
     function getLayout_GH_HSE1_get() {
-            $reserveseats = $this->getBookedSheats($this->get());
+        $reserveseats = $this->getBookedSheats($this->get());
         $booked = $reserveseats;
-        $reserved = array(
-            "O-8" => "", "O-9" => "", "O-10" => "", "O-11" => ""
-        );
+        $templateobj = $this->Movie->theaterTemplate($this->get("template_id"));
+        $classprice = $templateobj["class_price"];
+        $reserved = $templateobj["reserve_seats"];
         $gaps = array("4" => "", "19" => "");
         $layout = array(
             "totalinrow" => 26,
             "sitclass" => array(
                 "class1" => array(
-                    "price" => "180",
+                    "price" => $classprice[0]["class_price"],
                     "rowcount" => "2",
                     "color" => "#ffc0b266",
                     "row" => array(
@@ -659,7 +659,7 @@ class Api extends REST_Controller {
                     )
                 ),
                 "class2" => array(
-                    "price" => "200",
+                    "price" => $classprice[1]["class_price"],
                     "rowcount" => "6",
                     "color" => "#ffe0b266",
                     "row" => array(
@@ -671,7 +671,7 @@ class Api extends REST_Controller {
                     )
                 ),
                 "class3" => array(
-                    "price" => "220",
+                    "price" => $classprice[2]["class_price"],
                     "rowcount" => "5",
                     "color" => "#ff572247",
                     "row" => array(

@@ -1,14 +1,15 @@
 
 
 App.controller('showTimeContoller', function ($scope, $http, $timeout, $interval, $filter) {
-    $scope.selectShowtime = {"date": "", "time": "", "theater": "", "seats": 1};
+    $scope.selectShowtime = {"date": "", "time": "", "theater": "", "seats": 1, "event_id": ""};
 
     $scope.selectDate = function (dateo) {
         $scope.selectShowtime.date = dateo;
     }
-    $scope.selectTime = function (timeo, theater) {
+    $scope.selectTime = function (timeo, theater, event_id) {
         $scope.selectShowtime.time = timeo;
         $scope.selectShowtime.theater = theater;
+        $scope.selectShowtime.event_id = event_id;
     }
 })
 
@@ -16,7 +17,7 @@ App.controller('showTimeContoller', function ($scope, $http, $timeout, $interval
 App.controller('sitSelectContoller', function ($scope, $http, $timeout, $interval, $filter) {
     $scope.theaterLayout = {"layout": {}, "seatscount": seatsgbl, "suggetion": []};
 
-    var url = baseurl + "Api/" + layoutgbl + "?sdate=" + select_date_gbl + "&stime=" + select_time_gbl + "&th_id=" + theater_id_gbl + "&mv_id=" + movie_id_gbl;
+    var url = baseurl + "Api/" + layoutgbl + "?sdate=" + select_date_gbl + "&stime=" + select_time_gbl + "&th_id=" + theater_id_gbl + "&mv_id=" + movie_id_gbl+"&template_id="+template_id;
     $http.get(url).then(function (rdata) {
         $scope.theaterLayout.layout = rdata.data;
     }, function () {

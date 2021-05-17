@@ -167,7 +167,10 @@ $this->load->view('layout/header');
     var select_date_gbl = "<?php echo $sdate; ?>";
     var select_time_gbl = "<?php echo $stime; ?>";
     var movie_id_gbl = "<?php echo $movie['id']; ?>";
-    var theater_id_gbl = "<?php echo $theater_id; ?>";</script>
+    var theater_id_gbl = "<?php echo $theater_id; ?>";
+    var template_id = "<?php echo $theater_template_id;?>"
+
+</script>
 <script src="<?php echo base_url(); ?>assets/theme2/angular/ng-movies.js"></script>
 
 <?php

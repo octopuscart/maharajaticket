@@ -169,7 +169,7 @@ class Movies extends CI_Controller {
         $data['sdate'] = $selectedseat['selected_date'];
 
         $movies = $this->Movie->movieInforamtion($selectedseat['movie_id']);
-        $data['movieobj'] = $movies;
+        $data['movie'] = $movies;
 
         $theaters = $movies = $this->Movie->theaterInformation($selectedseat['theater_id']);
         $data['theater'] = $theaters;

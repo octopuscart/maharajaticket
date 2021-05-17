@@ -167,9 +167,9 @@ class Movies extends CI_Controller {
 
         $data['stime'] = $selectedseat['selected_time'];
         $data['sdate'] = $selectedseat['selected_date'];
-        $movies = $this->Movie->movieList();
-        $data['movie'] = $movies[$selectedseat['movie_id']];
 
+        $movies = $this->Movie->movieInforamtion($selectedseat['movie_id']);
+        $data['movieobj'] = $movies;
 
         $theaters = $movies = $this->Movie->theaterInformation($selectedseat['theater_id']);
         $data['theater'] = $theaters;
@@ -288,8 +288,9 @@ class Movies extends CI_Controller {
         $this->db->where('booking_id', $bookingid);
         $query = $this->db->get('movie_ticket_booking');
         $bookingobj = $query->row_array();
-        $movies = $this->Movie->movieList();
-        $data['movieobj'] = $movies[$bookingobj['movie_id']];
+
+        $movies = $this->Movie->movieInforamtion($bookingobj['movie_id']);
+        $data['movieobj'] = $movies;
 
 
         $theaters = $movies = $this->Movie->theaterInformation($bookingobj['theater_id']);
@@ -305,9 +306,8 @@ class Movies extends CI_Controller {
         $query = $this->db->get('movie_ticket_booking');
 
         $bookingobj = $query->row_array();
-        $movies = $this->Movie->movieList();
-        $data['movieobj'] = $movies[$bookingobj['movie_id']];
-
+        $movies = $this->Movie->movieInforamtion($bookingobj['movie_id']);
+        $data['movieobj'] = $movies;
 
         $theaters = $this->Movie->theaterInformation($bookingobj['theater_id']);
         $data['theater'] = $theaters;
@@ -377,8 +377,8 @@ class Movies extends CI_Controller {
             $this->db->where('booking_id', $bookingid);
             $query = $this->db->get('movie_ticket_booking');
             $bookingobj = $query->row_array();
-            $movies = $this->Movie->movieList();
-            $data['movieobj'] = $movies[$bookingobj['movie_id']];
+            $movies = $this->Movie->movieInforamtion($bookingobj['movie_id']);
+            $data['movieobj'] = $movies;
 
 
             $theaters = $this->Movie->theaterInformation($bookingobj['theater_id']);
@@ -435,8 +435,8 @@ class Movies extends CI_Controller {
             $bookingobj = $query->row_array();
 
 
-            $movies = $this->Movie->movieList();
-            $data['movieobj'] = $movies[$bookingobj['movie_id']];
+            $movies = $this->Movie->movieInforamtion($bookingobj['movie_id']);
+            $data['movieobj'] = $movies;
 
             $theaters = $this->Movie->theaterInformation($bookingobj['theater_id']);
             $data['theater'] = $theaters;

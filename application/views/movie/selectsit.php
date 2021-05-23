@@ -61,7 +61,7 @@ $this->load->view('layout/header');
 
         <div class="row">
             <div class="col-sm-10">
-                <div class="theaterblock">
+                <div class="theaterblock" style="overflow-x: scroll;">
                     <table class=" table" >
                         <tbody>
                             <tr>

@@ -140,7 +140,7 @@ $this->load->view('layout/header');
                         <div class="choose-container choose-container--short">
                             <h2 class="page-heading">Select Date</h2>
 
-                            <div class="offer-area1 hidden-after-desk movieblockhome" style="padding:10px;">
+                            <div class="offer-area1 movieblockhome" style="padding:10px;">
                                 <div class="" style="margin: 0;">
                                     <div id="countdown2" style="position: inherit;    text-align: left;">
                                         <div class="nav nav-tabs" role="tablist">

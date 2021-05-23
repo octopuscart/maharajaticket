@@ -270,7 +270,18 @@
                     }
                     ?>
 
-               
+                    <?php
+                    if ($booking['booking_type'] != 'Cancle') {
+                        ?>
+                        <tr>
+                            <td colspan="2" style="height: 50px;">
+                                <p>For booking cancellation. <a href='<?php echo site_url('Movies/ticketPaymentCancel/' . $booking['booking_id']) ?>'>click here</a></p>
+                            </td>
+                        </tr>
+
+                        <?php
+                    }
+                    ?>
 
 
 

@@ -324,14 +324,14 @@ class Movies extends CI_Controller {
         $this->email->to($bookingobj['email']);
         $this->email->bcc(email_bcc);
 
-        $subject = "Your Movie Ticket(s) for " . $movies[$bookingobj['movie_id']]['title'];
+        $subject = "Your Movie Ticket(s) for " . $movies['title'];
         $this->email->subject($subject);
 
 
         $message = $this->load->view('movie/ticketviewemail', $data, true);
         setlocale(LC_MONETARY, 'en_US');
         $checkcode = REPORT_MODE;
-        $checkcode = 1;
+        $checkcode = 0;
         if ($checkcode) {
             $this->email->message($message);
             $this->email->print_debugger();
@@ -343,7 +343,8 @@ class Movies extends CI_Controller {
                 echo json_encode($error);
             }
         } else {
-            redirect("Movies/yourTicket/$bookingid");
+            echo $message;
+           // redirect("Movies/yourTicket/$bookingid");
         }
     }
 
@@ -491,7 +492,7 @@ class Movies extends CI_Controller {
         $message = $this->load->view('movie/ticketviewemail', $data, true);
         setlocale(LC_MONETARY, 'en_US');
         $checkcode = REPORT_MODE;
-        $checkcode = 1;
+        $checkcode = 0;
         if ($checkcode) {
             $this->email->message($message);
             $this->email->print_debugger();
@@ -503,6 +504,7 @@ class Movies extends CI_Controller {
                 echo json_encode($error);
             }
         } else {
+            echo $message;
         }
     }
 

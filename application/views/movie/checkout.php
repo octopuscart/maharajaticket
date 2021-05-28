@@ -85,69 +85,10 @@ $this->load->view('layout/header');
         <div class="row">
             <!-- Nav tabs -->
             <ul class="nav nav-tabs checkoutheader" role="tablist" style="text-align: center">
-                <li role="presentation" class="active "><a class="" href="#purchase" aria-controls="home" role="tab" data-toggle="tab"><i class="fa fa-money"></i> Purchase</a></li>
-                <li role="presentation"><a href="#reserve" aria-controls="profile" role="tab" data-toggle="tab"><i class="fa fa-bookmark"></i> Reserve</a></li>
+                <li role="presentation" class="active "><a href="#reserve" aria-controls="profile" role="tab" data-toggle="tab"><i class="fa fa-bookmark"></i> Reserve</a></li>
             </ul>
 
-            <!-- Tab panes -->
-            <div class="tab-content">
-                <div role="tabpanel" class="tab-pane active" id="purchase">
-
-                    <form action="#" method="post" style="margin-top:10px;padding: 0px 50px;">
-                        <h4 style="margin-bottom: 2px;">Contact Information</h4>
-
-                        <div class="row" >
-                            <div class=" col-md-3">
-                                <div class="input-group">
-                                    <span class="input-group-addon " id="sizing-addon2">Name</span>
-                                    <input type="text" class="form-control" name='name' placeholder="Name" aria-describedby="sizing-addon2" required="">
-                                </div>
-                            </div>
-                            <div class=" col-md-3">
-                                <div class="input-group">
-                                    <span class="input-group-addon " id="sizing-addon2">Email</span>
-                                    <input type="email" class="form-control" name='email' placeholder="Email" aria-describedby="sizing-addon2"  required="">
-                                </div>
-                            </div>    
-                            <div class=" col-md-3">    
-                                <div class="input-group">
-                                    <span class="input-group-addon " id="sizing-addon2">Contact No.</span>
-                                    <input type="tel" class="form-control" name='contact_no' placeholder="Contact No." aria-describedby="sizing-addon2"  required="">
-                                </div>
-                            </div>
-                        </div>
-                        <hr/>
-                        <h4 style="margin-bottom: 2px;">Payment Option</h4>
-
-                        <div class="row text" >
-<!--                            <button class="btn btn-default paymentbutton" type="button" disabled="">
-                                <img src="<?php echo base_url(); ?>assets/paymentstatus/payme.jpg" style="height: 50px;border-radius: 10px;">
-
-                            </button>
-                            <button class="btn btn-default paymentbutton" type="button" disabled="">
-                                <img src="<?php echo base_url(); ?>assets/paymentstatus/wechat.jpg" style="height: 50px;border-radius: 10px;">
-
-                            </button>
-                            <button class="btn btn-default paymentbutton" type="button" disabled="">
-                                <img src="<?php echo base_url(); ?>assets/paymentstatus/alipay.jpg" style="height: 50px;border-radius: 10px;">
-
-                            </button>-->
-                            <a class="{{selectPaymenttype.ptype == 'Cash On Delivery'?'active':''}}"  ng-click="selectPayment('Cash On Delivery')">
-                                <img src="<?php echo base_url(); ?>assets/paymentstatus/cod.png" style="height: 150px;border-radius: 10px;">
-
-                            </a>
-<!--                            <button class="btn btn-default paymentbutton {{selectPaymenttype.ptype == 'Bank Transfer'?'active':''}}" type="button" ng-click="selectPayment('Bank Transfer')">
-                                <img src="<?php echo base_url(); ?>assets/paymentstatus/bank.png" style="height: 50px;border-radius: 10px;">
-
-                            </button>-->
-
-                        </div>
-                        <hr/>
-                        <button class='btn btn-default' style='background: #d92229;border-radius: 15px;color: white;' type='submit' name='payment'>Proceed For Payment  <span aria-hidden="true">&rarr;</span></button>
-                        <input type="hidden" name="paymenttype" value="{{selectPaymenttype.ptype}}">
-                    </form>
-                </div>
-                <div role="tabpanel" class="tab-pane" id="reserve">
+     
                     <form action="#" method="post" style="margin-top:10px;padding: 0px 50px;">
                         <h4 style="margin-bottom: 2px;">Contact Information</h4>
                         <div class="row" >
@@ -181,8 +122,7 @@ $this->load->view('layout/header');
                             </h4>
                         </div>
                     </form>
-                </div>
-            </div>
+             
 
         </div>
     </div>

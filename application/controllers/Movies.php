@@ -335,7 +335,7 @@ class Movies extends CI_Controller {
         $message = $this->load->view('movie/ticketviewemail', $data, true);
         setlocale(LC_MONETARY, 'en_US');
         $checkcode = REPORT_MODE;
-        $checkcode = 0;
+     
         if ($checkcode) {
             $this->email->message($message);
             $this->email->print_debugger();
@@ -347,8 +347,8 @@ class Movies extends CI_Controller {
                 echo json_encode($error);
             }
         } else {
-            echo $message;
-           // redirect("Movies/yourTicket/$bookingid");
+//            echo $message;
+            redirect("Movies/yourTicket/$bookingid");
         }
     }
 

@@ -30,6 +30,8 @@ class Movies extends CI_Controller {
 
         $data['theaters'] = $theater;
         $eventdate = $this->Movie->movieevent($mid);
+        
+     
         $datearray = array();
 
 
@@ -52,8 +54,8 @@ class Movies extends CI_Controller {
     public function selectSit() {
         $mid = $this->input->get("movie");
         $thid = $this->input->get("theater");
-        $stime = $this->input->get("selectdate");
-        $sdate = $this->input->get("selecttime");
+         $sdate = $this->input->get("selectdate");
+        $stime = $this->input->get("selecttime");
         $event_id = $this->input->get("event_id");
 
 
@@ -78,7 +80,7 @@ class Movies extends CI_Controller {
             $ticket = $this->input->post('ticket');
             $price = $this->input->post('price');
             $ticketarray = array(
-                "ticket" => array(), "movie_id" => $mid, "total" => 0,
+                "ticket" => array(), "movie_id" => $mid, "total" => 0,"event_id"=>$event_id,
                 "theater_id" => $thid, "selected_date" => $sdate, "selected_time" => $stime);
             foreach ($ticket as $key => $value) {
                 $ticketarray["ticket"][$value] = $price[$key];
@@ -199,6 +201,7 @@ class Movies extends CI_Controller {
                 "theater_id" => $selectedseat['theater_id'],
                 "total_price" => $selectedseat['total'],
                 "payment_type" => $paymenttype,
+                "event_id" => $selectedseat['event_id'],
                 "payment_attr" => "",
                 "payment_id" => "",
                 "booking_type" => "Purchased",
@@ -250,6 +253,7 @@ class Movies extends CI_Controller {
                 "select_time" => $selectedseat['selected_time'],
                 "movie_id" => $selectedseat['movie_id'],
                 "theater_id" => $selectedseat['theater_id'],
+                "event_id" => $selectedseat['event_id'],
                 "payment_type" => "",
                 "payment_attr" => "",
                 "payment_id" => "",

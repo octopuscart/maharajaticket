@@ -5,6 +5,7 @@ App.controller('showTimeContoller', function ($scope, $http, $timeout, $interval
 
     $scope.selectDate = function (dateo) {
         $scope.selectShowtime.date = dateo;
+          $scope.selectShowtime.time = "";
     }
     $scope.selectTime = function (timeo, theater, event_id) {
         $scope.selectShowtime.time = timeo;

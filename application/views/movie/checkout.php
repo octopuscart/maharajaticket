@@ -40,6 +40,10 @@ $this->load->view('layout/header');
     .modal{
         background: #0000003d;
     }
+    .centerblockinput{
+        float:inherit;
+        display:inline-block;
+    }
 
 </style>
 
@@ -88,41 +92,42 @@ $this->load->view('layout/header');
                 <li role="presentation" class="active "><a href="#reserve" aria-controls="profile" role="tab" data-toggle="tab"><i class="fa fa-bookmark"></i> Reserve</a></li>
             </ul>
 
-     
-                    <form action="#" method="post" style="margin-top:10px;padding: 0px 50px;">
-                        <h4 style="margin-bottom: 2px;">Contact Information</h4>
-                        <div class="row" >
-                            <div class=" col-md-3">
-                                <div class="input-group">
-                                    <span class="input-group-addon " id="sizing-addon2">Name</span>
-                                    <input type="text" class="form-control" name='name' placeholder="Name" aria-describedby="sizing-addon2" required="">
-                                </div>
-                            </div>
-                            <div class=" col-md-3">
-                                <div class="input-group">
-                                    <span class="input-group-addon " id="sizing-addon2">Email</span>
-                                    <input type="email" class="form-control" name='email' placeholder="Email" aria-describedby="sizing-addon2" required="">
-                                </div>
-                            </div>    
-                            <div class=" col-md-3">    
-                                <div class="input-group">
-                                    <span class="input-group-addon " id="sizing-addon2">Contact No.</span>
-                                    <input type="tel" class="form-control" name='contact_no' placeholder="Contact No." aria-describedby="sizing-addon2" required="">
-                                </div>
-                            </div>
-                        </div>
-                        <hr/>
-                        <div class="col-md-2">
-                            <button class='btn btn-default' style='background: #d92229;border-radius: 15px;color: white;margin-right: 30px;' type='submit' name='reserve'>Reserve Now  </button>
-                        </div>
-                        <div class="col-md-10   ">
-                            <h4>                       
 
-                                For Further Help: <a href="https://api.whatsapp.com/send?phone=85261428189&text=" target="_blank"> <img src="<?php echo base_url(); ?>assets/images/whatsapp.svg"/> +(852) 6142 8189</a> 
-                            </h4>
+            <form action="#" method="post" style="margin-top:10px;padding: 0px 50px;">
+                <h4 style="" class=" text-center">Contact Information</h4>
+                <div class="row text-center" >
+                    <div class=" col-md-3 centerblockinput">
+                        <div class="input-group ">
+                            <span class="input-group-addon " id="sizing-addon2">Name</span>
+                            <input type="text" class="form-control" name='name' placeholder="Name" aria-describedby="sizing-addon2" required="">
                         </div>
-                    </form>
-             
+                    </div>
+                    <div class=" col-md-3 centerblockinput">
+                        <div class="input-group">
+                            <span class="input-group-addon " id="sizing-addon2">Email</span>
+                            <input type="email" class="form-control" name='email' placeholder="Email" aria-describedby="sizing-addon2" required="">
+                        </div>
+                    </div>    
+                    <div class=" col-md-3 centerblockinput">    
+                        <div class="input-group">
+                            <span class="input-group-addon " id="sizing-addon2">Contact No.</span>
+                            <input type="tel" class="form-control" name='contact_no' placeholder="Contact No." aria-describedby="sizing-addon2" required="">
+                        </div>
+                    </div>
+                </div>
+                <hr/>
+                <div class="col-md-12  text-center">
+                    <button class='btn btn-default' style='background: #d92229;border-radius: 15px;color: white;margin-right: 30px;' type='submit' name='reserve'>Reserve Now  </button>
+                </div>
+                <hr/>
+                <div class="col-md-12 margin-20   text-center" style="margin-top: 20px;">
+                    <h4>                       
+
+                        For Further Help: <a href="https://api.whatsapp.com/send?phone=85261428189&text=" target="_blank"> <img src="<?php echo base_url(); ?>assets/images/whatsapp.svg"/> +(852) 6142 8189</a> 
+                    </h4>
+                </div>
+            </form>
+
 
         </div>
     </div>
@@ -159,12 +164,12 @@ $this->load->view('layout/header');
 if ($checkpre == 'exist') {
     ?>
     <script>
-                            $(function(){
-                            $("#bookingModal").modal({
-                            "backdrop":false,
-                                    "show":true
-                            })
-                            })
+        $(function(){
+        $("#bookingModal").modal({
+        "backdrop":false,
+                "show":true
+        })
+        })
 
     </script>
     <?php

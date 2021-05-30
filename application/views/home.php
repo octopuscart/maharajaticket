@@ -93,24 +93,28 @@ foreach ($sliders as $key => $value) {
                 </div>
             </div>
 
-            <div class="row featuredContainer">
+            <div class="row featuredContainer text-center">
                <?php
             foreach ($moves as $key => $catv) {
                 ?>
-                
-                <div class="col-lg-3 col-md-4 col-sm-4 col-xs-6">
+
+                <div class="col-lg-3 col-md-4 col-sm-4 col-xs-6" style="
+    display: inline-block;
+    float: inherit;">
                     <div class="portfolio2-box">
                         <div class="portfolio2-img-holder">
-                            <div class="portfolio2-content-holder">
-                                <h3><a href="#"><?php echo $catv['title']?></a></h3>
-                                <ul>
-                                    <li><?php echo $catv['attr']?></li>
-                                </ul>
-                                <a href="<?php echo site_url('Movies/showTime/'.$catv['id'])?>" style="margin-top: 10px;" class="button btn btn-default">Book Now</a>
-                            </div>
+
                             <a href="#">
-                                <img class="img-responsive" src="<?php echo base_url(); ?>assets/movies/<?php echo $catv['image'];?>" alt="portfolio">
+                                <img class="img-responsive" src="<?php echo $catv['image']; ?>" alt="portfolio">
                             </a>
+                        </div>
+                        <div class="portfolio2-content-holder" style="border: 1px solid #000;
+                             padding: 5px 5px 10px;">
+                            <h3 style="margin-bottom: 0;font-size: 15px;"><a href="#"><?php echo $catv['title'] ?></a></h3>
+                            <ul>
+                                <li style="font-size: 12px;"><?php echo $catv['attr'] ?></li>
+                            </ul>
+                            <a href="<?php echo site_url('Movies/showTime/' . $catv['id']) ?>" style="margin-top: 10px;    background: #d92229;" class="button btn btn-danger">Book Now</a>
                         </div>
                     </div>
                 </div>

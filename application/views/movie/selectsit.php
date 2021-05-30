@@ -60,61 +60,51 @@ $this->load->view('layout/header');
     <div class="container-fluid">
 
         <div class="row">
-            <div class="col-sm-10">
-                <div class="theaterblock" style="overflow-x: scroll;">
-                    <table class=" table" >
-                        <tbody>
-                            <tr>
-                                <td colspan="{{theaterLayout.layout.totalinrow}}">
-                                    <div class='theaterscreen'>SCREEN HERE</div>
-                                </td>
-                            </tr>
-                        </tbody>  
-                        <tbody ng-repeat="(kclass, sclass) in theaterLayout.layout.sitclass">
-                            <tr><td class="theaterblockblank" colspan="{{theaterLayout.layout.totalinrow}}"></td></tr>
-                            <tr style="background: {{sclass.color}}"><td class="theaterblockblank" colspan="{{theaterLayout.layout.totalinrow}}">{{sclass.price|currency}}</td></tr>
+            <form action='#' method="post">
+                <div class="col-sm-10">
+                    <div class="theaterblock" style="overflow-x: scroll;">
+                        <table class=" table" >
+                            <tbody>
+                                <tr>
+                                    <td colspan="{{theaterLayout.layout.totalinrow}}">
+                                        <div class='theaterscreen'>SCREEN HERE</div>
+                                    </td>
+                                </tr>
+                            </tbody>  
+                            <tbody ng-repeat="(kclass, sclass) in theaterLayout.layout.sitclass">
+                                <tr><td class="theaterblockblank" colspan="{{theaterLayout.layout.totalinrow}}"></td></tr>
+                                <tr style="background: {{sclass.color}}"><td class="theaterblockblank" colspan="{{theaterLayout.layout.totalinrow}}">{{sclass.price|currency}}</td></tr>
 
-                            <tr ng-repeat="(rt, rows) in sclass.row" style="background: {{sclass.color}}">
-                                <td>{{rt}}</td>
-                                <td class="theaterblockseat {{sit?'sitable':''}}" ng-repeat="(sit, chkatr) in rows">
-                                    <div  ng-if="sit" ng-switch="chkatr">
-                                        <div ng-switch-when="A">
-                                            <button id="{{sit}}" class="btn btn-link btn-sm seaticon {{sit == seatSelection.selected[sit].seat?'active':''}}" ng-click="selectSeat(sit, sclass.price)" ng-mouseenter="selectSeatSuggest(sit, kclass)" ng-mouseleave="selectRemoveClass(sit, kclass)"  title='{{sit}} ({{sclass.price|currency}}) {{chkatr}}'>
-                                                <h5 class="theaterblocktext">{{sit}}</h5>
-                                            </button>
+                                <tr ng-repeat="(rt, rows) in sclass.row" style="background: {{sclass.color}}">
+                                    <td>{{rt}}</td>
+                                    <td class="theaterblockseat {{sit?'sitable':''}}" ng-repeat="(sit, chkatr) in rows">
+                                        <div  ng-if="sit" ng-switch="chkatr">
+                                            <div ng-switch-when="A">
+                                                <button id="{{sit}}"  type="button" class="btn btn-link btn-sm seaticon {{sit == seatSelection.selected[sit].seat?'active':''}}" ng-click="selectSeat(sit, sclass.price)" ng-mouseenter="selectSeatSuggest(sit, kclass)" ng-mouseleave="selectRemoveClass(sit, kclass)"  title='{{sit}} ({{sclass.price|currency}}) {{chkatr}}'>
+                                                    <h5 class="theaterblocktext">{{sit}}</h5>
+                                                </button>
+                                            </div>
+                                            <div ng-switch-when="B">
+                                                <button class="btn btn-link btn-sm seaticon seatbooked" type="button"  disabled="" title='{{sit}} ({{sclass.price|currency}})'>
+                                                    <h5 class="theaterblocktext">{{sit}}</h5>
+                                                </button>
+                                            </div>
+                                            <div ng-switch-when="R">
+                                                <button class="btn btn-link btn-sm seaticon seatresurved" type="button" disabled=""  title='{{sit}} ({{sclass.price|currency}})'>
+                                                    <h5 class="theaterblocktext">{{sit}}</h5>
+                                                </button>
+                                            </div>
                                         </div>
-                                        <div ng-switch-when="B">
-                                            <button class="btn btn-link btn-sm seaticon seatbooked"  disabled="" title='{{sit}} ({{sclass.price|currency}})'>
-                                                <h5 class="theaterblocktext">{{sit}}</h5>
-                                            </button>
-                                        </div>
-                                        <div ng-switch-when="R">
-                                            <button class="btn btn-link btn-sm seaticon seatresurved" disabled=""  title='{{sit}} ({{sclass.price|currency}})'>
-                                                <h5 class="theaterblocktext">{{sit}}</h5>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </td>
+                                    </td>
 
-                            </tr>
-                        </tbody>
-                    </table>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
                 </div>
-                <div class="row">
-                    <ul class="list-group col-md-3" style="    padding: 0px 35px">
-                        <li class="list-group-item">
-                            <span class="badge seatresurved">&nbsp;</span>
-                            Reserved
-                        </li>
-                        <li class="list-group-item">
-                            <span class="badge seatbooked">&nbsp;</span>
-                            Purchased
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-sm-2" style='padding: 0px;'>
-                <form action='#' method="post">
+                <div class="col-sm-2" style='padding: 0px;'>
+
                     <div class='theaterpricetable pricescroll'>
                         <table class="theaterpricetable table">
                             <tr>
@@ -138,26 +128,31 @@ $this->load->view('layout/header');
                             <th style='width:60%;'>{{seatSelection.total|currency}}</th>
                         </tr>
                     </table>
-                    <div class='checkoutbutton' style='text-align: center;'>
 
-                        <button class='btn btn-default' style='background: #d92229;    border-radius: 15px;
-                                color: white;' type='submit' name='proceed'>Proceed Checkout/Reserve  <span aria-hidden="true">&rarr;</span></button>
-                    </div>
-                </form>
-            </div>
+                </div>
+                <div style="clear: both"></div>
+             
+                    <nav aria-label="...">
+                        <ul class="pager">
+                            <li class="previous pull-left"><a href="<?php echo site_url('Movies/showTime/' . $movie['id']); ?>" style="    background: #d92229;
+                                                    color: white;"><span aria-hidden="true">&larr;</span> Select Time/Date</a></li>
+                            <li class="next pull-right">
 
+
+                                <button class='btn btn-default' ng-if="seatSelection.total>0" style='background: #d92229;    border-radius: 15px;
+                                        color: white;' type='submit' name='proceed'>Proceed Checkout/Reserve  <span aria-hidden="true">&rarr;</span></button>
+                            
+                                        <button class='btn btn-default' ng-if="seatSelection.total==0" disabled="" style='background: #d92229;    border-radius: 15px;
+                                        color: white;' type='submit' name='proceed'>Proceed Checkout/Reserve  <span aria-hidden="true">&rarr;</span></button>
+                            
+                            </li>
+                        </ul>
+                   
+                </div>
+            </form>
         </div>
 
-        <nav aria-label="...">
-            <ul class="pager">
-                <li class="previous"><a href="<?php echo site_url('Movies/showTime/' . $movie['id']); ?>" style="    background: #d92229;
-                                        color: white;"><span aria-hidden="true">&larr;</span> Select Time/Date</a></li>
-                <li class="next">
-                    <a href="<?php echo site_url("Movies/selectSit") . "?movie=" . $movie['id'] . "&"; ?>theater={{selectShowtime.theater}}&selecttime={{selectShowtime.time}}&selectdate={{selectShowtime.date}}" ng-if="selectShowtime.date && selectShowtime.time" style="    background: #d92229;
-                       color: white;">Select Seat <span aria-hidden="true">&rarr;</span></a>
-                </li>
-            </ul>
-        </nav>
+
     </div>
 </div>
 
@@ -168,7 +163,7 @@ $this->load->view('layout/header');
     var select_time_gbl = "<?php echo $stime; ?>";
     var movie_id_gbl = "<?php echo $movie['id']; ?>";
     var theater_id_gbl = "<?php echo $theater_id; ?>";
-    var template_id = "<?php echo $theater_template_id;?>"
+    var template_id = "<?php echo $theater_template_id; ?>"
 
 </script>
 <script src="<?php echo base_url(); ?>assets/theme2/angular/ng-movies.js"></script>

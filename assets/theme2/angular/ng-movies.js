@@ -11,6 +11,10 @@ App.controller('showTimeContoller', function ($scope, $http, $timeout, $interval
         $scope.selectShowtime.theater = theater;
         $scope.selectShowtime.event_id = event_id;
     }
+    
+    $scope.selectedSeats = function(noseats){
+        $scope.selectShowtime.seats = noseats;
+    }
 })
 
 

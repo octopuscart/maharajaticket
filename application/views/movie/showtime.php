@@ -11,27 +11,21 @@ $this->load->view('layout/header');
         overflow: hidden;
         margin-bottom: 2px;
         background-color: #f5f5f5;
+        background-color: #d92229;
+        color: white;
     }
     .time-select .time-select__place {
         font-size: 16px;
         margin-top: 15px;
         margin-left: 5px;
         margin-bottom: 15px;
-        line-height: 30px;
+        line-height: 40px;
     }
     .time-select .items-wrap {
         padding-top: 5px;
         margin-bottom: 5px;
     }
-    .time-select .time-select__group:after {
-        content: '';
-        width: 2px;
-        height: 25px;
-        background-color: #fff;
-        position: absolute;
-        left: 31%;
-        bottom: 0;
-    }
+
     .time-select--wide .time-select__group:before, .time-select--wide .time-select__group:after {
         left: 23%;
     }
@@ -39,30 +33,21 @@ $this->load->view('layout/header');
         position: relative;
         z-index: 0;
         display: inline-block;
-        font-size: 12px;
+        font-size: 14px;
         padding: 9px 15px 8px 14px;
         margin: 5px 16px 5px 0;
         cursor: pointer;
         background-image: url(<?php echo base_url(); ?>assets/movies/bg-time.png);
         background-size: 100%;
-        border: 4px solid #fff;
+        border: 4px solid #d92229;
+        color: black;
+        font-weight: bold;
     }
 
     .time-select__item.active{
         border:4px solid #000;
     } 
-    .time-select .time-select__item:after {
-        content: '';
-        width: 64px;
-        height: 34px;
 
-        background-repeat: no-repeat;
-        -webkit-background-size: 64px 34px;
-        background-size: 64px 34px;
-        top: 0px;
-        left: -2px;
-        z-index: -1;
-    }
     .time-select .time-select__item:before {
         content: '';
         width: 54px;
@@ -91,6 +76,31 @@ $this->load->view('layout/header');
     .countdown-section{
         cursor: pointer;
         border: 5px solid #ffeb3b;
+    }
+
+    .noofseats{
+        display: inline-block;
+        background: #ffeb3b;
+        border-color: #ffeb3b;
+        margin: 5px 0px 5px 0px;
+        width: 45px;
+        color:black;
+        border: 4px solid #ffeb3b;
+    }
+
+    .noofseats:hover{
+        background: #000;
+        border-color: #000;
+        border: 4px solid #000;
+    }
+
+    .noofseats.active{
+        background: #000;
+        border-color: #000;
+            background: #ffeb3b;
+    border-color: #000;
+    color: black;
+    border: 4px solid #000;
     }
 </style>
 
@@ -143,7 +153,7 @@ $this->load->view('layout/header');
                             <div class="offer-area1 movieblockhome" style="padding:10px;">
                                 <div class="" style="margin: 0;">
                                     <div id="countdown2" style="position: inherit;    text-align: left;">
-                                        <div class="nav nav-tabs" role="tablist">
+                                        <div class="nav nav-tabs" role="tablist" style="border-bottom: 0px;">
                                             <ul>
                                                 <?php
                                                 $count = 0;
@@ -163,8 +173,8 @@ $this->load->view('layout/header');
                             </div>
                         </div>
                         <div class="choose-container choose-container--short">
-                            <hr style="    margin: 5px 0px;"/>
-                            <h2 class="page-heading">Select time</h2>
+                            <hr style="    margin: 15px 0px 10px;"/>
+                            <h2 class="page-heading">Select Time</h2>
                             <div class="tab-content">
                                 <?php
                                 $count1 = 0;
@@ -179,18 +189,20 @@ $this->load->view('layout/header');
                                                     ?>    
 
                                                     <div class="time-select__group group--first">
-                                                        <div class="col-sm-7">
-                                                            <p class="time-select__place"><?php echo $value['title']; ?></p>
-                                                        </div>
-                                                        <ul class="col-sm-5 items-wrap">
+                                                        <ul class="col-sm-6 items-wrap">
                                                             <?php
                                                             foreach ($value['timing'] as $key2 => $value2) {
                                                                 ?>
-                                                                <li class="time-select__item {{selectShowtime.time=='<?php echo $value2["time"]; ?>'?'active':''}}" ng-click="selectTime('<?php echo $value2["time"]; ?>', '<?php echo $key; ?>', <?php echo $value2["event_id"]; ?>)" data-time="<?php echo $value2["time"]; ?>"><?php echo $value2["time"]; ?></li>
+                                                                <li class="time-select__item {{selectShowtime.time=='<?php echo $value2["time"]; ?>'?'active':''}}" ng-click="selectTime('<?php echo $value2["time"]; ?>', '<?php echo $key; ?>', <?php echo $value2["event_id"]; ?>)" data-time="<?php echo $value2["time"]; ?>"><?php echo date('h:m A', strtotime(date("Y-m-d ").$value2["time"])); ?></li>
                                                                 <?php
                                                             }
                                                             ?>
                                                         </ul>
+                                                        <div class="col-sm-6">
+                                                            <p class="time-select__place pull-right"><?php echo $value['title']; ?>  &nbsp;  <i class="fa fa-map-marker"></i></p>
+
+                                                        </div>
+
                                                     </div>
                                                     <?php
                                                 }
@@ -205,18 +217,35 @@ $this->load->view('layout/header');
                             </div>
                         </div>
 
+                        <div class="choose-container choose-container--short">
+                            <hr style="    margin: 5px 0px;"/>
+                            <h2 class="page-heading">Select No. Of Seat(s)</h2>
+                            <div class="time-select time-select--wide movieblockhome" style="padding: 10px;">
+                                <?php
+                                for ($i = 1; $i <= 10; $i++) {
+                                    ?>
+                                    <button class="btn btn-danger noofseats {{selectShowtime.seats==<?php echo $i; ?>?'active':''}}" ng-click="selectedSeats(<?php echo $i; ?>)"><?php echo $i; ?></button>
+                                    <?php
+                                }
+                                ?>
+                            </div>
+                        </div>
+
 
 
 
                         <div class="choose-container choose-container--short">
-                            <h2 class="page-heading seatselectblock">
+<!--                            <h2 class="page-heading seatselectblock">
                                 Select no. of seat(s)
                                 <input type="number" class="pull-right" min="1" max="10" ng-model="selectShowtime.seats" style="    font-size: 25px;
                                        margin-right: 10px;height:35px;">
-                            </h2>
-                            <p style="padding: 0px 0px;font-size: 11px;">
-                                More than 10 tickets must contact us for booking for making the payment to purchase the
-                                tickets
+                            </h2>-->
+                            <p style="padding: 0px 0px;
+    font-size: 15px;
+    font-weight: bold;
+    color: red;
+">
+                                NOTE: IF WANT TO BUY MORE THAN 10 TICKETS MUST CONTACT US FOR BOOKING & PAYMENT.
                             </p>
                         </div>
                     </div>
@@ -260,9 +289,9 @@ $this->load->view('layout/header');
             </div>
 
         </div>
-        <div class="well well-sm">
+<!--        <div class="well well-sm">
             <b>Selected Date/Time:</b> {{selectShowtime.theater?selectShowtime.theater:'---'}}, {{selectShowtime.date?selectShowtime.date:'YYYY-MM-DD'}}, {{selectShowtime.time?selectShowtime.time:'HH:MM'}}
-        </div>
+        </div>-->
         <nav aria-label="...">
             <ul class="pager">
                 <li class="previous"><a href="<?php echo site_url('Movies/index'); ?>" style="    background: #d92229;

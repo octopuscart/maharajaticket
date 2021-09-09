@@ -106,6 +106,7 @@ class Movie extends CI_Model {
 
     function getSelectedSeats($theater_id, $movie_id, $select_date, $select_time) {
         $this->db->select("*");
+        $this->db->where('booking_type!=', "Cancelled");
         $this->db->where('theater_id', $theater_id);
         $this->db->where('movie_id', $movie_id);
         $this->db->where('select_date', $select_date);

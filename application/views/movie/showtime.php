@@ -294,10 +294,12 @@ $this->load->view('layout/header');
         </div>-->
         <nav aria-label="...">
             <ul class="pager">
-                <li class="previous"><a href="<?php echo site_url('Movies/index'); ?>" style="    background: #d92229;
-                                        color: white;"><span aria-hidden="true">&larr;</span> Select Movie</a></li>
-                <li class="next">
+<!--                <li class="previous"><a href="<?php echo site_url('Movies/index'); ?>" style="    background: #d92229;
+                                        color: white;"><span aria-hidden="true">&larr;</span> Select Movie</a></li>-->
+                <li class="previous">
                     <a href="<?php echo site_url("Movies/selectSit") . "?movie=" . $movie['id'] . "&"; ?>theater={{selectShowtime.theater}}&selecttime={{selectShowtime.time}}&selectdate={{selectShowtime.date}}&seats={{selectShowtime.seats}}&event_id={{selectShowtime.event_id}}" ng-if="selectShowtime.date && selectShowtime.time" style="    background: #d92229;
+                       color: white ;">Select Seat(s) <span aria-hidden="true">&rarr;</span></a>
+                       <a href="" disabled="true" ng-if="!(selectShowtime.date && selectShowtime.time)" style="    background: #dc6266;
                        color: white ;">Select Seat(s) <span aria-hidden="true">&rarr;</span></a>
                 </li>
             </ul>

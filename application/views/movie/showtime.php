@@ -193,7 +193,7 @@ $this->load->view('layout/header');
                                                             <?php
                                                             foreach ($value['timing'] as $key2 => $value2) {
                                                                 ?>
-                                                                <li class="time-select__item {{selectShowtime.time=='<?php echo $value2["time"]; ?>'?'active':''}}" ng-click="selectTime('<?php echo $value2["time"]; ?>', '<?php echo $key; ?>', <?php echo $value2["event_id"]; ?>)" data-time="<?php echo $value2["time"]; ?>"><?php echo date('h:m A', strtotime(date("Y-m-d ").$value2["time"])); ?></li>
+                                                                <li class="time-select__item {{selectShowtime.time=='<?php echo $value2["time"]; ?>'?'active':''}}" ng-click="selectTime('<?php echo $value2["time"]; ?>', '<?php echo $key; ?>', <?php echo $value2["event_id"]; ?>)" data-time="<?php echo $value2["time"]; ?>"><?php echo $value2["time"]; ?></li>
                                                                 <?php
                                                             }
                                                             ?>

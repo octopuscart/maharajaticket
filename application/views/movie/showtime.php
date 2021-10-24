@@ -246,7 +246,7 @@ $this->load->view('layout/header');
     color: red;
 ">
                                 NOTE: IF WANT TO BUY MORE THAN 10 TICKETS MUST CONTACT US FOR BOOKING & PAYMENT.<br/>
-                                NO CANCELLATION IS ALLOWED ONCE THE BOOKING IS MADE
+                                <!--NO CANCELLATION IS ALLOWED ONCE THE BOOKING IS MADE-->
                             </p>
                         </div>
                     </div>

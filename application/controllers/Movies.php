@@ -1,3 +1,4 @@
+
 <?php
 
 defined('BASEPATH') OR exit('No direct script access allowed');
@@ -136,8 +137,8 @@ class Movies extends CI_Controller {
             "payment_attr" => "",
             "payment_id" => "",
             "booking_type" => $booktype,
-            "booking_time" => Date('Y-m-d'),
-            "booking_date" => date('H:i:s'),
+            "booking_time" =>date('H:i:s'),
+            "booking_date" => Date('Y-m-d') ,
         );
 
         $this->db->insert('movie_ticket_booking', $bookingArray);

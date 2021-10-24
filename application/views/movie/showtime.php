@@ -245,7 +245,8 @@ $this->load->view('layout/header');
     font-weight: bold;
     color: red;
 ">
-                                NOTE: IF WANT TO BUY MORE THAN 10 TICKETS MUST CONTACT US FOR BOOKING & PAYMENT.
+                                NOTE: IF WANT TO BUY MORE THAN 10 TICKETS MUST CONTACT US FOR BOOKING & PAYMENT.<br/>
+                                NO CANCELLATION IS ALLOWED ONCE THE BOOKING IS MADE
                             </p>
                         </div>
                     </div>

@@ -117,6 +117,12 @@ $this->load->view('layout/header');
                 </div>
                 <hr/>
                 <div class="col-md-12  text-center">
+                    <lable>
+                        <input type='checkbox' name='agreecheck' required="" />&nbsp; I agree that tickets reserved cannot be cancelled. 
+                    </lable>
+                    <br/>
+                    
+                    <br/>
                     <button class='btn btn-default' style='background: #d92229;border-radius: 15px;color: white;margin-right: 30px;' type='submit' name='reserve'>Reserve Now  </button>
                 </div>
                 <hr/>

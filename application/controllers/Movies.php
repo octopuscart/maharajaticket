@@ -206,8 +206,8 @@ class Movies extends CI_Controller {
                 "payment_attr" => "",
                 "payment_id" => "",
                 "booking_type" => "Purchased",
-                "booking_time" => Date('Y-m-d'),
-                "booking_date" => date('H:i:s'),
+                "booking_time" => date('H:i:s') ,
+                "booking_date" => Date('Y-m-d'),
             );
 
             $checkpreviouse = $this->checkTicketExist(
@@ -259,8 +259,8 @@ class Movies extends CI_Controller {
                 "payment_attr" => "",
                 "payment_id" => "",
                 "booking_type" => "Reserved",
-                "booking_time" => Date('Y-m-d'),
-                "booking_date" => date('H:i:s'),
+                "booking_time" => date('H:i:s'),
+                "booking_date" => Date('Y-m-d') ,
                 "total_price" => $selectedseat['total'],
             );
             $this->db->insert('movie_ticket_booking', $bookingArray);
@@ -398,8 +398,8 @@ class Movies extends CI_Controller {
                 $bookingArray = array(
                     "payment_attr" => $paymenttype,
                     "booking_type" => "Cancelled",
-                    "booking_time" => Date('Y-m-d'),
-                    "booking_date" => date('H:i:s'),
+                    "booking_time" => date('H:i:s'),
+                    "booking_date" =>Date('Y-m-d')   ,
                 );
                 $this->db->set($bookingArray);
                 $this->db->where('id', $bid); //set column_name and value in which row need to update
@@ -455,8 +455,8 @@ class Movies extends CI_Controller {
                     "payment_attr" => "",
                     "payment_id" => "",
                     "booking_type" => "Purchased",
-                    "booking_time" => Date('Y-m-d'),
-                    "booking_date" => date('H:i:s'),
+                    "booking_time" =>date('H:i:s') ,
+                    "booking_date" => Date('Y-m-d'),
                 );
                 $this->db->set($bookingArray);
                 $this->db->where('booking_no', $bookingid); //set column_name and value in which row need to update

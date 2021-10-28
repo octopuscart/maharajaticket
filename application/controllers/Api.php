@@ -564,7 +564,7 @@ class Api extends REST_Controller {
                     )
                 ),
                 "class3" => array(
-                   "price" => $classprice[2]["class_price"],
+                    "price" => $classprice[2]["class_price"],
                     "rowcount" => "5",
                     "color" => "#ff572247",
                     "row" => array(
@@ -577,6 +577,61 @@ class Api extends REST_Controller {
                         "N" => $this->createRange(1, 22, 22, [16], "N", $booked, $reserved, $gaps),
                         "O" => $this->createRange(1, 22, 22, [], "O", $booked, $reserved, $gaps),
                         "P" => $this->createRange(1, 22, 22, [16, 5, 6, 7, 8, 9], "P", $booked, $reserved, $gaps),
+                    )
+                ),
+            )
+        );
+        $this->response($layout);
+    }
+
+    function getLayout_GH_HSE4B_get() {
+
+        $reserveseats = $this->getBookedSheats($this->get());
+        $booked = $reserveseats;
+
+        $templateobj = $this->Movie->theaterTemplate($this->get("template_id"));
+        $classprice = $templateobj["class_price"];
+        $reserved = $templateobj["reserve_seats"];
+
+       $gaps = array("4" => "", "19" => "");
+        $layout = array(
+            "totalinrow" => 25,
+            "sitclass" => array(
+                "class1" => array(
+                    "price" => count($classprice) ? $classprice[0]["class_price"] : 0,
+                    "rowcount" => "2",
+                    "color" => "#fff",
+                    "row" => array(
+                        "B" => $this->createRange(1, 22, 22, [16], "B", $booked, $reserved, $paid, $gaps),
+                        "C" => $this->createRange(1, 22, 22, [], "C", $booked, $reserved, $paid, $gaps),
+                        "D" => $this->createRange(1, 22, 22, [16], "D", $booked, $reserved, $paid, $gaps),
+                        "E" => $this->createRange(1, 22, 22, [], "E", $booked, $reserved, $paid, $gaps),
+                    )
+                ),
+                "class2" => array(
+                    "price" => count($classprice) ? $classprice[1]["class_price"] : 0,
+                    "rowcount" => "6",
+                    "color" => "#fff",
+                    "row" => array(
+                        "F" => $this->createRange(1, 22, 22, [16], "F", $booked, $reserved, $paid, $gaps),
+                        "G" => $this->createRange(1, 22, 22, [], "G", $booked, $reserved, $paid, $gaps),
+                        "H" => $this->createRange(1, 22, 22, [16], "H", $booked, $reserved, $paid, $gaps),
+                        "I" => $this->createRange(1, 22, 22, [], "I", $booked, $reserved, $paid, $gaps),
+                        "J" => $this->createRange(1, 22, 22, [16], "J", $booked, $reserved, $paid, $gaps),
+                        "K" => $this->createRange(1, 22, 22, [], "K", $booked, $reserved, $paid, $gaps),
+                    )
+                ),
+                "class3" => array(
+                    "price" => count($classprice) ? $classprice[2]["class_price"] : 0,
+                    "rowcount" => "5",
+                    "color" => "#fff",
+                    "row" => array(
+                        
+                        "L" => $this->createRange(1, 22, 22, [16], "L", $booked, $reserved, $paid, $gaps),
+                        "M" => $this->createRange(1, 22, 22, [], "M", $booked, $reserved, $paid, $gaps),
+                        "N" => $this->createRange(1, 22, 22, [16], "N", $booked, $reserved, $paid, $gaps),
+                        "O" => $this->createRange(1, 22, 22, [], "O", $booked, $reserved, $paid, $gaps),
+                        "P" => $this->createRange(1, 22, 22, [16, 5, 6, 7, 8, 9], "P", $booked, $reserved, $paid, $gaps),
                     )
                 ),
             )
@@ -638,8 +693,8 @@ class Api extends REST_Controller {
         );
         $this->response($layout);
     }
-    
-       function getLayout_GH_HSE3B_get() {
+
+    function getLayout_GH_HSE3B_get() {
         $seats = $this->getBookedSheats($this->get());
         $reserveseats = $this->getBookedSheats($this->get());
         $booked = $reserveseats;
@@ -667,7 +722,6 @@ class Api extends REST_Controller {
                     "rowcount" => "6",
                     "color" => "#ffe0b266",
                     "row" => array(
-                        
                         "E" => $this->createRange(1, 21, 21, [], "E", $booked, $reserved, $gaps),
                         "F" => $this->createRange(1, 21, 21, [19], "F", $booked, $reserved, $gaps),
                         "G" => $this->createRange(1, 21, 21, [], "G", $booked, $reserved, $gaps),

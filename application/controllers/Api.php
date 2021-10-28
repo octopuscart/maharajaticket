@@ -593,7 +593,7 @@ class Api extends REST_Controller {
         $classprice = $templateobj["class_price"];
         $reserved = $templateobj["reserve_seats"];
 
-       $gaps = array("4" => "", "19" => "");
+       $gaps = array("4" => "", "16" => "");
         $layout = array(
             "totalinrow" => 25,
             "sitclass" => array(

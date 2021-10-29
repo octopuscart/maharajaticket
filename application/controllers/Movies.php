@@ -290,6 +290,7 @@ class Movies extends CI_Controller {
     }
 
     public function yourTicket($bookingid) {
+        $this->session->unset_userdata('selectedseat');
         $this->db->where('booking_id', $bookingid);
         $query = $this->db->get('movie_ticket_booking');
         $bookingobj = $query->row_array();

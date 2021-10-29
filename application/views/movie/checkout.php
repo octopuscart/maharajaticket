@@ -171,19 +171,21 @@ if ($checkpre == 'exist') {
     ?>
     <script>
     $(function () {
-        $("#bookingModal").modal({
-            "backdrop": false,
+    $("#bookingModal").modal({
+    "backdrop": false,
             "show": true
-        })
+    })
     });
-    $(document).on('submit', "#bookingform", function () {
-        $("#bookingbutton").hide();
-    });
-
     </script>
     <?php
 }
 ?>
+
+<script>
+    $(document).on('submit', "#bookingform", function () {
+    $("#bookingbutton").hide();
+    });
+</script>
 
 <?php
 $this->load->view('layout/footer');

@@ -93,7 +93,7 @@ $this->load->view('layout/header');
             </ul>
 
 
-            <form action="#" method="post" style="margin-top:10px;padding: 0px 50px;">
+            <form action="#" id="bookingform" method="post" style="margin-top:10px;padding: 0px 50px;">
                 <h4 style="" class=" text-center">Contact Information</h4>
                 <div class="row text-center" >
                     <div class=" col-md-3 centerblockinput">
@@ -121,9 +121,9 @@ $this->load->view('layout/header');
                         <input type='checkbox' name='agreecheck' required="" />&nbsp; I agree that tickets reserved cannot be cancelled. 
                     </lable>
                     <br/>
-                    
+
                     <br/>
-                    <button class='btn btn-default' style='background: #d92229;border-radius: 15px;color: white;margin-right: 30px;' type='submit' name='reserve'>Reserve Now  </button>
+                    <button class='btn btn-default' id="bookingbutton" style='background: #d92229;border-radius: 15px;color: white;margin-right: 30px;' type='submit' name='reserve'>Reserve Now  </button>
                 </div>
                 <hr/>
                 <div class="col-md-12 margin-20   text-center" style="margin-top: 20px;">
@@ -170,12 +170,15 @@ $this->load->view('layout/header');
 if ($checkpre == 'exist') {
     ?>
     <script>
-        $(function(){
+    $(function () {
         $("#bookingModal").modal({
-        "backdrop":false,
-                "show":true
+            "backdrop": false,
+            "show": true
         })
-        })
+    });
+    $(document).on('submit', "#bookingform", function () {
+        $("#bookingbutton").hide();
+    });
 
     </script>
     <?php

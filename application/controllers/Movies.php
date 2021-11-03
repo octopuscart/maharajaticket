@@ -24,6 +24,8 @@ class Movies extends CI_Controller {
     }
 
     public function showTime($mid) {
+        redirect(site_url("Movies/index"));
+        
         $movies = $this->Movie->movieList();
         $data['movie'] = $movies[$mid];
 

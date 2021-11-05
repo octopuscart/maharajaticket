@@ -12,6 +12,7 @@ class Movie extends CI_Model {
 
     function movieList() {
         $this->db->select("*");
+         $this->db->where('status!=', "off");
         $this->db->where('event_date>=', date("Y-m-d"));
         $this->db->group_by("movie_id");
         $query = $this->db->get('movie_event');
@@ -31,6 +32,7 @@ class Movie extends CI_Model {
 
     function movieevent($movie_id) {
         $this->db->select("*");
+          $this->db->where('status!=', "off");
         $this->db->where('event_date>=', date("Y-m-d"));
         $this->db->where("movie_id", $movie_id);
         $this->db->group_by("event_date");

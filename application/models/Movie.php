@@ -12,12 +12,16 @@ class Movie extends CI_Model {
 
     function movieList() {
         $this->db->select("*");
-         $this->db->where('status!=', "off");
+        $this->db->where('status!=', "off");
         $this->db->where('event_date>=', date("Y-m-d"));
         $this->db->group_by("movie_id");
         $query = $this->db->get('movie_event');
         $movies = array();
+
+
         $movieevents = $query->result_array();
+
+
         foreach ($movieevents as $mekey => $mevalue) {
             $movieid = $mevalue['movie_id'];
             $this->db->select("*, description as about");
@@ -32,7 +36,7 @@ class Movie extends CI_Model {
 
     function movieevent($movie_id) {
         $this->db->select("*");
-          $this->db->where('status!=', "off");
+        $this->db->where('status!=', "off");
         $this->db->where('event_date>=', date("Y-m-d"));
         $this->db->where("movie_id", $movie_id);
         $this->db->group_by("event_date");
@@ -60,6 +64,7 @@ class Movie extends CI_Model {
     function theaters($movie_id) {
         $this->db->select("*");
         $this->db->where('movie_id', $movie_id);
+        $this->db->where('status!=', "off");
         $this->db->group_by('event_date');
         $this->db->where('event_date>=', date("Y-m-d"));
         $query = $this->db->get('movie_event');
@@ -70,7 +75,7 @@ class Movie extends CI_Model {
         foreach ($movieevents as $mekey => $mevalue) {
             $event_date = $mevalue["event_date"];
 //            $listdatearray[$mevalue["event_date"]] = [];
-
+           $this->db->where('status!=', "off");  
             $this->db->where('movie_id', $movie_id);
             $this->db->where('event_date', $event_date);
             $query = $this->db->get('movie_event');
@@ -141,7 +146,7 @@ class Movie extends CI_Model {
             $reserveseats[$value] = "";
         }
         $theater_array["reserve_seats"] = $reserveseats;
-        
+
         return $theater_array;
     }
 

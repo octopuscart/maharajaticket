@@ -130,6 +130,16 @@ class Movie extends CI_Model {
         }
         return $seats;
     }
+    function wheelchair($inputchair) {
+        $wheelchairt_temp = (explode(", ", $inputchair));
+        $wheelchair = array();
+         if ($inputchair) {
+            foreach ($wheelchairt_temp as $key => $value) {
+                $wheelchair[$value] = "";
+            }
+        }
+        return $wheelchair;
+    }
 
     function theaterTemplate($template_id) {
         $this->db->where('id', $template_id);

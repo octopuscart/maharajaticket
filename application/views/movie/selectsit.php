@@ -16,6 +16,16 @@ $this->load->view('layout/header');
     }
 
 
+    .wheelchairseat{
+        background-image: url(<?php echo base_url(); ?>assets/movies/wheelchair.png)!important;
+        background-size: 20px;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-color:white;
+        border-radius:5px;
+    }
+
+
     .theaterblockseat.sitable{
 
     }
@@ -131,24 +141,24 @@ $this->load->view('layout/header');
 
                 </div>
                 <div style="clear: both"></div>
-             
-                    <nav aria-label="...">
-                        <ul class="pager">
-                            <li class="previous pull-left"><a href="<?php echo site_url('Movies/showTime/' . $movie['id']); ?>" style="    background: #d92229;
-                                                    color: white;"><span aria-hidden="true">&larr;</span> Select Time/Date</a></li>
-                            <li class="next pull-right">
+
+                <nav aria-label="...">
+                    <ul class="pager">
+                        <li class="previous pull-left"><a href="<?php echo site_url('Movies/showTime/' . $movie['id']); ?>" style="    background: #d92229;
+                                                          color: white;"><span aria-hidden="true">&larr;</span> Select Time/Date</a></li>
+                        <li class="next pull-right">
 
 
-                                <button class='btn btn-default' ng-if="seatSelection.total>0" style='background: #d92229;    border-radius: 15px;
-                                        color: white;' type='submit' name='proceed'>Proceed Checkout/Reserve  <span aria-hidden="true">&rarr;</span></button>
-                            
-                                        <button class='btn btn-default' ng-if="seatSelection.total==0" disabled="" style='background: #d92229;    border-radius: 15px;
-                                        color: white;' type='submit' name='proceed'>Proceed Checkout/Reserve  <span aria-hidden="true">&rarr;</span></button>
-                            
-                            </li>
-                        </ul>
-                   
-                </div>
+                            <button class='btn btn-default' ng-if="seatSelection.total > 0" style='background: #d92229;    border-radius: 15px;
+                                    color: white;' type='submit' name='proceed'>Proceed Checkout/Reserve  <span aria-hidden="true">&rarr;</span></button>
+
+                            <button class='btn btn-default' ng-if="seatSelection.total == 0" disabled="" style='background: #d92229;    border-radius: 15px;
+                                    color: white;' type='submit' name='proceed'>Proceed Checkout/Reserve  <span aria-hidden="true">&rarr;</span></button>
+
+                        </li>
+                    </ul>
+
+                    </div>
             </form>
         </div>
 

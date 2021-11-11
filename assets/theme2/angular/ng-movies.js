@@ -5,26 +5,34 @@ App.controller('showTimeContoller', function ($scope, $http, $timeout, $interval
 
     $scope.selectDate = function (dateo) {
         $scope.selectShowtime.date = dateo;
-          $scope.selectShowtime.time = "";
+        $scope.selectShowtime.time = "";
     }
     $scope.selectTime = function (timeo, theater, event_id) {
         $scope.selectShowtime.time = timeo;
         $scope.selectShowtime.theater = theater;
         $scope.selectShowtime.event_id = event_id;
     }
-    
-    $scope.selectedSeats = function(noseats){
+
+    $scope.selectedSeats = function (noseats) {
         $scope.selectShowtime.seats = noseats;
     }
 })
 
 
 App.controller('sitSelectContoller', function ($scope, $http, $timeout, $interval, $filter) {
-    $scope.theaterLayout = {"layout": {}, "seatscount": seatsgbl, "suggetion": []};
+    $scope.theaterLayout = {"layout": {}, "seatscount": seatsgbl, "suggetion": [], "wheelchair": {}};
 
-    var url = baseurl + "Api/" + layoutgbl + "?sdate=" + select_date_gbl + "&stime=" + select_time_gbl + "&th_id=" + theater_id_gbl + "&mv_id=" + movie_id_gbl+"&template_id="+template_id;
+    var url = baseurl + "Api/" + layoutgbl + "?sdate=" + select_date_gbl + "&stime=" + select_time_gbl + "&th_id=" + theater_id_gbl + "&mv_id=" + movie_id_gbl + "&template_id=" + template_id;
     $http.get(url).then(function (rdata) {
         $scope.theaterLayout.layout = rdata.data;
+        $scope.theaterLayout.wheelchair = rdata.data.wheelchair;
+
+        $timeout(function () {
+            for (wc in $scope.theaterLayout.wheelchair) {
+                $("#" + wc).addClass("wheelchairseat");
+            }
+        }, 1000);
+
     }, function () {
     })
 
@@ -67,6 +75,8 @@ App.controller('sitSelectContoller', function ($scope, $http, $timeout, $interva
             $scope.getTotalPrice();
         }, 500)
     }
+
+
 
     $scope.selectRemoveClass = function (seatobj, sclass) {
         $(".seaticon").removeClass("suggestion");

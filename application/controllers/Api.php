@@ -824,8 +824,6 @@ class Api extends REST_Controller {
                         "E" => $this->createRange(1, 23, 23, [], "E", $booked, $reserved, $gaps),
                         "F" => $this->createRange(1, 23, 23, [19], "F", $booked, $reserved, $gaps),
                         "G" => $this->createRange(1, 23, 23, [], "G", $booked, $reserved, $gaps),
-                        "H" => $this->createRange(1, 23, 23, [19], "H", $booked, $reserved, $gaps),
-                        "I" => $this->createRange(1, 23, 23, [], "I", $booked, $reserved, $gaps),
                     )
                 ),
                 "class3" => array(
@@ -833,6 +831,8 @@ class Api extends REST_Controller {
                     "rowcount" => "5",
                     "color" => "#ff572247",
                     "row" => array(
+                        "H" => $this->createRange(1, 23, 23, [19], "H", $booked, $reserved, $gaps),
+                        "I" => $this->createRange(1, 23, 23, [], "I", $booked, $reserved, $gaps),
                         "J" => $this->createRange(1, 23, 23, [19], "J", $booked, $reserved, $gaps),
                         "K" => $this->createRange(1, 23, 23, [], "K", $booked, $reserved, $gaps),
                         "L" => $this->createRange(1, 23, 23, [19], "L", $booked, $reserved, $gaps),

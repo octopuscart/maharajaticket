@@ -71,7 +71,7 @@ $this->load->view('layout/header');
 
         <div class="row">
             <form action='#' method="post">
-                <div class="col-sm-10">
+                <div class="col-sm-10" style="    overflow-x: scroll;">
                     <div class="theaterblock" style="overflow-x: scroll;width: max-content;">
                         <table class=" table" >
                             <tbody>

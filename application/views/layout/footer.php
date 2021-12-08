@@ -13,20 +13,36 @@ $keywordschat = $seokeywords->seo_keywords;
 
 
 
-
         <tr>
-            <th style="width: 25%;text-align: right;">
+            <th style="width: 25%;text-align: center;" colspan="2">
                 PAYMENT OPTIONS:
             </th>
-            <td style='wi'>
-                <img src="<?php echo base_url(); ?>assets/paymentstatus/payment.jpg" style="height: 75px;">
+
+        </tr>
+        <tr>
+
+            <td class="text-right" >
+                <img src="<?php echo base_url(); ?>assets/paymentstatus/payme.jpg" style="height: 100px;">
+            </td>
+            <td class="text-left">
+                <img src="<?php echo base_url(); ?>assets/paymentstatus/fps.png" style="height: 100px;">
             </td>
         </tr>
         <tr>
 
-            <td style='wi' colspan="2">
+            <td class="text-center" colspan="2">
                 <p>For other payment option connect us on WhatsApp: <span style='font-weight: 600;
                                                                           color: #0fc105;'>+(852)  6142 8189</span></p>
+
+            </td>
+        </tr>
+        <tr>
+
+            <td class="text-center" colspan="2">
+                <p>
+                    Join our official  #Telegram channel to get the latest updates<br/><br/>
+                    <a href="https://t.me/cineworld_maharajamart" target="_blank" class="btn btn-primary"><i class="fa fa-paper-plane"></i>  Join Our Telegram channel</a>
+                </p>
 
             </td>
         </tr>
@@ -41,7 +57,7 @@ $keywordschat = $seokeywords->seo_keywords;
         <div class="footer-area-top">
             <div class="container">
                 <div class="row">
-                  
+
                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                         <div class="footer-box">
                             <h3>Stay With Us!</h3>
@@ -53,12 +69,13 @@ $keywordschat = $seokeywords->seo_keywords;
                                 <li><a href=""><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
                                 <li><a href=""><i class="fa fa-youtube" aria-hidden="true"></i></a></li>
                             </ul>
-                          
+
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        
                         <div class="footer-box">
-                          <div class="newsletter-area">
+                            <div class="newsletter-area">
                                 <h3>NewsLetter Sign Up!</h3>
                                 <div class="input-group stylish-input-group">
                                     <input type="text" class="form-control" placeholder="E-mail . . .">

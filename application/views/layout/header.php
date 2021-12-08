@@ -162,13 +162,13 @@
                                 <div class="main-menu-area home2-sticky-area">
                                     <nav>
                                         <ul>
-                                            <li class="active"><a href="#">Home</a>        </li>
+                                            <li class="active"><a href="<?php echo site_url("/")?>">Home</a>        </li>
                                             <li><a href="<?php echo site_url("Movies/index"); ?>">Movies</a></li>
                                             <li><a href="<?php echo site_url("Movies/index"); ?>">Book Now</a></li>
                                             <!--<li><a href="<?php echo site_url("Movies/ticketPayment");?>">Pay For Tickets</a></li>-->
                                             <li><a href="<?php echo site_url("Movies/blog");?>">Blog</a></li>
 
-                                            <li><a href="#">Contact</a></li>
+                                            <li><a href="https://api.whatsapp.com/send/?phone=85256818131&text&app_absent=0">Contact</a></li>
                                         </ul>
                                     </nav>
                                 </div>

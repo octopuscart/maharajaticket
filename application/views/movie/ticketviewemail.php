@@ -265,8 +265,8 @@
                                         </td>
                                         <td  colspan="" style="text-align: center;width: 50%;">
 
-                                            <img src="<?php echo base_url(); ?>assets/paymentstatus/fps.png" style="height: 50px;"/>
-                                            <h5>FPS: 61428189</h5>
+                                            <img src="<?php echo base_url(); ?>assets/paymentstatus/fps.png" style="height: 75px;"/>
+                                        
 
                                         </td>
                                     </tr>

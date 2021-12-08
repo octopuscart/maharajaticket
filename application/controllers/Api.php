@@ -846,6 +846,12 @@ class Api extends REST_Controller {
         $this->response($layout);
     }
 
+    function getCardQr_get($bookingid) {
+        $this->load->library('phpqr');
+        $linkdata = site_url("Movies/yourTicket/" . $bookingid);
+        $this->phpqr->showcode($linkdata);
+    }
+
 }
 
 ?>

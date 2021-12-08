@@ -25,7 +25,7 @@ class Movies extends CI_Controller {
 
     public function showTime($mid) {
 //        redirect(site_url("Movies/index"));
-        
+
         $movies = $this->Movie->movieList();
         $data['movie'] = $movies[$mid];
 
@@ -33,8 +33,8 @@ class Movies extends CI_Controller {
 
         $data['theaters'] = $theater;
         $eventdate = $this->Movie->movieevent($mid);
-        
-     
+
+
         $datearray = array();
 
 
@@ -57,7 +57,7 @@ class Movies extends CI_Controller {
     public function selectSit() {
         $mid = $this->input->get("movie");
         $thid = $this->input->get("theater");
-         $sdate = $this->input->get("selectdate");
+        $sdate = $this->input->get("selectdate");
         $stime = $this->input->get("selecttime");
         $event_id = $this->input->get("event_id");
 
@@ -83,7 +83,7 @@ class Movies extends CI_Controller {
             $ticket = $this->input->post('ticket');
             $price = $this->input->post('price');
             $ticketarray = array(
-                "ticket" => array(), "movie_id" => $mid, "total" => 0,"event_id"=>$event_id,
+                "ticket" => array(), "movie_id" => $mid, "total" => 0, "event_id" => $event_id,
                 "theater_id" => $thid, "selected_date" => $sdate, "selected_time" => $stime);
             foreach ($ticket as $key => $value) {
                 $ticketarray["ticket"][$value] = $price[$key];
@@ -139,8 +139,8 @@ class Movies extends CI_Controller {
             "payment_attr" => "",
             "payment_id" => "",
             "booking_type" => $booktype,
-            "booking_time" =>date('H:i:s'),
-            "booking_date" => Date('Y-m-d') ,
+            "booking_time" => date('H:i:s'),
+            "booking_date" => Date('Y-m-d'),
         );
 
         $this->db->insert('movie_ticket_booking', $bookingArray);
@@ -208,7 +208,7 @@ class Movies extends CI_Controller {
                 "payment_attr" => "",
                 "payment_id" => "",
                 "booking_type" => "Purchased",
-                "booking_time" => date('H:i:s') ,
+                "booking_time" => date('H:i:s'),
                 "booking_date" => Date('Y-m-d'),
             );
 
@@ -262,7 +262,7 @@ class Movies extends CI_Controller {
                 "payment_id" => "",
                 "booking_type" => "Reserved",
                 "booking_time" => date('H:i:s'),
-                "booking_date" => Date('Y-m-d') ,
+                "booking_date" => Date('Y-m-d'),
                 "total_price" => $selectedseat['total'],
             );
             $this->db->insert('movie_ticket_booking', $bookingArray);
@@ -339,7 +339,7 @@ class Movies extends CI_Controller {
         $message = $this->load->view('movie/ticketviewemail', $data, true);
         setlocale(LC_MONETARY, 'en_US');
         $checkcode = REPORT_MODE;
-     
+
         if ($checkcode) {
             $this->email->message($message);
             $this->email->print_debugger();
@@ -356,11 +356,14 @@ class Movies extends CI_Controller {
         }
     }
 
-    function getMovieQR($bookingid) {
+    function getMovieQR2($bookingid) {
         $this->load->library('phpqr');
         $linkdata = site_url("Movies/yourTicket/" . $bookingid);
-        header('Content-type: image/svg');
         $this->phpqr->showcode($linkdata);
+    }
+
+    function getMovieQR($bookingid) {
+        redirect(site_url("Api/getCardQr/" . $bookingid));
     }
 
     public function ticketPaymentCancel($bookingid = 0) {
@@ -402,7 +405,7 @@ class Movies extends CI_Controller {
                     "payment_attr" => $paymenttype,
                     "booking_type" => "Cancelled",
                     "booking_time" => date('H:i:s'),
-                    "booking_date" =>Date('Y-m-d')   ,
+                    "booking_date" => Date('Y-m-d'),
                 );
                 $this->db->set($bookingArray);
                 $this->db->where('id', $bid); //set column_name and value in which row need to update
@@ -458,7 +461,7 @@ class Movies extends CI_Controller {
                     "payment_attr" => "",
                     "payment_id" => "",
                     "booking_type" => "Purchased",
-                    "booking_time" =>date('H:i:s') ,
+                    "booking_time" => date('H:i:s'),
                     "booking_date" => Date('Y-m-d'),
                 );
                 $this->db->set($bookingArray);
@@ -506,7 +509,7 @@ class Movies extends CI_Controller {
             $this->email->print_debugger();
             $send = $this->email->send();
             if ($send) {
-               
+                
             } else {
                 $error = $this->email->print_debugger(array('headers'));
                 echo json_encode($error);

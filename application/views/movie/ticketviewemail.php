@@ -125,17 +125,31 @@
           background: rgb(225, 225, 225);
           font-family: sans-serif;">
         <div class="" style="padding:50px 0px;text-align: center">
-            <table align="center" border="0" cellpadding="0" cellspacing="0" width="700" style="background: #FFEB3B;padding: 0 20px">
+            <table align="center" border="0" cellpadding="0" cellspacing="0" width="700" style="padding: 0 20px;background: #fff;">
                 <tr>
-                    <td >
-                        <center><img src="<?php echo base_url(); ?>assets/images/logo.png" style="margin: 10px;
-                                     height: 50px;
-                                     width: auto;"/><br/>
+                    <td style="text-align: left;    padding-top: 24px;padding-bottom: 20px;">
+                        <img src="<?php echo base_url(); ?>assets/images/logo.png" style="margin: 10px;
+                             height: 50px;
+                             width: auto;"/>
+                    </td>
+                    <td style="text-align: right;    padding-top: 24px;padding-bottom: 20px;" >
+                        <img src="<?php echo base_url(); ?>assets/images/cine-logo-1.png" style="margin: 10px;
+                             height: 50px;
+                             width: auto;"/><br/>
+
+                    </td>
+
+                </tr>
+                <tr style="    background: #ffeb3b;">
+
+                    <td colspan="2">
+                        <center>
                             <h4 style=""><small> Your Movie Tickets for</small> <br/> <?php echo $movieobj['title'] . ' | ' . $movieobj['attr']; ?></h4>
                         </center>
                     </td>
 
                 </tr>
+
 
             </table>
 
@@ -160,7 +174,7 @@
                             <td style='width: 30%;    text-align: center;
                                 background: white;
                                 border-radius: 12px;' rowspan="3">
-                                <img src="<?php echo site_url('Movies/getMovieQR/' . $booking['booking_id']); ?>"><br/>
+                                <img src="<?php echo site_url('Api/getCardQr/' . $booking['booking_id']); ?>" height="150px"/><br/>
 
                             </td>
 
@@ -242,60 +256,77 @@
                     if ($booking['booking_type'] == 'Reserved') {
                         ?>
                         <tr>
-                            <td  colspan="2" style="text-align: center;">
-
-                                <img src="<?php echo base_url(); ?>assets/paymentstatus/payment.jpg" style="height: 75px;">
-                            </td>
-                        </tr>
-<!--                        <tr>
                             <td colspan="2">
-                                <p>Click here to make the payment. <a href='<?php echo site_url('Movies/ticketPayment/' . $booking['booking_id']) ?>'>Proceed For Payment</a></p>
-                            </td>
-                        </tr>-->
-                        <tr style='height: 50px;'>
-                            <td colspan="2">
-                                <p>For other payment option connect us on WhatsApp: <span style='font-weight: 600;
-                                                                                          color: #0fc105;
-                                                                                          font-size: 14px;'>+(852)  6142 8189</span></p>
-                            </td>
-                        </tr>
-                        <?php
-                    } else {
-                        ?>
+                                <table style="width: 100%">
+                                    <tr>
+                                        <td  colspan="" style="text-align: center;width: 50%;">
 
-                        <tr style='font-size: 15px;height: 50px;'>
-                            <th style='width: 60%;text-align: right;    border-bottom: 1px solid #000;'>Payment Mode:</th><th style='text-align: right;    border-bottom: 1px solid #000;'> <?php echo $booking['payment_type']; ?></th>
-                        </tr>
-                        <?php
-                    }
-                    ?>
+                                            <a href="https://bit.ly/3bdeHel" target="_blank"> <img src="<?php echo base_url(); ?>assets/paymentstatus/payme.jpg" style="height: 75px;"/></a>
+                                        </td>
+                                        <td  colspan="" style="text-align: center;width: 50%;">
 
-               
+                                            <img src="<?php echo base_url(); ?>assets/paymentstatus/fps.png" style="height: 50px;"/>
+                                            <h5>FPS: 61428189</h5>
+
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2" style="text-align:center;">
+                                            <p>(Send screen shot of Transfer slip by Whats App to 61428189)</p>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <td>
+                                    </tr>
+                <!--                        <tr>
+                                        <td colspan="2">
+                                            <p>Click here to make the payment. <a href='<?php echo site_url('Movies/ticketPayment/' . $booking['booking_id']) ?>'>Proceed For Payment</a></p>
+                                        </td>
+                                    </tr>-->
+                                    <tr style='height: 50px;'>
+                                        <td colspan="2" style="text-align:center;">
+                                            <p>For other payment option connect us on WhatsApp: <span style='font-weight: 600;
+                                                                                                      color: #0fc105;
+                                                                                                      font-size: 14px;'>+(852)  6142 8189</span></p>
+                                        </td>
+                                    </tr>
+                                    <?php
+                                } else {
+                                    ?>
+
+                                    <tr style='font-size: 15px;height: 50px;'>
+                                        <th style='width: 60%;text-align: right;    border-bottom: 1px solid #000;'>Payment Mode:</th><th style='text-align: right;    border-bottom: 1px solid #000;'> <?php echo $booking['payment_type']; ?></th>
+                                    </tr>
+                                    <?php
+                                }
+                                ?>
 
 
 
-                </table>
+
+
+                                </table>
 
 
 
-            </div>
+                                </div>
 
 
-            <table class="carttable"  border-color= "#fff" align="center" border="0" cellpadding="0" cellspacing="0" width="700" style="background: #FFEB3B;padding: 0 20px">
-                <tr>
-                    <td colspan="2" style='font-size: 11px;'>
-                        <p><b>Important Notes:</b></p>
-                          <p>Please collect your ticket from Maharaja Mart.</p>
-                        <p>Tickets once booked cannot be either exchanged, cancelled or refunded.</p>
-                        <!--<p>Unpaid reserved Tickets automatically cancelled 24 hours before the show starts.</p>-->
-                    </td>
+                                <table class="carttable"  border-color= "#fff" align="center" border="0" cellpadding="0" cellspacing="0" width="700" style="background: #FFEB3B;padding: 0 20px">
+                                    <tr>
+                                        <td colspan="2" style='font-size: 11px;'>
+                                            <p><b>Important Notes:</b></p>
+                                            <p>Please collect your paid ticket from the CINEMA - 20 mins. before the SHOW on the Show Date.</p>
+                                            <p>Tickets once booked cannot be cancelled or refunded.</p>
+                                            <p>All electronics payment must include seat number for which the payment is made and screen shot of the payment transaction to be sent by Whats App to (+852) 6142 8189, to validate the payment.</p>
+                                        </td>
 
-                </tr>
-                <tr style='font-size: 15px;height: 5px;'>
-                </tr>
+                                    </tr>
+                                    <tr style='font-size: 15px;height: 5px;'>
+                                    </tr>
 
-            </table>
+                                </table>
 
-        </div>
-    </body>
-</html>
+                                </div>
+                                </body>
+                                </html>

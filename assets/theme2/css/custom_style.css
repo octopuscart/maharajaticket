@@ -587,7 +587,7 @@ b.barcomb-list {
 
 .mean-container .mean-bar a.logo-mobile-menu {
     width: 100%;
-    /*background-color: #000;*/
+    background-color: #ffeb3b;
     box-sizing: border-box;
 }
 
@@ -1515,4 +1515,8 @@ h5.theaterblocktext {
 
 #scrollUp{
     z-index: 1000!important;
+}
+
+.white-text{
+    color:white;
 }

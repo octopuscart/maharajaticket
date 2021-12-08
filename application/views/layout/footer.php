@@ -58,7 +58,19 @@ $keywordschat = $seokeywords->seo_keywords;
             <div class="container">
                 <div class="row">
 
-                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                        <div class="footer-box">
+                            <h3>Contact Us</h3>
+                            <p>Connect with us via social media.</p>
+                            <ul class="">
+                                <li><i class="fa fa-whatsapp" aria-hidden="true"></i> &nbsp;<a href="https://api.whatsapp.com/send?phone=85261428189"  class='white-text'> +(852) 6142 8189</a></li>
+                                <li><i class="fa fa-envelope" aria-hidden="true"></i> &nbsp;  <a href="mailto:Sales@Maharajatickets.com"  class='white-text'> Sales@Maharajatickets.com</a></li>
+
+                            </ul>
+
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                         <div class="footer-box">
                             <h3>Stay With Us!</h3>
                             <p>Connect with us via social media.</p>
@@ -72,8 +84,8 @@ $keywordschat = $seokeywords->seo_keywords;
 
                         </div>
                     </div>
-                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                        
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+
                         <div class="footer-box">
                             <div class="newsletter-area">
                                 <h3>NewsLetter Sign Up!</h3>

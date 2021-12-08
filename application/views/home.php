@@ -44,7 +44,7 @@ foreach ($sliders as $key => $value) {
         <div class="bend niceties preview-1">
             <div id="ensign-nivoslider-3" class="slides">
                 <img src="<?php echo base_url(); ?>assets/sliders/cinema-ticket-banner.jpg" alt="" title="#slider-direction-2" />
-                <img src="<?php echo base_url(); ?>assets/sliders/home-banner-4.jpg" alt="" title="#slider-direction-4" />
+                <img src="<?php echo base_url(); ?>assets/sliders/home-banner-2.jpg" alt="" title="#slider-direction-4" />
 
             </div>
           
@@ -126,7 +126,6 @@ foreach ($sliders as $key => $value) {
             </div>
         </div>
     </div>
-    <img src="<?php echo base_url(); ?>assets/movies/moviebanner.jpg" alt="offer" style="width:100%">
 
     <div class="offer-area1 hidden-after-desk movieblockhome">
 
@@ -145,7 +144,7 @@ foreach ($sliders as $key => $value) {
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                     <div class="brand-area-box-r">
-                        <a href="#"><img src="<?php echo base_url(); ?>assets/movies/movieposter1.jpg" alt="offer"></a>
+                        <a href="#"><img src="<?php echo base_url(); ?>assets/movies/moviebanner.jpg" alt="offer"></a>
                     </div>
                 </div>
             </div>
@@ -154,9 +153,7 @@ foreach ($sliders as $key => $value) {
 
 
 
-    <video autoplay loop muted poster="screenshot.jpg" id="background">
-        <source src="<?php echo base_url(); ?>assets/sliders/maharajaticket.mp4" type="video/mp4">
-    </video>
+
 
 
     <!-- Brand Area End Here -->

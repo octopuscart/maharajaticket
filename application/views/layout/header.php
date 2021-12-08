@@ -68,9 +68,8 @@
     </head>
 
     <?php
-   
     $menucontainer = array();
- ?>
+    ?>
     <style>
         .preloadimage{
             background: black;
@@ -130,54 +129,115 @@
 
             <!-- Header Area Start Here -->
 
-            <div class="header-area-style2" id="sticker">
-                <div class="header-top">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-4 col-md-4 col-sm-2 hidden-xs">
-                                <div class="logo-area">
-                                    <a href="<?php echo site_url("/"); ?>"><img class="img-responsive mainsitelogo" src="<?php echo base_url(); ?>assets/images/logo.png" alt="logo" ></a>
-                                </div>
-                            </div>
-                            <div class="col-lg-8 col-md-8 col-sm-10 col-xs-12">
-                                <div class="account-wishlist">
-                                    <ul>
-                                        <li><i class="fa fa-phone" aria-hidden="true"></i><a href="tel:+(852) 6142 8189">+(852) 6142 8189</a></li>
-                                        <li><i class="fa fa-envelope" aria-hidden="true"></i><a href="mailto:sales@maharajatickets.com">sales@maharajatickets.com</a></li>
+            <!-- Header Area Start Here -->
+            <header>
 
-                                        <li><a href="#"><i class="fa fa-lock" aria-hidden="true"></i> Account</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="header-bottom">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                <div class="logo-area">
-                                    <a href="<?php echo site_url("/"); ?>"><img class="img-responsive mainsitelogo" src="<?php echo base_url(); ?>assets/images/logo.png" alt="logo" ></a>
-                                </div>
-                                <div class="main-menu-area home2-sticky-area">
-                                    <nav>
+
+
+
+                <div class="header-area-style2" id="sticker">
+
+
+
+                    <div class="header-top-inner-top">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                                    <div class="header-contact">
                                         <ul>
-                                            <li class="active"><a href="<?php echo site_url("/")?>">Home</a>        </li>
-                                            <li><a href="<?php echo site_url("Movies/index"); ?>">Movies</a></li>
-                                            <li><a href="<?php echo site_url("Movies/index"); ?>">Book Now</a></li>
-                                            <!--<li><a href="<?php echo site_url("Movies/ticketPayment");?>">Pay For Tickets</a></li>-->
-                                            <li><a href="<?php echo site_url("Movies/blog");?>">Blog</a></li>
-
-                                            <li><a href="https://api.whatsapp.com/send/?phone=85256818131&text&app_absent=0">Contact</a></li>
+                                            <li><i class="fa fa-whatsapp" aria-hidden="true"></i><a href="https://api.whatsapp.com/send?phone=85261428189"> +(852) 6142 8189</a></li>
+                                            <li><i class="fa fa-envelope" aria-hidden="true"></i><a href="mailto:Sales@Maharajatickets.com"> Sales@Maharajatickets.com</a></li>
                                         </ul>
-                                    </nav>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                    <div class="account-wishlist">
+                                        <ul>
+                                            <li><a href=""><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                                            <li><a href=""><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                                            <li><a href=""><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+                                            <li><a href=""><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
+                                            <li><a href=""><i class="fa fa-youtube" aria-hidden="true"></i></a></li></ul>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <div class="header-top" style=" ">
+                        <div class="container" >
+                            <div class="row">
+                                <div class="col-lg-4 col-md-4 col-sm-5 col-xs-12">
+                                    <div class="account-wishlist" style="font-size: 12px;">
 
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-2 hidden-xs">
+
+
+
+                                    <div class="logo-area">
+                                        <a href="<?php echo site_url("/"); ?>"><img class="img-responsive mainsitelogo" src="<?php echo base_url(); ?>assets/images/logo.png" alt="logo" ></a>
+
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-5 col-xs-12">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="header-bottom">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <div class="logo-area" >
+                                        <a href="<?php echo site_url("/"); ?>"><img class="img-responsive mainsitelogo" src="<?php echo base_url(); ?>assets/images/logo.png" alt="logo" ></a>
+
+                                    </div>
+                                    <div class="main-menu-area home2-sticky-area">
+                                        <nav>
+                                            <ul>
+                                                <li class="active"><a href="<?php echo site_url("/") ?>">Home</a>        </li>
+                                                <li><a href="<?php echo site_url("Movies/index"); ?>">Movies</a></li>
+                                                <li><a href="<?php echo site_url("Movies/index"); ?>">Book Now</a></li>
+                                                <!--<li><a href="<?php echo site_url("Movies/ticketPayment"); ?>">Pay For Tickets</a></li>-->
+                                                <li><a href="<?php echo site_url("Movies/blog"); ?>">Blog</a></li>
+
+                                                <li><a href="https://api.whatsapp.com/send/?phone=85256818131&text&app_absent=0">Contact</a></li>
+                                            </ul>
+                                        </nav>
+                                    </div>
+                                 
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Mobile Menu Area Start Here -->
+                        <div class="mobile-menu-area">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="mobile-menu">
+                                            <nav id="dropdown">
+                                                <ul>
+                                                    <li class="active"><a href="<?php echo site_url("/") ?>">Home</a>        </li>
+                                                    <li><a href="<?php echo site_url("Movies/index"); ?>">Movies</a></li>
+                                                    <li><a href="<?php echo site_url("Movies/index"); ?>">Book Now</a></li>
+                                                    <!--<li><a href="<?php echo site_url("Movies/ticketPayment"); ?>">Pay For Tickets</a></li>-->
+                                                    <li><a href="<?php echo site_url("Movies/blog"); ?>">Blog</a></li>
+
+                                                    <li><a href="https://api.whatsapp.com/send/?phone=85256818131&text&app_absent=0">Contact</a></li>
+                                                </ul>
+                                            </nav>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Mobile Menu Area End Here -->
+                    </div>
                 </div>
-            </div>
+            </header>
+
 
 
 
@@ -193,9 +253,15 @@
                     position: "right", // Position may be 'right' or 'left'
                 };
                 var proto = document.location.protocol, host = "getbutton.io", url = proto + "//static." + host;
-                var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true; s.src = url + '/widget-send-button/js/init.js';
-                s.onload = function () { WhWidgetSendButton.init(host, proto, options); };
-                var x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(s, x);
+                var s = document.createElement('script');
+                s.type = 'text/javascript';
+                s.async = true;
+                s.src = url + '/widget-send-button/js/init.js';
+                s.onload = function () {
+                    WhWidgetSendButton.init(host, proto, options);
+                };
+                var x = document.getElementsByTagName('script')[0];
+                x.parentNode.insertBefore(s, x);
             })();
         </script>
         <!-- /Getbutton.io widget -->

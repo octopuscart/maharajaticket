@@ -203,7 +203,7 @@
                                                 <!--<li><a href="<?php echo site_url("Movies/ticketPayment"); ?>">Pay For Tickets</a></li>-->
                                                 <li><a href="<?php echo site_url("Movies/blog"); ?>">Blog</a></li>
 
-                                                <li><a href="https://api.whatsapp.com/send/?phone=85256818131&text&app_absent=0">Contact</a></li>
+                                                <li><a href="https://api.whatsapp.com/send/?phone=85261428189&text&app_absent=0">Contact</a></li>
                                             </ul>
                                         </nav>
                                     </div>

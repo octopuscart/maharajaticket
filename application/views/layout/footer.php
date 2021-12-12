@@ -22,7 +22,7 @@ $keywordschat = $seokeywords->seo_keywords;
         <tr>
 
             <td class="text-right" >
-                <img src="<?php echo base_url(); ?>assets/paymentstatus/payme.jpg" style="height: 100px;">
+                <a href="https://bit.ly/3bdeHel" target="_blank">  <img src="<?php echo base_url(); ?>assets/paymentstatus/payme.jpg" style="height: 100px;"/></a>
             </td>
             <td class="text-left">
                 <img src="<?php echo base_url(); ?>assets/paymentstatus/fps.png" style="height: 100px;">

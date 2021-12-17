@@ -75,7 +75,7 @@ class Movie extends CI_Model {
         foreach ($movieevents as $mekey => $mevalue) {
             $event_date = $mevalue["event_date"];
 //            $listdatearray[$mevalue["event_date"]] = [];
-           $this->db->where('status!=', "off");  
+            $this->db->where('status!=', "off");
             $this->db->where('movie_id', $movie_id);
             $this->db->where('event_date', $event_date);
             $query = $this->db->get('movie_event');
@@ -130,10 +130,24 @@ class Movie extends CI_Model {
         }
         return $seats;
     }
+
+    function getEventByAttr($theater_id, $movie_id, $select_date, $select_time) {
+        $event_id = 0;
+        $this->db->select("*");
+        $this->db->where('booking_type!=', "Cancelled");
+        $this->db->where('theater_id', $theater_id);
+        $this->db->where('movie_id', $movie_id);
+        $this->db->where('select_date', $select_date);
+        $this->db->where('select_time', $select_time);
+        $query = $this->db->get('movie_ticket_booking');
+        $moviebooking = $query->row_array();
+        return $moviebooking ? $moviebooking["event_id"] : $event_id;
+    }
+
     function wheelchair($inputchair) {
         $wheelchairt_temp = (explode(", ", $inputchair));
         $wheelchair = array();
-         if ($inputchair) {
+        if ($inputchair) {
             foreach ($wheelchairt_temp as $key => $value) {
                 $wheelchair[$value] = "";
             }
@@ -215,6 +229,39 @@ class Movie extends CI_Model {
                 echo $this->load->view('Email/order_mail', $order_details, true);
             }
         }
+    }
+
+    function checkReserveSeats($event_id) {
+        $this->db->where("movie_event_id", $event_id);
+        $query = $this->db->get("movie_ticket_hold");
+        $predata = $query->result_array();
+        return $predata;
+    }
+
+    function checkTicketExist($event_id, $seat ,$session_data) {
+        $this->db->where("movie_event_id", $event_id);
+        $this->db->where("seat", $seat);
+        $query = $this->db->get("movie_ticket_hold");
+        $predata = $query->row_array();
+        if ($predata) {
+            return false;
+        } else {
+            $session_data["movie_event_id"] = $event_id;
+            $session_data["seat"] = $seat;
+            $this->db->insert('movie_ticket_hold', $session_data);
+            $last_id = $this->db->insert_id();
+            return $last_id;
+        }
+    }
+
+    function generateRandomString($length = 10) {
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+        return $randomString;
     }
 
 }

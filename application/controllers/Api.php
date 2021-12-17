@@ -433,8 +433,16 @@ class Api extends REST_Controller {
         $th_id = $inputarray['th_id'];
         $mv_id = $inputarray['mv_id'];
         $seats = $this->Movie->getSelectedSeats($th_id, $mv_id, $sdate, $stime);
+
         $resurve = array();
         foreach ($seats as $key => $value) {
+            $resurve[$value['seat']] = "";
+        }
+        
+        $event_id = $this->Movie->getEventByAttr($th_id, $mv_id, $sdate, $stime);
+        
+        $holdseats = $this->Movie->checkReserveSeats($event_id);
+        foreach ($holdseats as $key => $value) {
             $resurve[$value['seat']] = "";
         }
         return $resurve;

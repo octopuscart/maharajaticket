@@ -226,8 +226,7 @@ class Movies extends CI_Controller {
             }
         }
         
-        print_r($ticketlist);
-        print_r($resurve_pre);
+ 
 
 
         $data['ticketlist'] = $ticketlist;
@@ -279,7 +278,7 @@ class Movies extends CI_Controller {
                 );
                 $this->db->insert('movie_ticket', $seatArray);
             }
-            redirect("Movies/yourTicket/" . $bookid_md5);
+            redirect("Movies/yourTicketView/" . $bookid_md5);
         }
 
 

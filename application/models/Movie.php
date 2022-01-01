@@ -93,6 +93,8 @@ class Movie extends CI_Model {
                         "timing" => [array("time" => $stvalue["event_time"], "event_id" => $stvalue["id"])],
                         "layout" => $movietheater["layout"],
                         "active" => 1,
+                        "address1" => $movietheater["address1"],
+                        "address2" => $movietheater["address2"],
                     );
                 }
             }
@@ -238,7 +240,7 @@ class Movie extends CI_Model {
         return $predata;
     }
 
-    function checkTicketExist($event_id, $seat ,$session_data) {
+    function checkTicketExist($event_id, $seat, $session_data) {
         $this->db->where("movie_event_id", $event_id);
         $this->db->where("seat", $seat);
         $query = $this->db->get("movie_ticket_hold");

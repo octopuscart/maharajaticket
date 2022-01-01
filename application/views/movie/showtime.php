@@ -15,11 +15,11 @@ $this->load->view('layout/header');
         color: white;
     }
     .time-select .time-select__place {
-        font-size: 16px;
-        margin-top: 15px;
-        margin-left: 5px;
-        margin-bottom: 15px;
-        line-height: 40px;
+       font-size: 16px;
+    margin-top: 15px;
+    margin-left: 5px;
+    margin-bottom: 0;
+    line-height: 23px;
     }
     .time-select .items-wrap {
         padding-top: 5px;
@@ -200,7 +200,10 @@ $this->load->view('layout/header');
                                                         </ul>
                                                         <div class="col-sm-6">
                                                             <p class="time-select__place pull-right"><?php echo $value['title']; ?>  &nbsp;  <i class="fa fa-map-marker"></i></p>
-
+                                                            <p class="theateraddress">
+                                                                <?php echo $value['address1']; ?> <br/>
+                                                                <?php echo $value['address2']; ?> <br/>
+                                                            </p>   
                                                         </div>
 
                                                     </div>

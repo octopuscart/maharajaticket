@@ -258,16 +258,19 @@
                         ?>
                         <tr>
                             <td colspan="2">
+                                <h3 style="text-align: center;margin-top: 20px;">FOR PAYMENT CHOOSE BELOW PAYMENT METHOD</h3>
                                 <table style="width: 100%">
                                     <tr>
                                         <td  colspan="" style="text-align: center;width: 50%;">
 
-                                            <a href="https://bit.ly/3bdeHel" target="_blank"> <img src="<?php echo base_url(); ?>assets/paymentstatus/payme.jpg" style="height: 75px;"/></a>
+                                            <a href="https://bit.ly/3bdeHel" target="_blank"> <img src="<?php echo base_url(); ?>assets/paymentstatus/payme.jpg" style="height: 75px;"/><br/>
+                                                <span>CLICK HERE FOR PAYMENT</span>
+                                            </a>
                                         </td>
                                         <td  colspan="" style="text-align: center;width: 50%;">
 
                                             <img src="<?php echo base_url(); ?>assets/paymentstatus/fps.png" style="height: 75px;"/>
-                                        
+
 
                                         </td>
                                     </tr>

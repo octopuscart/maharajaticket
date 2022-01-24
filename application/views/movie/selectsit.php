@@ -5,7 +5,7 @@ $this->load->view('layout/header');
 
 
     .seaticon{
-        background-image: url(<?php echo base_url(); ?>assets/movies/seat.png)!important;
+        background-image: url(<?php echo base_url(); ?>assets/movies/seat_w.png)!important;
         height: 20px;
         width: 26px!important;
         background-size: 30px;
@@ -13,6 +13,15 @@ $this->load->view('layout/header');
 
         background-position: center;
         padding: 0px;
+        background-color: #039c06;
+    }
+
+    .seatbooked{
+        opacity: 0.4;
+        opacity: 1!important;
+        /*background: #039c06!important;*/
+
+        /*background-image: url(<?php echo base_url(); ?>assets/movies/seat_r.png)!important;*/
     }
 
 
@@ -110,8 +119,22 @@ $this->load->view('layout/header');
                                 </tr>
                             </tbody>
                         </table>
-                    </div>
 
+                    </div>
+                    <center>
+                        <table>
+                            <tr>
+                                <td><img src="<?php echo base_url(); ?>assets/movies/seat_b.png" style="height: 50px"></td>
+                                <td>Unavailable</td>
+                                <td>&nbsp;&nbsp;</td>
+                                <td><img src="<?php echo base_url(); ?>assets/movies/seat_g.png" style="height: 50px"></td>
+                                <td>Available</td>
+                                <td>&nbsp;&nbsp;</td>
+                                <td><img src="<?php echo base_url(); ?>assets/movies/seat_r.png" style="height: 50px"></td>
+                                <td>Booked</td>
+                            </tr>
+                        </table>
+                    </center>
                 </div>
                 <div class="col-sm-2" style='padding: 0px;'>
 

@@ -351,8 +351,8 @@ class Movies extends CI_Controller {
                 echo json_encode($error);
             }
         } else {
-//            echo $message;
-            redirect("Movies/yourTicket/$bookingid");
+            echo $message;
+//            redirect("Movies/yourTicket/$bookingid");
         }
     }
 

@@ -199,7 +199,7 @@ $keywordschat = $seokeywords->seo_keywords;
 
     });
 
-    $('nav#dropdown').meanmenu({siteLogo: "<a href='/' class='logo-mobile-menu'><img src='<?php echo base_url() . 'assets/images/logo73.png'; ?>' style='    height: 35px;' /></a>"});
+    $('nav#dropdown').meanmenu({siteLogo: "<a href='/' class='logo-mobile-menu'><img src='<?php echo base_url() . 'assets/images/logo.png'; ?>' style='    height: 35px;' /></a>"});
 </script>
 
 

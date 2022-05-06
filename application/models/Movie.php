@@ -19,7 +19,7 @@ class Movie extends CI_Model {
         $movies = array();
 
 
-        $movieevents = $query->result_array();
+        $movieevents =  $query ? $query->result_array():array();
 
 
         foreach ($movieevents as $mekey => $mevalue) {
